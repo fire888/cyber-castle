@@ -5,7 +5,7 @@ import { studioConfig } from '../constants/elementsConfig'
 export function createStudio (emitterLink) {
   const emitter = emitterLink
 
-  let camera, scene, renderer
+  let camera, scene, renderer, levelMesh = null
 
   const init = () => {
     const { canId, rendererCon, clearColor, backgroundColor, fogData, amb } = studioConfig
@@ -48,27 +48,27 @@ export function createStudio (emitterLink) {
 
   init()
 
-  emitter.subscribe('assetsCreated')(levelMeshes => {
-
-
-
+  /*emitter.subscribe('assetsCreated')(levelMeshes => {
     const { levelItems } = levelMeshes
     levelItems.forEach(item => addToScene(item))
-  })
-
-  emitter.subscribe('frameUpdate')(() => drawFrame())
-
+  })*/
 
 
   const addToScene = mesh => scene.add( mesh )
 
   const drawFrame = () => camera && renderer.render( scene, camera )
+  emitter.subscribe('frameUpdate')(drawFrame)
 
   return {
     setCamera: cam => camera = cam,
     drawFrame,
     getRenderer: () => renderer,
     addToScene,
+    changeLevel: level => {
+      levelMesh && scene.remove(levelMesh)
+      levelMesh = level
+      scene.add(levelMesh)     
+    }
   }
 }
 

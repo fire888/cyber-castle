@@ -92,6 +92,7 @@ export function Player (emitterLink) {
   return {
     getObj: () => mainObj,
     getCamera: () => camera,
+    setToPos: (x, y, z) => mainObj.position.set(x, y, z)
   }
 }
 

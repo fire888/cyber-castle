@@ -2,6 +2,9 @@
  * Created by Vasilii on 08.07.2020.
  */
 
+import * as THREE from 'three'
+import 'three/examples/js/loaders/OBJLoader'
+
 export const createInput = function (callback) {
     const input = document.createElement('input')
     input.type = 'file'
@@ -13,8 +16,14 @@ export const createInput = function (callback) {
     document.body.appendChild(input)
 
     function handleFiles() {
-        const fileList = this.files;
-        callback(fileList[0])
+        const fileObject = this.files[0]
+        var reader = new FileReader();
+        reader.onload = function () {
+            var loader = new THREE.OBJLoader();
+            const mesh = loader.parse(this.result)
+            callback({ level: mesh })
+        };
+        reader.readAsText(fileObject);
     }
 
     input.addEventListener("change", handleFiles, false)

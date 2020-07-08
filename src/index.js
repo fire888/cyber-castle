@@ -23,26 +23,28 @@ import { createInput } from './systemsHtml/insertFileInBrowser'
 const initApp = () => {
   const emitter = Emitter()
   const studio = createStudio(emitter)
+  let player
+
+  function createLevel (assets) {
+    const { collisionWalls, collisionFloors, levelGroup } = prepareMeshesFromAssets(assets)
+    studio.changeLevel(levelGroup)
+    setWallsToCollision(collisionWalls)
+    setFloorsToCollision(collisionFloors)
+    setEmitterToCollisionFloors(emitter)
+    player && player.setToPos(0, 0, 0)
+  }
+
 
   loadAssets(assetsToLoad)
     .then(assets => {
 
-      function createLevel (assets) {
-          const levelMeshes = prepareMeshesFromAssets(assets)
-          emitter.emit('assetsCreated')(levelMeshes)
-
-          const { collisionWalls, collisionFloors } = levelMeshes
-          setWallsToCollision(collisionWalls)
-          setFloorsToCollision(collisionFloors)
-          setEmitterToCollisionFloors(emitter)
-      }
       createLevel(assets)
 
 
       new FrameUpdater(emitter)
       new KeyBoard(emitter)
       
-      const player = Player(emitter)
+      player = Player(emitter)
       studio.setCamera(player.getCamera())
       studio.addToScene(player.getObj())
   

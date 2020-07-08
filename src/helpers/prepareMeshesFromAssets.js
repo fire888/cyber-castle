@@ -1,20 +1,30 @@
+
+let materials
+
 export function prepareMeshesFromAssets (assets) {
 
     const levelItems = [], collisionWalls = [], collisionFloors = [], doors = {}
     let bot
 
-    const materials = createMaterials(assets)   
+    !materials && (materials = createMaterials(assets))
+    const levelGroup = new THREE.Group()   
+    //levelItems.push(levelGroup)
+    //collisionWalls.push(levelGroup)
+    //collisionFloors.push(levelGroup)
 
     assets['level'].traverse(child => {
       if (child.name.includes("room_")) {
-        levelItems.push(new THREE.Mesh(child.geometry, materials.wall))
-        collisionWalls.push(new THREE.Mesh(child.geometry, materials.easyMat))
-        collisionFloors.push(new THREE.Mesh(child.geometry, materials.easyMat))
+        const mesh = new THREE.Mesh(child.geometry, materials.wall)
+        levelGroup.add(mesh)
+        //levelItems.push(new THREE.Mesh(child.geometry, materials.wall))
+        collisionWalls.push(mesh)
+        collisionFloors.push(mesh)
       } 
 
 
       if (child.name.includes("os_")) {
-        levelItems.push(new THREE.Mesh(child.geometry, materials.bot))
+        levelGroup.add(new THREE.Mesh(child.geometry, materials.bot))
+        //levelItems.push(new THREE.Mesh(child.geometry, materials.bot))
         //collisionWalls.push(new THREE.Mesh(child.geometry, materials.easyMat))
         //collisionFloors.push(new THREE.Mesh(child.geometry, materials.easyMat))
       } 
@@ -46,10 +56,11 @@ export function prepareMeshesFromAssets (assets) {
 
     return ({
       monsterAnim: assets.monsterAnim,
-      levelItems,
+      //levelItems,
       doors,
       collisionWalls,
       collisionFloors,
+      levelGroup,
       materials,
       bot,
     })
