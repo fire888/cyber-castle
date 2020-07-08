@@ -49,6 +49,9 @@ export function createStudio (emitterLink) {
   init()
 
   emitter.subscribe('assetsCreated')(levelMeshes => {
+
+
+
     const { levelItems } = levelMeshes
     levelItems.forEach(item => addToScene(item))
   })

@@ -8,8 +8,6 @@ import { prepareMeshesFromAssets } from './helpers/prepareMeshesFromAssets'
 import { FrameUpdater } from './utils/FrameUpater'
 
 import { createSystemDoors } from './systems/systemDoors'
-import { createSystemMonsters } from './systems/systemMonsters'
-import { createSystemDialog } from './systemsHtml/sustemDialog'
 import { createStudio } from './entities/createStudio'
 //import { createBot } from './entities/createBot'
 import { Player } from './entities/Player'
@@ -19,31 +17,27 @@ import { setWallsToCollision } from './components/componentCollisionWalls'
 
 import { assetsToLoad } from './constants/assetsToLoad' 
 import { createInfo } from './systemsHtml/info'
+import { createInput } from './systemsHtml/insertFileInBrowser'
 
 
 const initApp = () => {
   const emitter = Emitter()
   const studio = createStudio(emitter)
 
-  createSystemDoors(emitter, studio.addToScene)
-  //createSystemMonsters(emitter, studio.addToScene)
-  createSystemDialog(emitter)
-  createInfo() 
-
   loadAssets(assetsToLoad)
     .then(assets => {
 
-      const levelMeshes = prepareMeshesFromAssets(assets)
-      emitter.emit('assetsCreated')(levelMeshes)
+      function createLevel (assets) {
+          const levelMeshes = prepareMeshesFromAssets(assets)
+          emitter.emit('assetsCreated')(levelMeshes)
 
-      //const bot = createBot(levelMeshes.bot)
-      //studio.addToScene(bot.mesh)
-      //emitter.subscribe('frameUpdate')(bot.update)
+          const { collisionWalls, collisionFloors } = levelMeshes
+          setWallsToCollision(collisionWalls)
+          setFloorsToCollision(collisionFloors)
+          setEmitterToCollisionFloors(emitter)
+      }
+      createLevel(assets)
 
-      const { collisionWalls, collisionFloors } = levelMeshes
-      setWallsToCollision(collisionWalls)
-      setFloorsToCollision(collisionFloors)
-      setEmitterToCollisionFloors(emitter)
 
       new FrameUpdater(emitter)
       new KeyBoard(emitter)
@@ -53,6 +47,8 @@ const initApp = () => {
       studio.addToScene(player.getObj())
   
       showStartButton()
+
+      createInput(createLevel)
     })
 }
 
