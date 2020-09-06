@@ -183,3 +183,10 @@
     cursor: pointer;
     border-color:  #181d38;
 }
+
+#bridge-params {
+    position: absolute; 
+    top: 40px; 
+    left: 10px; 
+    background: #ffffff55;
+}

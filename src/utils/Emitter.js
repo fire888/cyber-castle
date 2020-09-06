@@ -6,7 +6,8 @@ export function Emitter () {
         emit: id => data => getOrCreateArrFromObj(storage)(id)
             .forEach(action => action(data)),
         subscribe: id => callback => getOrCreateArrFromObj(storage)(id)
-            .push(callback)
+            .push(callback),
+        showAll () { console.log(storage) },
     }
 }
 

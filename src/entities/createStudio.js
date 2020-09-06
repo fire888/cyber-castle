@@ -38,7 +38,7 @@ export function createStudio (emitterLink) {
   }
 
   const resize = () => {
-    const size = {width: window.innerWidth, height: window.innerHeight}//renderer.domElement.parentNode.getBoundingClientRect()
+    const size = { width: window.innerWidth, height: window.innerHeight }
     renderer.setSize(size.width, size.height)
     if (camera) {
         camera.aspect = size.width/size.height
@@ -47,11 +47,6 @@ export function createStudio (emitterLink) {
   }
 
   init()
-
-  /*emitter.subscribe('assetsCreated')(levelMeshes => {
-    const { levelItems } = levelMeshes
-    levelItems.forEach(item => addToScene(item))
-  })*/
 
 
   const addToScene = mesh => scene.add( mesh )

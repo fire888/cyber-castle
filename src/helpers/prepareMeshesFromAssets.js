@@ -8,25 +8,26 @@ export function prepareMeshesFromAssets (assets) {
 
     !materials && (materials = createMaterials(assets))
     const levelGroup = new THREE.Group()   
-    //levelItems.push(levelGroup)
-    //collisionWalls.push(levelGroup)
-    //collisionFloors.push(levelGroup)
 
     assets['level'].traverse(child => {
       if (child.name.includes("room_")) {
         const mesh = new THREE.Mesh(child.geometry, materials.wall)
         levelGroup.add(mesh)
-        //levelItems.push(new THREE.Mesh(child.geometry, materials.wall))
         collisionWalls.push(mesh)
         collisionFloors.push(mesh)
       } 
 
+      if (child.name.includes("roomBridge")) {
+        child.material = materials.wall
+        child.material.needsUpdate = true
+        levelGroup.add(child)
+        collisionWalls.push(child)
+        collisionFloors.push(child)
+      }
+
 
       if (child.name.includes("os_")) {
         levelGroup.add(new THREE.Mesh(child.geometry, materials.bot))
-        //levelItems.push(new THREE.Mesh(child.geometry, materials.bot))
-        //collisionWalls.push(new THREE.Mesh(child.geometry, materials.easyMat))
-        //collisionFloors.push(new THREE.Mesh(child.geometry, materials.easyMat))
       } 
 
       
@@ -43,20 +44,8 @@ export function prepareMeshesFromAssets (assets) {
     })
 
 
-    //assets['levelCollisions'].traverse(child => { 
-    //  child.name === "wall_collision" && collisionWalls.push(new THREE.Mesh(child.geometry, materials.easyMat))
-    //  child.name === "floor_collision" && collisionFloors.push(new THREE.Mesh(child.geometry, materials.easyMat))
-    //})
-
-
-    //assets['monster'].traverse(child => {
-    //  child.name === "bot" && (bot = new THREE.Mesh(child.geometry, materials.bot ))
-    //})
-
-
     return ({
       monsterAnim: assets.monsterAnim,
-      //levelItems,
       doors,
       collisionWalls,
       collisionFloors,
@@ -82,9 +71,10 @@ const createMaterials = assets => {
   assets['wall-map'].wrapS = assets['wall-map'].wrapT = THREE.RepeatWrapping
   const wall = new THREE.MeshPhongMaterial({ 
     color: 0xa7b4b2,
+    side: THREE.DoubleSide, 
     //map: assets['wall-map'],
     emissive: 0x191c38,
-    bumpMap: assets['wall-map'],
+    // bumpMap: assets['wall-map'],
     bumpScale: 0.2,
     shininess: 100,
   })
