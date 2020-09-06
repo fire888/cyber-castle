@@ -21,14 +21,7 @@ function createCont (data) {
     let { max, min, val, callback, label, key, step } = data
 
     const cont = document.createElement('div')
-    
-    const labelElem = document.createElement('span')
-    labelElem.innerText = label
-    cont.appendChild(labelElem)
 
-    const valElem = document.createElement('span')
-    valElem.innerText = val
-    cont.appendChild(valElem)
 
     const buttMore = document.createElement('button')
     buttMore.innerText = 'more'
@@ -47,6 +40,15 @@ function createCont (data) {
         valElem.innerHTML = val
         callback({ key, val })
     })
+    
+    
+    const labelElem = document.createElement('span')
+    labelElem.innerText = label
+    cont.appendChild(labelElem)
+
+    const valElem = document.createElement('span')
+    valElem.innerText = val
+    cont.appendChild(valElem)
 
     return cont
 }

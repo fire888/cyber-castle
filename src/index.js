@@ -26,30 +26,37 @@ const DATA_BRIDGE = {
   'count': {
       max: 100,
       min: 3,
-      val: 30,
+      val: 100,
       label: 'count',
       step: 1,
   },
   'angle': {
       max: Math.PI * 3,
       min: -Math.PI * 3,
-      val: Math.PI / 7,
+      val: Math.PI,
       label: 'angle',
       step: 0.05,
   },
   'radius': {
       max: 200,
       min: 10,
-      val: 100,
+      val: 140,
       label: 'radius',
       step: 2,
   },
   'height': {
       max: 50,
       min: -50,
-      val: 0,
+      val: 20,
       label: 'height',
       step: 2,
+  },
+  'width': {
+      max: 50,
+      min: 10,
+      val: 20,
+      label: 'width',
+      step: 1, 
   }
 }
 

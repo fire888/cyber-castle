@@ -166,15 +166,15 @@ const createGeomEasy = data => {
 
 function createPoints (data) {
     const H = 17
-    const W = 10
+    const W = data['width'].val //W = 10
 
     const points = createPath(data)
     const p = []
     for (let i = 0; i < points.length; i ++) {
         const { x, y , z, rotation } = points[i]
 
-        const xW = Math.cos(-rotation) * W
-        const zW = Math.sin(-rotation) * W
+        const xW = Math.cos(-rotation * 2) * W
+        const zW = Math.sin(-rotation * 2) * W
 
         p.push([
             [x + xW, y, z + zW],
@@ -209,8 +209,8 @@ function createPath (data) {
     for (let i = -COUNT; i < COUNT; i ++) {
         const phase = i / COUNT 
 
-        const offsetCenter = phase * RADIUS        
-        const rotation = phase * ROT
+        const offsetCenter = phase * RADIUS     
+        const rotation = phase * ROT * Math.sign(i)
         const x = Math.sin(rotation) * offsetCenter
         const y = Math.sin(phase) * HEIGHT 
         const z = Math.cos(rotation) * offsetCenter
