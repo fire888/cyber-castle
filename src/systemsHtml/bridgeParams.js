@@ -23,11 +23,20 @@ function createCont (data) {
     const cont = document.createElement('div')
 
 
+    const labelElem = document.createElement('span')
+    labelElem.innerText = label
+    cont.appendChild(labelElem)
+
+    const valElem = document.createElement('span')
+    valElem.innerText = val.toFixed(2)
+    cont.appendChild(valElem)
+
+
     const buttMore = document.createElement('button')
     buttMore.innerText = 'more'
     buttMore.addEventListener('click', () => {
         val < max && (val += step)
-        valElem.innerHTML = val
+        valElem.innerHTML = val.toFixed(2)
         callback({ key, val })
     })
     cont.appendChild(buttMore)
@@ -37,18 +46,23 @@ function createCont (data) {
     cont.appendChild(buttLess)
     buttLess.addEventListener('click', () => {
         val > min && (val -= step)
-        valElem.innerHTML = val
+        valElem.innerHTML = val.toFixed(2)
         callback({ key, val })
     })
-    
-    
-    const labelElem = document.createElement('span')
-    labelElem.innerText = label
-    cont.appendChild(labelElem)
 
-    const valElem = document.createElement('span')
-    valElem.innerText = val
-    cont.appendChild(valElem)
+
+    const slider = document.createElement('input');
+    slider.type = 'range';
+    slider.min = min;
+    slider.max = max;
+    slider.value = val;
+    slider.step = step;
+    slider.oninput = e => {
+        let val = +e.target.value
+        valElem.innerHTML = val.toFixed(2)
+        callback({ key, val })
+    }
+    cont.appendChild(slider);
 
     return cont
 }

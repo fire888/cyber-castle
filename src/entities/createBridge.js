@@ -3,16 +3,14 @@ import * as THREE from 'three'
 
 
 export function createBridge (bridgeParams, emitter) {
-    let geom = createGeomEasy(bridgeParams)
+    let geom = createGeom(bridgeParams)
     const mat = new THREE.MeshBasicMaterial({ color: 0xff0000 })
     const mesh = new THREE.Mesh(geom, mat)
     mesh.name = 'roomBridge'
 
-    //mesh.rotation.x = 2
-
     const updateGeom = data => {
         mesh.geometry.dispose()
-        mesh.geometry = createGeomEasy(data)
+        mesh.geometry = createGeom(data)
         mesh.geometry.needsUpdate = true
     }
     emitter.subscribe('updateBridge')(updateGeom)
@@ -23,70 +21,14 @@ export function createBridge (bridgeParams, emitter) {
 }
 
 
-/**
- *       p[i-1][2]                p[i][2]
- *            *--------------- *
- *           /|               /|
- * p[i-1][1]/ |      p[i][2] / |    
- *         *----------------*  |
- *         |  * ------------|--* p[i][3]
- *         | / p[i-1][3]    | / 
- *         |/               |/
- *         *----------------*
- *     p[i-1][0]              p[i][0]
- */
+const createGeom = data => {
+    const pointsPath = createPointsPath(data)
+    const pointsCarcass = createPointsCarcass(pointsPath, data)
+    const geom = createGeomFromPoints(pointsCarcass)
 
-function createGeom (data) {
-    const points = createPoints(data)
-    
-    var p = []
-    for (let i = 1; i < points.length; i ++) {
-        p.push(
-            // left
-            points[i-1][1][0], points[i-1][1][1], points[i-1][1][2],
-            points[i][1][0], points[i][1][1], points[i][1][2],
-            points[i][0][0], points[i][0][1], points[i][0][2],
-
-            points[i-1][0][0], points[i-1][0][1], points[i-1][0][2],
-            points[i][1][0], points[i][1][1], points[i-1][1][2],
-            points[i][0][0], points[i][0][1], points[i][0][2],
-            
-
-            // top
-            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
-            points[i][2][0], points[i][2][1], points[i][2][2],
-            points[i][1][0], points[i][1][1], points[i][1][2],
-
-            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
-            points[i][1][0], points[i][1][1], points[i][1][2],
-            points[i-1][1][0], points[i-1][1][1], points[i-1][1][2],
-
-            // rigt
-            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
-            points[i][3][0], points[i][3][1], points[i][3][2],
-            points[i][2][0], points[i][2][1], points[i][2][2],
-
-            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
-            points[i-1][3][0], points[i-1][3][1], points[i-1][3][2],
-            points[i][3][0], points[i][3][1], points[i][3][2],
-
-            // bottom
-            points[i-1][0][0], points[i-1][0][1], points[i-1][0][2],
-            points[i][0][0], points[i][0][1], points[i][0][2],
-            points[i-1][3][0], points[i-1][3][1], points[i-1][3][2],
-
-            points[i-1][3][0], points[i-1][3][1], points[i-1][3][2],
-            points[i][0][0], points[i][0][1], points[i][0][2],
-            points[i][3][0], points[i][3][1], points[i][3][2],
-        )
-    }
-
-    const vertices = Float32Array.from(p)
-    var geometry = new THREE.BufferGeometry();
-    geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
-    geometry.computeVertexNormals()
-    return geometry
+    return geom
 }
+
 
 
 /**
@@ -107,8 +49,9 @@ function createGeom (data) {
  */
 
 
-const createGeomEasy = data => {
-   const points = createPoints(data)
+const createGeomFromPoints = data => {
+   const points = data
+
     
    var geometry = new THREE.Geometry()
    for (let i = 1; i < points.length - 1; i += 2) {
@@ -164,17 +107,16 @@ const createGeomEasy = data => {
  */
 
 
-function createPoints (data) {
+function createPointsCarcass (points, data) {
     const H = 17
     const W = data['width'].val //W = 10
 
-    const points = createPath(data)
     const p = []
     for (let i = 0; i < points.length; i ++) {
         const { x, y , z, rotation } = points[i]
 
-        const xW = Math.cos(-rotation * 2) * W
-        const zW = Math.sin(-rotation * 2) * W
+        const xW = Math.sin(rotation) * W
+        const zW = Math.cos(rotation) * W
 
         p.push([
             [x + xW, y, z + zW],
@@ -199,7 +141,41 @@ function createPoints (data) {
  *         *
  */
 
-function createPath (data) {
+
+
+
+ function createPointsPath (data) {
+     const { count, angle, radius, height, strengthAngle, distance } = getData(data)
+
+
+    const points = []
+    for (let i = 0; i < count; i ++) {
+        const phase = i / count
+
+        const d = distance * phase * (1 - strengthAngle)
+        const rotation = angle * phase * strengthAngle
+        const x = Math.sin(rotation) * radius + d
+        const y = phase * height
+        const z = Math.cos(rotation) * radius
+
+        points.push({ x, y, z, rotation })
+    }
+    return points
+ }
+
+
+
+ const getData = data => {
+     const newData = {}
+     for (let key in data) {
+         newData[key] = data[key].val
+     }
+     return newData
+ }
+
+
+/*
+function createPointsPath (data) {
     const COUNT = data.count.val // || 20
     const ROT = data.angle.val // || Math.PI / 5
     const RADIUS = data.radius.val // || 100
@@ -218,6 +194,109 @@ function createPath (data) {
         points.push({ x, y, z, rotation }) 
     }
     return points
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** TRESH *************************************************
+
+ */
+
+
+ /**
+ *       p[i-1][2]                p[i][2]
+ *            *--------------- *
+ *           /|               /|
+ * p[i-1][1]/ |      p[i][2] / |
+ *         *----------------*  |
+ *         |  * ------------|--* p[i][3]
+ *         | / p[i-1][3]    | /
+ *         |/               |/
+ *         *----------------*
+ *     p[i-1][0]              p[i][0]
+ */
+
+ /*
+function createGeom (data) {
+    const points = createPoints(data)
+
+    var p = []
+    for (let i = 1; i < points.length; i ++) {
+        p.push(
+            // left
+            points[i-1][1][0], points[i-1][1][1], points[i-1][1][2],
+            points[i][1][0], points[i][1][1], points[i][1][2],
+            points[i][0][0], points[i][0][1], points[i][0][2],
+
+            points[i-1][0][0], points[i-1][0][1], points[i-1][0][2],
+            points[i][1][0], points[i][1][1], points[i-1][1][2],
+            points[i][0][0], points[i][0][1], points[i][0][2],
+
+
+            // top
+            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
+            points[i][2][0], points[i][2][1], points[i][2][2],
+            points[i][1][0], points[i][1][1], points[i][1][2],
+
+            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
+            points[i][1][0], points[i][1][1], points[i][1][2],
+            points[i-1][1][0], points[i-1][1][1], points[i-1][1][2],
+
+            // rigt
+            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
+            points[i][3][0], points[i][3][1], points[i][3][2],
+            points[i][2][0], points[i][2][1], points[i][2][2],
+
+            points[i-1][2][0], points[i-1][2][1], points[i-1][2][2],
+            points[i-1][3][0], points[i-1][3][1], points[i-1][3][2],
+            points[i][3][0], points[i][3][1], points[i][3][2],
+
+            // bottom
+            points[i-1][0][0], points[i-1][0][1], points[i-1][0][2],
+            points[i][0][0], points[i][0][1], points[i][0][2],
+            points[i-1][3][0], points[i-1][3][1], points[i-1][3][2],
+
+            points[i-1][3][0], points[i-1][3][1], points[i-1][3][2],
+            points[i][0][0], points[i][0][1], points[i][0][2],
+            points[i][3][0], points[i][3][1], points[i][3][2],
+        )
+    }
+
+    const vertices = Float32Array.from(p)
+    var geometry = new THREE.BufferGeometry();
+    geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+    geometry.computeVertexNormals()
+    return geometry
 }
+ */
 
 

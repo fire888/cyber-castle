@@ -44,38 +44,56 @@ export const playerConfig = {
     },
 }
 
-export const unitsConfig = [{
-    name: 'guard_01',
-    pos: [-51, 26.316999435, 27],
-    rot: 0,
-  },{
-    name: 'guard_Super_02',
-    pos: [-39, 45.317001, -112],
-    rot: 0,
-  },{
-    name: 'master',
-    pos: [-91, 26.316999435, 35],
-    rot: hPI - 1,
-  },{
-    name: 'scientist',
-    pos: [31, 64.3152008, -48],
-    rot: hPI,
-  },{
-    name: 'engineer',
-    pos: [-1, 25.31520, -69],
-    rot: PI,
-  },{
-    name: 'programmer',
-    pos: [25, 64.3152008, -4],
-    rot: 0,
-  },{
-    name: 'mechanic',
-    pos: [11, 25.31520, -8],
-    rot: hPI,
-  },{
-    name: 'scout',
-    pos: [-49, 26.316999435, 172],
-    rot: hPI,
-}]
+export const BRIDGE_CONFIG = {
+    'count': {
+        max: 300,
+        min: 3,
+        val: 100,
+        label: 'count',
+        step: 1,
+    },
+    'angle': {
+        max: Math.PI * 10,
+        min: -Math.PI * 10,
+        val: Math.PI,
+        label: 'angle',
+        step: 0.05,
+    },
+    'strengthAngle': {
+        max: 1,
+        min: 0,
+        val: 1,
+        label: 'strengthAngle',
+        step: 0.05,
+    },
+    'distance': {
+        max: 200,
+        min: 2,
+        val: 50,
+        label: 'distance',
+        step: 0.05,
+    },
+    'radius': {
+        max: 200,
+        min: 10,
+        val: 80,
+        label: 'radius',
+        step: 2,
+    },
+    'height': {
+        max: 200,
+        min: -200,
+        val: 40,
+        label: 'height',
+        step: 2,
+    },
+    'width': {
+        max: 30,
+        min: 3,
+        val: 10,
+        label: 'width',
+        step: 1,
+    }
+}
 
 
