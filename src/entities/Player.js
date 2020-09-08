@@ -2,7 +2,6 @@ import * as THREE from 'three'
 
 import { playerConfig } from '../constants/elementsConfig'
 
-import { createComponentCollisionDoors } from '../components/componentCollisionDoors'
 import { createComponentCollisionFloors } from '../components/componentCollisionFloor'
 import { createComponentCollisionWalls } from '../components/componentCollisionWalls'
 import { createEventSwitchCvadrant } from '../components/checkerInCvadrant'
@@ -59,7 +58,6 @@ export function Player (emitterLink) {
 
   const checkFloors = createComponentCollisionFloors(mainObj, offsetFromFloor, offsetFromFloorFactor, speedDown)
   const checkWalls = createComponentCollisionWalls(mainObj, frontObj, offsetWallCollision)
-  const checkDoors = createComponentCollisionDoors(mainObj, frontObj, offsetWallCollision)
   const checkerInCvadrant = createEventSwitchCvadrant(mainObj, emitter)
 
   const debug = document.getElementById('debugger') 
@@ -72,7 +70,7 @@ export function Player (emitterLink) {
 
     if (keys['up']) {
 
-      if (checkWalls.check() || checkDoors.check()) return;
+      if (checkWalls.check()) return;
       mainObj.translateZ( -speed )
       checkerInCvadrant()
     }

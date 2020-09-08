@@ -49,6 +49,7 @@ const initApp = () => {
 
                 const bridge = createBridge(BRIDGE_CONFIG, emitter)
                 assets.bridge = bridge.mesh
+                studio.addToScene(bridge.mesh)
 
                 const systemPlatform = createSystemPlatforms(PLATFORMS_CONFIG)
                 assets.platforms = systemPlatform.items
