@@ -1,8 +1,22 @@
 
 let materials
 
-export function prepareMeshesFromAssets (assets) {
+export function createMaterials (assets) {
+    const wall = new THREE.MeshPhongMaterial({ 
+        color: 0xa7b4b2,
+        side: THREE.DoubleSide,
+        emissive: 0x191c38,
+        bumpScale: 0.2,
+        shininess: 100,
+    })
 
+    return ({
+        wall,
+    })
+}
+
+
+export function prepareMeshesFromAssets (assets) {
     const collisionWalls = [], collisionFloors = []
 
     !materials && (materials = createMaterials(assets))
@@ -25,13 +39,13 @@ export function prepareMeshesFromAssets (assets) {
         }
     })
 
-    assets.platforms.forEach(child => {
+    /*assets.platforms.forEach(child => {
           child.material = materials.wall
           child.material.needsUpdate = true
           levelGroup.add(child)
           collisionWalls.push(child)
           collisionFloors.push(child)
-    })
+    })*/
 
 
     return ({
@@ -42,17 +56,3 @@ export function prepareMeshesFromAssets (assets) {
     })
 }
 
-
-const createMaterials = assets => {
-  const wall = new THREE.MeshPhongMaterial({ 
-    color: 0xa7b4b2,
-    side: THREE.DoubleSide,
-    emissive: 0x191c38,
-    bumpScale: 0.2,
-    shininess: 100,
-  })
-
-  return ({
-    wall,
-  })
-}

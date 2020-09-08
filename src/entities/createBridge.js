@@ -2,10 +2,10 @@ import * as THREE from 'three'
 
 
 
-export function createBridge (bridgeParams, emitter) {
+export function createBridge (bridgeParams, emitter, materials) {
     let geom = createGeom(bridgeParams)
     const mat = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-    const mesh = new THREE.Mesh(geom, mat)
+    const mesh = new THREE.Mesh(geom, materials.wall)
     mesh.name = 'roomBridge'
 
     const updateGeom = data => {

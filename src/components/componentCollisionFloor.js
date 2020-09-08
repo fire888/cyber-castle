@@ -5,6 +5,8 @@
 
 import * as THREE from 'three'
 
+const FLOORS_ARRAY = []
+
 export const createComponentCollisionFloors = (objFromLink, offset, delta, speed) => {
     const objFrom = objFromLink
     const offsetFromFloor = offset
@@ -33,9 +35,7 @@ export const createComponentCollisionFloors = (objFromLink, offset, delta, speed
 
 }
 
-export const setFloorsToCollision = arr => FLOORS_ARRAY = arr
-export const setEmitterToCollisionFloors = emitter => EMITTER = emitter
 
-let FLOORS_ARRAY
-let EMITTER
+export const setItemToFloorsCollision = item => FLOORS_ARRAY.push(item)
+
 

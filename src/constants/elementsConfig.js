@@ -9,22 +9,13 @@ export const assetsToLoad = [
         filename: levelSrc,
         key: 'level'
     },
-    //{
-    //    type: 'img',
-    //    filename: wallSrc,
-    //    key: 'wall-map'
-    //},
-    //{
-    //   type: 'glb',
-    //    filename: monsterAnimSrc,
-    //    key: 'monsterAnim2'
-    //},
 ]
 
 
 
 const PI = Math.PI
 const hPI = PI / 2
+
 
 export const studioConfig = {
   canId: 'webgl-canvas',
