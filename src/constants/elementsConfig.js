@@ -1,3 +1,28 @@
+import '../assets/start-img.png'
+import '../assets/progress-img.png'
+import levelSrc from '../assets/level.obj'
+
+
+export const assetsToLoad = [
+    {
+        type: 'obj',
+        filename: levelSrc,
+        key: 'level'
+    },
+    //{
+    //    type: 'img',
+    //    filename: wallSrc,
+    //    key: 'wall-map'
+    //},
+    //{
+    //   type: 'glb',
+    //    filename: monsterAnimSrc,
+    //    key: 'monsterAnim2'
+    //},
+]
+
+
+
 const PI = Math.PI
 const hPI = PI / 2
 
@@ -30,17 +55,17 @@ export const playerConfig = {
     startRot: [0, 0, 0],
     startPos: [0, 0, 120],
     cameraData: {
-      fov: 90, 
-      ratio: window.innerWidth / window.innerHeight, 
-      near: 0.1, 
-      far: 1000,
-      pos: [0, 0, -0.5],
+        fov: 90,
+        ratio: window.innerWidth / window.innerHeight,
+        near: 0.1,
+        far: 1000,
+        pos: [0, 0, -0.5],
     },
     frontObjPos: [0, 0, -1],
     lightData: {
-      color: 0xffffcc, 
-      strength: 0.5,
-      pos: [15, 40, 0],
+        color: 0xffffcc,
+        strength: 0.5,
+        pos: [15, 40, 0],
     },
 }
 
@@ -95,5 +120,46 @@ export const BRIDGE_CONFIG = {
         step: 1,
     }
 }
+
+
+export const PLATFORMS_CONFIG = [
+    {
+        key: '01',
+        r: 30,
+        angle: Math.PI,
+        h: 10,
+    },
+    {
+        key: '01',
+        r: 30,
+        angle: Math.PI * 1.3,
+        h: 20,
+    },
+    {
+        key: '01',
+        r: 30,
+        angle: Math.PI,
+        h: 20,
+    },
+    {
+        key: '01',
+        r: 30,
+        angle: Math.PI,
+        h: 40,
+    },
+    {
+        key: '01',
+        r: 30,
+        angle: Math.PI,
+        h: 50,
+    },
+    {
+        key: '01',
+        r: 30,
+        angle: Math.PI,
+        h: 60,
+    },
+
+]
 
 

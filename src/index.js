@@ -3,21 +3,24 @@ import { showStartButton } from './systemsHtml/introHtml'
 
 import { KeyBoard } from './utils/keyBoard'
 import { Emitter } from './utils/Emitter'
-import { loadAssets } from './utils/loadAssets'
-import { prepareMeshesFromAssets } from './helpers/prepareMeshesFromAssets'
 import { FrameUpdater } from './utils/FrameUpater'
 
+import { loadAssets } from './utils/loadAssets'
+import { prepareMeshesFromAssets } from './helpers/prepareMeshesFromAssets'
+
 import { createStudio } from './entities/createStudio'
-import { createBridge } from './entities/createBridge'
 import { Player } from './entities/Player'
+import { createBridge } from './entities/createBridge'
+import { createSystemPlatforms } from './systems/systemPlatforms'
+
 
 import { setFloorsToCollision, setEmitterToCollisionFloors } from './components/componentCollisionFloor'
 import { setWallsToCollision } from './components/componentCollisionWalls'
 
-import { assetsToLoad } from './constants/assetsToLoad' 
+import { assetsToLoad } from './constants/elementsConfig'
 
-import { BRIDGE_CONFIG } from './constants/elementsConfig'
-import { bridgeParamsHtml } from './systemsHtml/bridgeParams'
+import { BRIDGE_CONFIG, PLATFORMS_CONFIG } from './constants/elementsConfig'
+import { bridgeParamsHtml } from './systemsHtml/bridgeParamsHtml'
 
 
 
@@ -38,7 +41,6 @@ const initApp = () => {
             setWallsToCollision(collisionWalls)
             setFloorsToCollision(collisionFloors)
             setEmitterToCollisionFloors(emitter)
-            player && player.setToPos(0, 0, 0)
         }
 
 
@@ -46,7 +48,10 @@ const initApp = () => {
             .then(assets => {
 
                 const bridge = createBridge(BRIDGE_CONFIG, emitter)
-                assets.level.add(bridge.mesh)
+                assets.bridge = bridge.mesh
+
+                const systemPlatform = createSystemPlatforms(PLATFORMS_CONFIG)
+                assets.platforms = systemPlatform.items
 
                 createLevel(assets)
 
