@@ -3,30 +3,30 @@ import * as THREE from 'three'
 
 
 export function createBridge (bridgeParams, emitter, materials) {
-
     const geom = new THREE.BoxGeometry(3, 2, 3)
     const mesh = new THREE.Mesh(geom, materials.wall)
     mesh.name = 'roomBridge'
-
-    const updateGeom = bridgeParams => {
-        const data = getData(bridgeParams)
-
-        mesh.rotation.y = data.rotate + (Math.PI/2 * (1 - data.strengthTwist))
-        mesh.position.z = ((1 - data.strengthTwist) * data.radius) + data.distance / 2
-        mesh.position.x = (1 - data.strengthTwist) * (-data.radius)
-        mesh.geometry.dispose()
-        mesh.geometry = createGeom(data)
-        mesh.geometry.needsUpdate = true
-    }
-
-    updateGeom(bridgeParams)
-
-    emitter.subscribe('updateBridge')(updateGeom)
-
+    emitter.subscribe('updateBridge')(data => updateMesh(data, mesh))
+    updateMesh(bridgeParams, mesh)
     return {
         mesh,
     }
 }
+
+
+
+const updateMesh = (bridgeParams, mesh) => {
+    const data = getData(bridgeParams)
+
+    mesh.geometry.dispose()
+    mesh.geometry = createGeom(data)
+    mesh.geometry.needsUpdate = true
+
+    mesh.rotation.y = data.rotate + (Math.PI/2 * (1 - data.strengthTwist))
+    mesh.position.z = ((1 - data.strengthTwist) * data.radius) + data.distance / 2
+    mesh.position.x = (1 - data.strengthTwist) * (-data.radius)
+}
+
 
 
 const createGeom = data => {
@@ -35,6 +35,71 @@ const createGeom = data => {
     const geom = createGeomFromPoints(pointsCarcass)
 
     return geom
+}
+
+
+
+/**
+ *         *
+ *         |
+ *         |
+ *         *
+ *         |
+ *         |
+ *         *
+ */
+function createPointsPath (data) {
+    const { count, twist, radius, height, strengthTwist, distance, offsetCenter } = data
+
+    const points = []
+    for (let i = 0; i < count; i ++) {
+        const phase = i / count
+
+        const d = distance * phase * (1 - strengthTwist)
+        const twistPoint = twist * phase * strengthTwist
+        const x = Math.sin(twistPoint) * radius + d
+        const y = phase * height
+        const z = Math.cos(twistPoint) * radius
+
+        points.push({ x, y, z, twistPoint })
+   }
+   return points
+}
+
+
+
+/**
+ *           *--------* 
+ *          /        /
+ *         *---*----*
+ *             | 
+ *           *-|-----* 
+ *          /  |    /
+ *         *---*---*
+ *             | 
+ *           *-|------*
+ *          /  |    /
+ *         *---*---*
+ */
+function createPointsCarcass (points, data) {
+    const H = 17
+    const W = data['width'] //W = 10
+
+    const p = []
+    for (let i = 0; i < points.length; i ++) {
+        const { x, y , z, twistPoint } = points[i]
+
+        const xW = Math.sin(twistPoint) * W
+        const zW = Math.cos(twistPoint) * W
+
+        p.push([
+            [x + xW, y, z + zW],
+            [x + xW, y + H, z + zW],
+            [x - xW, y + H, z - zW],
+            [x - xW, y, z - zW],
+        ])
+    }
+    return p
 }
 
 
@@ -55,8 +120,6 @@ const createGeom = data => {
  * 
  * @param {object} data 
  */
-
-
 const createGeomFromPoints = data => {
    const points = data
     
@@ -99,84 +162,11 @@ const createGeomFromPoints = data => {
 
 
 
-/**
- *           *--------* 
- *          /        /
- *         *---*----*
- *             | 
- *           *-|-----* 
- *          /  |    /
- *         *---*---*
- *             | 
- *           *-|------*
- *          /  |    /
- *         *---*---*
- */
-
-
-function createPointsCarcass (points, data) {
-    const H = 17
-    const W = data['width'] //W = 10
-
-    const p = []
-    for (let i = 0; i < points.length; i ++) {
-        const { x, y , z, twistPoint } = points[i]
-
-        const xW = Math.sin(twistPoint) * W
-        const zW = Math.cos(twistPoint) * W
-
-        p.push([
-            [x + xW, y, z + zW],
-            [x + xW, y + H, z + zW],
-            [x - xW, y + H, z - zW],
-            [x - xW, y, z - zW],
-        ])
-    }
-    return p
-}
-
-
-
-
-/**
- *         *
- *         |
- *         |
- *         *
- *         |
- *         |
- *         *
- */
-
-
-
-
- function createPointsPath (data) {
-     const { count, twist, radius, height, strengthTwist, distance, offsetCenter } = data
-
-
-    const points = []
-    for (let i = 0; i < count; i ++) {
-        const phase = i / count
-
-        const d = distance * phase * (1 - strengthTwist)
-        const twistPoint = twist * phase * strengthTwist
-        const x = Math.sin(twistPoint) * radius + d
-        const y = phase * height
-        const z = Math.cos(twistPoint) * radius
-
-        points.push({ x, y, z, twistPoint })
-    }
-    return points
- }
-
-
-
- const getData = data => {
+const getData = data => {
      const newData = {}
      for (let key in data) {
          newData[key] = data[key].val
      }
      return newData
- }
+}
 
