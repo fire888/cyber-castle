@@ -76,7 +76,7 @@ export const BRIDGE_CONFIG = {
         step: 0.05,
     },
     'strengthTwist': {
-        max: Math.PI,
+        max: 1,
         min: 0,
         val: Math.PI,
         label: 'strengthTwist',
@@ -84,7 +84,7 @@ export const BRIDGE_CONFIG = {
     },
     'distance': {
         max: 200,
-        min: 2,
+        min: -200,
         val: 50,
         label: 'distance',
         step: 0.05,
