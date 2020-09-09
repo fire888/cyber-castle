@@ -12,6 +12,7 @@ import { createStudio } from './entities/createStudio'
 import { Player } from './entities/Player'
 import { createBridge } from './entities/createBridge'
 import { createSystemPlatforms } from './systems/systemPlatforms'
+import { createSystemControllers } from './systems/systemControllers'
 
 
 import { setItemToFloorsCollision } from './components/componentCollisionFloor'
@@ -19,7 +20,7 @@ import { setItemToWallCollision } from './components/componentCollisionWalls'
 
 import { assetsToLoad } from './constants/elementsConfig'
 
-import { BRIDGE_CONFIG, PLATFORMS_CONFIG } from './constants/elementsConfig'
+import { BRIDGE_CONFIG, PLATFORMS_CONFIG, CONTROLLERS_CONFIG } from './constants/elementsConfig'
 import { bridgeParamsHtml } from './systemsHtml/bridgeParamsHtml'
 
 
@@ -56,7 +57,16 @@ const initApp = () => {
             document.body.appendChild(bridgeHtml)
 
             const systemPlatform = createSystemPlatforms(PLATFORMS_CONFIG, materials)
-            systemPlatform.items.forEach(item => studio.addToScene(item))
+            systemPlatform.items.forEach(mesh => {
+                setItemToFloorsCollision(mesh)
+                setItemToWallCollision(mesh)
+                studio.addToScene(mesh)
+            })
+
+            const systemControllers = createSystemControllers(CONTROLLERS_CONFIG, materials)
+            systemControllers.items.forEach(mesh => {
+                studio.addToScene(mesh)
+            })
 
             createLevel(assets)
 

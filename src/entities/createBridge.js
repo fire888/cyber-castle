@@ -9,10 +9,14 @@ export function createBridge (bridgeParams, emitter, materials) {
     mesh.name = 'roomBridge'
 
     const updateGeom = data => {
+        mesh.rotation.y = data.rotate.val
         mesh.geometry.dispose()
         mesh.geometry = createGeom(data)
         mesh.geometry.needsUpdate = true
     }
+
+    updateGeom(bridgeParams)
+
     emitter.subscribe('updateBridge')(updateGeom)
 
     return {
@@ -113,10 +117,10 @@ function createPointsCarcass (points, data) {
 
     const p = []
     for (let i = 0; i < points.length; i ++) {
-        const { x, y , z, rotation } = points[i]
+        const { x, y , z, twistPoint } = points[i]
 
-        const xW = Math.sin(rotation) * W
-        const zW = Math.cos(rotation) * W
+        const xW = Math.sin(twistPoint) * W
+        const zW = Math.cos(twistPoint) * W
 
         p.push([
             [x + xW, y, z + zW],
@@ -125,7 +129,7 @@ function createPointsCarcass (points, data) {
             [x - xW, y, z - zW],
         ])
     }
-    return p;
+    return p
 }
 
 
@@ -145,20 +149,20 @@ function createPointsCarcass (points, data) {
 
 
  function createPointsPath (data) {
-     const { count, angle, radius, height, strengthAngle, distance } = getData(data)
+     const { count, twist, radius, height, strengthTwist, distance, offsetCenter } = getData(data)
 
 
     const points = []
     for (let i = 0; i < count; i ++) {
         const phase = i / count
 
-        const d = distance * phase * (1 - strengthAngle)
-        const rotation = angle * phase * strengthAngle
-        const x = Math.sin(rotation) * radius + d
+        const d = distance * phase * (Math.PI - strengthTwist)
+        const twistPoint = twist * phase * strengthTwist
+        const x = Math.sin(twistPoint) * radius + d
         const y = phase * height
-        const z = Math.cos(rotation) * radius
+        const z = Math.cos(twistPoint) * radius
 
-        points.push({ x, y, z, rotation })
+        points.push({ x, y, z, twistPoint })
     }
     return points
  }
@@ -174,27 +178,6 @@ function createPointsCarcass (points, data) {
  }
 
 
-/*
-function createPointsPath (data) {
-    const COUNT = data.count.val // || 20
-    const ROT = data.angle.val // || Math.PI / 5
-    const RADIUS = data.radius.val // || 100
-    const HEIGHT = data.height.val // || 30
-
-    const points = []
-    for (let i = -COUNT; i < COUNT; i ++) {
-        const phase = i / COUNT 
-
-        const offsetCenter = phase * RADIUS     
-        const rotation = phase * ROT * Math.sign(i)
-        const x = Math.sin(rotation) * offsetCenter
-        const y = Math.sin(phase) * HEIGHT 
-        const z = Math.cos(rotation) * offsetCenter
-
-        points.push({ x, y, z, rotation }) 
-    }
-    return points
-}*/
 
 
 

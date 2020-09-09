@@ -10,19 +10,19 @@ import { createEventSwitchCvadrant } from '../components/checkerInCvadrant'
 export function Player (emitterLink) {
   const emitter = emitterLink
 
-  const { 
-    startPos,
-    startRot, 
-    cameraData, 
-    frontObjPos, 
-    lightData, 
-    speed, 
-    offsetFromFloor, 
-    offsetFromFloorFactor,
-    speedDown, 
-    offsetWallCollision,
-    speedRot,
-  } = playerConfig
+      const {
+            startPos,
+            startRot,
+            cameraData,
+            frontObjPos,
+            lightData,
+            speed,
+            offsetFromFloor,
+            offsetFromFloorFactor,
+            speedDown,
+            offsetWallCollision,
+            speedRot,
+      } = playerConfig
 
   let camera
   let keys = {}

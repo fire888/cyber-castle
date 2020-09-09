@@ -7,7 +7,7 @@ export const createSystemPlatforms = (config, materials) => {
     const items = []
     for (let i = 0; i < config.length; i ++) {
         const mesh = new THREE.Mesh(
-            new THREE.BoxGeometry(10, 2, 10),
+            new THREE.BoxGeometry(20, 5, 20),
             materials.wall
         )
 

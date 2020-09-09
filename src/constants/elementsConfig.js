@@ -18,21 +18,20 @@ const hPI = PI / 2
 
 
 export const studioConfig = {
-  canId: 'webgl-canvas',
-  rendererCon: { 
-    antialias: true
-  },
-  clearColor: 0x0e2535,
-  backgroundCoor: 0x222024,
-  fogData: { 
-    color: 0x0e2535, 
-    strength: 0.0117,
-  },
-  amb: {
-    color: 0xffffff, 
-    strength: 0.8, 
-  },
-  "zero": -15,
+    canId: 'webgl-canvas',
+    rendererCon: {
+        antialias: true
+    },
+    clearColor: 0x0e2535,
+    backgroundColor: 0x222024,
+    fogData: {
+        color: 0x0e2535,
+        strength: 0.0057,
+    },
+    amb: {
+        color: 0xffffff,
+        strength: 0.8,
+    },
 }
 
 export const playerConfig = {
@@ -60,6 +59,7 @@ export const playerConfig = {
     },
 }
 
+
 export const BRIDGE_CONFIG = {
     'count': {
         max: 300,
@@ -68,19 +68,19 @@ export const BRIDGE_CONFIG = {
         label: 'count',
         step: 1,
     },
-    'angle': {
-        max: Math.PI * 10,
-        min: -Math.PI * 10,
-        val: Math.PI,
-        label: 'angle',
+    'twist': {
+        max: PI * 10,
+        min: -PI * 10,
+        val: PI,
+        label: 'twist',
         step: 0.05,
     },
-    'strengthAngle': {
-        max: 1,
+    'strengthTwist': {
+        max: Math.PI,
         min: 0,
-        val: 1,
-        label: 'strengthAngle',
-        step: 0.05,
+        val: Math.PI,
+        label: 'strengthTwist',
+        step: 0.001,
     },
     'distance': {
         max: 200,
@@ -109,48 +109,65 @@ export const BRIDGE_CONFIG = {
         val: 10,
         label: 'width',
         step: 1,
-    }
+    },
+    'rotate': {
+        max: PI,
+        min: -PI,
+        val: 0,
+        label: 'rotate',
+        step: 0.1,
+    },
+    'offsetCenter': {
+        max: 100,
+        min: -100,
+        val: 0,
+        label: 'offsetCenter',
+        step: 1,
+    },
 }
 
+
+const R = 100
 
 export const PLATFORMS_CONFIG = [
     {
         key: '01',
-        r: 30,
+        r: R,
         angle: Math.PI,
-        h: 10,
-    },
-    {
+        h: 0,
+    }, {
         key: '01',
-        r: 30,
+        r: R,
         angle: Math.PI * 1.3,
         h: 20,
     },
-    {
-        key: '01',
-        r: 30,
-        angle: Math.PI,
-        h: 20,
-    },
-    {
-        key: '01',
-        r: 30,
-        angle: Math.PI,
-        h: 40,
-    },
-    {
-        key: '01',
-        r: 30,
-        angle: Math.PI,
-        h: 50,
-    },
-    {
-        key: '01',
-        r: 30,
-        angle: Math.PI,
-        h: 60,
-    },
+]
 
+
+const NAME = 'console_'
+
+
+export const CONTROLLERS_CONFIG = [
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: 0,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '01',
+        r: R + 10,
+        angle: 1,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
 ]
 
 
