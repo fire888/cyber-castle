@@ -2,12 +2,15 @@ import * as THREE from 'three'
 
 
 
-export function createBridge (bridgeParams, emitter, materials) {
+export function createBridge (bridgeParams, emitter, materials)
+{
     const geom = new THREE.BoxGeometry(3, 2, 3)
     const mesh = new THREE.Mesh(geom, materials.wall)
     mesh.name = 'roomBridge'
+
     emitter.subscribe('updateBridge')(data => updateMesh(data, mesh))
     updateMesh(bridgeParams, mesh)
+
     return {
         mesh,
     }
@@ -15,7 +18,8 @@ export function createBridge (bridgeParams, emitter, materials) {
 
 
 
-const updateMesh = (bridgeParams, mesh) => {
+const updateMesh = (bridgeParams, mesh) =>
+{
     const data = getData(bridgeParams)
 
     mesh.geometry.dispose()
@@ -29,7 +33,8 @@ const updateMesh = (bridgeParams, mesh) => {
 
 
 
-const createGeom = data => {
+const createGeom = data =>
+{
     const pointsPath = createPointsPath(data)
     const pointsCarcass = createPointsCarcass(pointsPath, data)
     const geom = createGeomFromPoints(pointsCarcass)
@@ -48,8 +53,17 @@ const createGeom = data => {
  *         |
  *         *
  */
-function createPointsPath (data) {
-    const { count, twist, radius, height, strengthTwist, distance, offsetCenter } = data
+function createPointsPath (data)
+{
+    const {
+        count,
+        twist,
+        radius,
+        height,
+        strengthTwist,
+        distance,
+        offsetCenter
+    } = data
 
     const points = []
     for (let i = 0; i < count; i ++) {
@@ -81,7 +95,8 @@ function createPointsPath (data) {
  *          /  |    /
  *         *---*---*
  */
-function createPointsCarcass (points, data) {
+function createPointsCarcass (points, data)
+{
     const H = 17
     const W = data['width'] //W = 10
 
@@ -120,7 +135,8 @@ function createPointsCarcass (points, data) {
  * 
  * @param {object} data 
  */
-const createGeomFromPoints = data => {
+const createGeomFromPoints = data =>
+{
    const points = data
     
    var geometry = new THREE.Geometry()
@@ -162,11 +178,10 @@ const createGeomFromPoints = data => {
 
 
 
-const getData = data => {
+const getData = data =>
+{
      const newData = {}
-     for (let key in data) {
-         newData[key] = data[key].val
-     }
+     for (let key in data) newData[key] = data[key].val
      return newData
 }
 

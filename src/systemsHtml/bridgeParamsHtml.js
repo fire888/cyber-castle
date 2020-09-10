@@ -5,7 +5,7 @@ export function bridgeParamsHtml (data, emitter) {
     container.id = 'bridge-params'
 
     for (let key in data) {
-        const c = createCont(Object.assign(data[key], { key, callback: vals => { 
+        const c = createCont(Object.assign({}, data[key], { key, callback: vals => {
             data[vals.key].val = vals.val
             emitter.emit('updateBridge')(data) }
         }))
