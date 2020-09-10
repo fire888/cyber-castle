@@ -27,8 +27,8 @@ const updateMesh = (bridgeParams, mesh) =>
     mesh.geometry.needsUpdate = true
 
     mesh.rotation.y = data.rotate + (Math.PI/2 * (1 - data.strengthTwist))
-    mesh.position.z = ((1 - data.strengthTwist) * data.radius) + data.distance / 2
-    mesh.position.x = (1 - data.strengthTwist) * (-data.radius)
+    //mesh.position.z = ((1 - data.strengthTwist) * data.radius) + data.distance / 2
+    //mesh.position.x = (1 - data.strengthTwist) * (-data.radius)
 }
 
 
@@ -61,19 +61,20 @@ function createPointsPath (data)
         radius,
         height,
         strengthTwist,
-        distance,
-        offsetCenter
+        //distance,
+        //offsetCenter
     } = data
 
     const points = []
     for (let i = 0; i < count; i ++) {
         const phase = i / count
 
-        const d = distance * phase * (1 - strengthTwist)
+        const d = (radius * 2) * phase * (1 - strengthTwist)
         const twistPoint = twist * phase * strengthTwist
-        const x = Math.sin(twistPoint) * radius + d
+
+        const x = Math.sin(twistPoint) * radius + d - (radius * (1 - strengthTwist))
         const y = phase * height
-        const z = Math.cos(twistPoint) * radius
+        const z = Math.cos(twistPoint) * radius - (radius * (1 - strengthTwist))
 
         points.push({ x, y, z, twistPoint })
    }

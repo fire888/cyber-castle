@@ -3,7 +3,7 @@ import '../assets/progress-img.png'
 import levelSrc from '../assets/level.obj'
 
 
-export const assetsToLoad = [
+export const ASSETS_TO_LOAD = [
     {
         type: 'obj',
         filename: levelSrc,
@@ -82,17 +82,10 @@ export const BRIDGE_CONFIG = {
         label: 'strengthTwist',
         step: 0.001,
     },
-    'distance': {
-        max: 200,
-        min: -200,
-        val: 50,
-        label: 'distance',
-        step: 0.05,
-    },
     'radius': {
         max: 200,
         min: 10,
-        val: 80,
+        val: 100,
         label: 'radius',
         step: 2,
     },
@@ -117,20 +110,13 @@ export const BRIDGE_CONFIG = {
         label: 'rotate',
         step: 0.1,
     },
-    'offsetCenter': {
-        max: 100,
-        min: -100,
-        val: 0,
-        label: 'offsetCenter',
-        step: 1,
-    },
 }
 
 
 const R = 100
 
 export const PLATFORMS_CONFIG = [
-    {
+    /*{
         key: '01',
         r: R,
         angle: Math.PI,
@@ -140,12 +126,11 @@ export const PLATFORMS_CONFIG = [
         r: R,
         angle: Math.PI * 1.3,
         h: 20,
-    },
+    },*/
 ]
 
 
 const NAME = 'console_'
-
 
 export const CONTROLLERS_CONFIG = [
     {
@@ -159,7 +144,47 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '01',
+        key: NAME + '00',
+        r: R + 10,
+        angle: 0 + 0.2,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: .4,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: 0.6,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: 0.8,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '00',
         r: R + 10,
         angle: 1,
         y: 5,
@@ -168,6 +193,56 @@ export const CONTROLLERS_CONFIG = [
             'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
         },
     },
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: 1.2,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: 1.4,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: 1.6,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    {
+        key: NAME + '00',
+        r: R + 10,
+        angle: 1.8,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },
+    /*{
+        key: NAME + '01',
+        r: R + 10,
+        angle: 1,
+        y: 5,
+        controls: {
+            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
+            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
+        },
+    },*/
 ]
 
 

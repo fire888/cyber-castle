@@ -4,7 +4,7 @@ import { playerConfig } from '../constants/elementsConfig'
 
 import { createComponentCollisionFloors } from '../components/componentCollisionFloor'
 import { createComponentCollisionWalls } from '../components/componentCollisionWalls'
-import { createEventSwitchCvadrant } from '../components/checkerInCvadrant'
+import { createCheckerNearItem } from '../components/componentCheckNearItem'
 
 
 export function Player (emitterLink) {
@@ -58,9 +58,7 @@ export function Player (emitterLink) {
 
   const checkFloors = createComponentCollisionFloors(mainObj, offsetFromFloor, offsetFromFloorFactor, speedDown)
   const checkWalls = createComponentCollisionWalls(mainObj, frontObj, offsetWallCollision)
-  const checkerInCvadrant = createEventSwitchCvadrant(mainObj, emitter)
-
-  const debug = document.getElementById('debugger') 
+  const checkNearItem = createCheckerNearItem(mainObj, emitter) 
 
   const update = () => {
     if (isButtonsDisabled) return;
@@ -72,7 +70,8 @@ export function Player (emitterLink) {
 
       if (checkWalls.check()) return;
       mainObj.translateZ( -speed )
-      checkerInCvadrant()
+
+      checkNearItem()
     }
 
     keys['left'] && (mainObj.rotation.y += speedRot)

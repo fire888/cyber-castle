@@ -2,9 +2,7 @@ import * as THREE from 'three'
 import { studioConfig } from '../constants/elementsConfig'
 
 
-export function createStudio (emitterLink) {
-  const emitter = emitterLink
-
+export function createStudio (emitter) {
   let camera, scene, renderer, levelMesh = null
 
   const init = () => {
@@ -49,21 +47,16 @@ export function createStudio (emitterLink) {
   init()
 
 
-  const addToScene = mesh => scene.add( mesh )
+  const addToScene = scene.add.bind(scene)
 
-  const drawFrame = () => camera && renderer.render( scene, camera )
+  const drawFrame = () => camera && renderer.render(scene, camera)
   emitter.subscribe('frameUpdate')(drawFrame)
 
   return {
     setCamera: cam => camera = cam,
     drawFrame,
-    getRenderer: () => renderer,
+    renderer,
     addToScene,
-    changeLevel: level => {
-      levelMesh && scene.remove(levelMesh)
-      levelMesh = level
-      scene.add(levelMesh)     
-    }
   }
 }
 
