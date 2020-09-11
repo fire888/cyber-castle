@@ -27,8 +27,6 @@ const updateMesh = (bridgeParams, mesh) =>
     mesh.geometry.needsUpdate = true
 
     mesh.rotation.y = data.rotate + (Math.PI/2 * (1 - data.strengthTwist))
-    //mesh.position.z = ((1 - data.strengthTwist) * data.radius) + data.distance / 2
-    //mesh.position.x = (1 - data.strengthTwist) * (-data.radius)
 }
 
 
@@ -37,9 +35,7 @@ const createGeom = data =>
 {
     const pointsPath = createPointsPath(data)
     const pointsCarcass = createPointsCarcass(pointsPath, data)
-    const geom = createGeomFromPoints(pointsCarcass)
-
-    return geom
+    return createGeomFromPoints(pointsCarcass)
 }
 
 
@@ -61,8 +57,6 @@ function createPointsPath (data)
         radius,
         height,
         strengthTwist,
-        //distance,
-        //offsetCenter
     } = data
 
     const points = []
@@ -98,20 +92,20 @@ function createPointsPath (data)
  */
 function createPointsCarcass (points, data)
 {
-    const H = 17
-    const W = data['width'] //W = 10
+    const h = data['floor']
+    const w = data['width']
 
     const p = []
     for (let i = 0; i < points.length; i ++) {
         const { x, y , z, twistPoint } = points[i]
 
-        const xW = Math.sin(twistPoint) * W
-        const zW = Math.cos(twistPoint) * W
+        const xW = Math.sin(twistPoint) * w
+        const zW = Math.cos(twistPoint) * w
 
         p.push([
             [x + xW, y, z + zW],
-            [x + xW, y + H, z + zW],
-            [x - xW, y + H, z - zW],
+            [x + xW, y + h, z + zW],
+            [x - xW, y + h, z - zW],
             [x - xW, y, z - zW],
         ])
     }

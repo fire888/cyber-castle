@@ -9,11 +9,11 @@ export const createCheckerNearItem = (mesh, emitter) => () => {
     arrItems.forEach(item => {
         if (mesh.position.distanceTo(item.position) < 10 && !item.userData.nearPlayer) {
             item.userData.nearPlayer = true
-            emitter.emit('nearMesh')({ toNear: true, name: item.name })
+            emitter.emit('nearMesh')({ toNear: true, name: item.userData.key })
         }
         if (mesh.position.distanceTo(item.position) >= 10 && item.userData.nearPlayer) {
             item.userData.nearPlayer = false
-            emitter.emit('nearMesh')({ toNear: false, name: item.name })
+            emitter.emit('nearMesh')({ toNear: false, name: item.userData.key })
         }
     })
 }

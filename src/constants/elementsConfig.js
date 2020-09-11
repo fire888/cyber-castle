@@ -96,13 +96,6 @@ export const BRIDGE_CONFIG = {
         label: 'height',
         step: 2,
     },
-    'width': {
-        max: 30,
-        min: 3,
-        val: 10,
-        label: 'width',
-        step: 1,
-    },
     'rotate': {
         max: PI,
         min: -PI,
@@ -110,6 +103,20 @@ export const BRIDGE_CONFIG = {
         label: 'rotate',
         step: 0.1,
     },
+    'width': {
+        max: 30,
+        min: 0,
+        val: 10,
+        label: 'width',
+        step: 1,
+    },
+    'floor': {
+        max: 20,
+        min: 0,
+        val: 17,
+        label: 'floor',
+        step: 0.1,
+    }
 }
 
 

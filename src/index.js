@@ -25,6 +25,7 @@ import { setItemToWallCollision } from './components/componentCollisionWalls'
 import { addItemToNearChecker } from './components/componentCheckNearItem'
 
 import { bridgeParamsHtml } from './systemsHtml/bridgeParamsHtml'
+import { createDialog } from './systemsHtml/dialogHtml'
 import { showStartButton } from './systemsHtml/introHtml'
 
 
@@ -57,7 +58,7 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             const systemControllers = createSystemControllers(CONTROLLERS_CONFIG, materials, emitter)
             studio.addToScene(systemControllers.mesh)
             addItemToNearChecker(systemControllers.mesh)
-
+            createDialog(emitter)
 
             const { collisionWalls, collisionFloors, levelGroup } = prepareMeshesFromAssets(assets)
             studio.addToScene(levelGroup)
