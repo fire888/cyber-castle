@@ -7,12 +7,13 @@ export function createBridge (params, emitter, material) {
 
 
     const bridge = createMeshBridge(material)
-    emitter.subscribe('updateBridge')(data => bridge.changeMesh(getData(params)))
     bridge.changeMesh(getData(params))
+    emitter.subscribe('updateBridge')(data => bridge.changeMesh(getData(data)))
 
 
     doMarathonAnimations(BRIDGE_CONFIG_01, currentState, bridge.changeMesh)
         .then(newState => currentState = newState)
+
 
     return {
         mesh: bridge.mesh
@@ -29,14 +30,16 @@ const doMarathonAnimations = (states, currentState, action) =>
 
             const newState = states[index]
 
-            const actionWithValue = val => {
-                const middleObj = {}
+            const actionWithValue = val =>
+            {
+                const middleState = {}
                 for (let key in currentState)
-                    middleObj[key] = currentState[key] + (newState[key] - currentState[key]) * val
-                action(middleObj)
+                    middleState[key] = currentState[key] + (newState[key] - currentState[key]) * val
+                action(middleState)
             }
 
-            const nextTweenOrResolve = () => {
+            const nextTweenOrResolve = () =>
+            {
                 currentState = newState
                 index ++
                 states[index] ? doNextAnimation(index) : resolve(currentState)
@@ -64,8 +67,8 @@ const getData = data =>
 }
 
 
-
-const createCopyObject = data => {
+const createCopyObject = data =>
+{
     const obj = {}
     for (let key in data) obj[key] = data[key]
     return obj
