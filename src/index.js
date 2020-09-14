@@ -3,6 +3,7 @@
 import { KeyBoard } from './utils/keyBoard'
 import { Emitter } from './utils/Emitter'
 import { FrameUpdater } from './utils/FrameUpater'
+import { updateTweens } from './helpers/tween'
 
 import { 
     BRIDGE_CONFIG, 
@@ -29,10 +30,11 @@ import { createDialog } from './systemsHtml/dialogHtml'
 import { showStartButton } from './systemsHtml/introHtml'
 
 
-
 const initApp = () => loadAssets(ASSETS_TO_LOAD)
         .then(assets => {
             const emitter = Emitter()
+            emitter.subscribe('frameUpdate')(updateTweens)
+
             const studio = createStudio(emitter)
 
             const materials = createMaterials(assets)
@@ -60,6 +62,7 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             addItemToNearChecker(systemControllers.mesh)
             createDialog(emitter)
 
+
             const { collisionWalls, collisionFloors, levelGroup } = prepareMeshesFromAssets(assets)
             studio.addToScene(levelGroup)
             collisionWalls.forEach(item => setItemToWallCollision(item))
@@ -76,6 +79,7 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
 
 
             emitter.subscribe('nearMesh')(data => { console.log(data ) })
+
 
             showStartButton()
         })
