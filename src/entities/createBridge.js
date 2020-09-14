@@ -2,6 +2,8 @@ import { createMeshBridge } from '../components/componentMeshBridge'
 import { BRIDGE_CONFIG_01 } from '../constants/BRIDGE/config01'
 import { createTween } from '../helpers/tween'
 
+
+
 export function createBridge (params, emitter, material) {
     let currentState = createCopyObject(getData(params))
 
