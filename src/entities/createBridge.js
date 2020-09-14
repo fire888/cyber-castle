@@ -4,18 +4,23 @@ import { createTween } from '../helpers/tween'
 
 
 
+const PROGRAMS = {
+    'console_00': BRIDGE_CONFIG_01
+}
+
+
+
 export function createBridge (params, emitter, material) {
     let currentState = createCopyObject(getValsFromData(params))
-
 
     const bridge = createMeshBridge(material)
     bridge.changeMesh(getValsFromData(params))
     emitter.subscribe('updateBridge')(data => bridge.changeMesh(getValsFromData(data)))
 
-
-    doMarathonAnimations(BRIDGE_CONFIG_01, currentState, bridge.changeMesh)
-        .then(newState => currentState = newState)
-
+    emitter.subscribe('completeDialog')(data => {
+        doMarathonAnimations(PROGRAMS[data.currentConsoleKey], currentState, bridge.changeMesh)
+            .then(newState => currentState = newState)
+    })
 
     return {
         mesh: bridge.mesh

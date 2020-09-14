@@ -77,10 +77,7 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             studio.setCamera(player.getCamera())
             studio.addToScene(player.getObj())
 
-
-            emitter.subscribe('nearMesh')(data => { console.log(data ) })
-
-
+            
             showStartButton()
         })
 
