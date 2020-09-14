@@ -36,7 +36,7 @@ const doMarathonAnimations = (states, currentState, action) =>
                 action(middleObj)
             }
 
-            const nextOrResolve = () => {
+            const nextTweenOrResolve = () => {
                 currentState = newState
                 index ++
                 states[index] ? doNextAnimation(index) : resolve(currentState)
@@ -48,7 +48,7 @@ const doMarathonAnimations = (states, currentState, action) =>
                 toValue: 1,
                 duration: newState.time,
                 actionWithValue,
-            }).then(nextOrResolve)
+            }).then(nextTweenOrResolve)
         }
 
         doNextAnimation(0)
