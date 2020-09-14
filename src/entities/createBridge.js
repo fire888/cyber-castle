@@ -5,12 +5,12 @@ import { createTween } from '../helpers/tween'
 
 
 export function createBridge (params, emitter, material) {
-    let currentState = createCopyObject(getData(params))
+    let currentState = createCopyObject(getValsFromData(params))
 
 
     const bridge = createMeshBridge(material)
-    bridge.changeMesh(getData(params))
-    emitter.subscribe('updateBridge')(data => bridge.changeMesh(getData(data)))
+    bridge.changeMesh(getValsFromData(params))
+    emitter.subscribe('updateBridge')(data => bridge.changeMesh(getValsFromData(data)))
 
 
     doMarathonAnimations(BRIDGE_CONFIG_01, currentState, bridge.changeMesh)
@@ -28,8 +28,6 @@ const doMarathonAnimations = (states, currentState, action) =>
 {
     return new Promise(resolve => {
         const doNextAnimation = index => {
-            if (!states[index]) return resolve(currentState)
-
             const newState = states[index]
 
             const actionWithValue = val =>
@@ -61,7 +59,7 @@ const doMarathonAnimations = (states, currentState, action) =>
 }
 
 
-const getData = data =>
+const getValsFromData = data =>
 {
     const newData = {}
     for (let key in data) newData[key] = data[key].val
@@ -75,3 +73,4 @@ const createCopyObject = data =>
     for (let key in data) obj[key] = data[key]
     return obj
 }
+
