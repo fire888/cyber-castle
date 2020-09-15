@@ -116,7 +116,28 @@ export const BRIDGE_CONFIG = {
         val: 17,
         label: 'floor',
         step: 0.1,
-    }
+    },
+    'x': {
+        max: 300,
+        min: -300,
+        val: 0,
+        label: 'x',
+        step: 1,
+    },
+    'y': {
+        max: 300,
+        min: -300,
+        val: 0,
+        label: 'y',
+        step: 1,
+    },
+    'z': {
+        max: 300,
+        min: -300,
+        val: 0,
+        label: 'z',
+        step: 1,
+    },
 }
 
 

@@ -26,6 +26,7 @@ const updateMesh = (data, mesh) =>
     mesh.geometry = createGeom(data)
     mesh.geometry.needsUpdate = true
 
+    mesh.position.set(data.x, data.y, data.z)
     mesh.rotation.y = data.rotate + (Math.PI/2 * (1 - data.strengthTwist))
 }
 
