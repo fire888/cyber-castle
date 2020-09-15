@@ -58,8 +58,10 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
 
 
             const systemControllers = createSystemControllers(CONTROLLERS_CONFIG, materials, emitter)
-            studio.addToScene(systemControllers.mesh)
-            addItemToNearChecker(systemControllers.mesh)
+            systemControllers.arrMeshes.forEach(item => { 
+                studio.addToScene(item)
+                addItemToNearChecker(item)
+            })
             createDialog(emitter)
 
 

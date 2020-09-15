@@ -144,17 +144,15 @@ export const BRIDGE_CONFIG = {
 const R = 100
 
 export const PLATFORMS_CONFIG = [
-    /*{
+    {
         key: '01',
         r: R,
-        angle: Math.PI,
-        h: 0,
-    }, {
-        key: '01',
-        r: R,
-        angle: Math.PI * 1.3,
-        h: 20,
-    },*/
+        angle: PI,
+        y: -5,
+        w1: 30,
+        w2: 40,
+        h: 7,
+    },
 ]
 
 
@@ -166,23 +164,15 @@ export const CONTROLLERS_CONFIG = [
         r: R + 10,
         angle: 0,
         y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
     },
     {
-        key: NAME + '00',
+        key: NAME + '01',
         r: R + 10,
-        angle: 0 + 0.2,
+        angle: PI,
         y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
     },
-    {
-        key: NAME + '00',
+    /*{
+        key: NAME + '02',
         r: R + 10,
         angle: .4,
         y: 5,
@@ -192,7 +182,7 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '00',
+        key: NAME + '03',
         r: R + 10,
         angle: 0.6,
         y: 5,
@@ -202,7 +192,7 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '00',
+        key: NAME + '04',
         r: R + 10,
         angle: 0.8,
         y: 5,
@@ -212,7 +202,7 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '00',
+        key: NAME + '05',
         r: R + 10,
         angle: 1,
         y: 5,
@@ -222,7 +212,7 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '00',
+        key: NAME + '06',
         r: R + 10,
         angle: 1.2,
         y: 5,
@@ -232,7 +222,7 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '00',
+        key: NAME + '07',
         r: R + 10,
         angle: 1.4,
         y: 5,
@@ -242,7 +232,7 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '00',
+        key: NAME + '08',
         r: R + 10,
         angle: 1.6,
         y: 5,
@@ -252,19 +242,9 @@ export const CONTROLLERS_CONFIG = [
         },
     },
     {
-        key: NAME + '00',
+        key: NAME + '09',
         r: R + 10,
         angle: 1.8,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    /*{
-        key: NAME + '01',
-        r: R + 10,
-        angle: 1,
         y: 5,
         controls: {
             'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
