@@ -7,7 +7,7 @@ export function bridgeParamsHtml (data, emitter) {
 
     const slides = {}
     for (let key in data) {
-        const c = createCont(Object.assign({}, data[key], { key, callback: vals => {
+        const c = createChangerParam(Object.assign({}, data[key], { key, callback: vals => {
                 data[vals.key].val = vals.val
                 emitter.emit('updateBridge')(data)
                 insertInText(data)
@@ -28,7 +28,7 @@ export function bridgeParamsHtml (data, emitter) {
     const insertInText = data => {
         let stroke = '{\n time: 3000,'
         for (let key in data) {
-            stroke += `${ key }: ${data[key].val},\n`
+            stroke += `${ key }: ${data[key].val}, \n`
         }
         stroke += '},\n'
         textArea.innerText = stroke
@@ -41,7 +41,7 @@ export function bridgeParamsHtml (data, emitter) {
 
 
 
-function createCont (data) {
+function createChangerParam (data) {
     let { max, min, val, callback, label, key, step } = data
 
     const cont = document.createElement('div')
@@ -90,3 +90,4 @@ function createCont (data) {
 
     return cont
 }
+
