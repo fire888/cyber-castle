@@ -42,8 +42,9 @@ export const playerConfig = {
     offsetWallCollision: 3.5,
     level: -13,
     startRot: [0, 0, 0],
-    startPos: [0, 0, 120],
+    //startPos: [0, 0, 120],
     //startPos: [2.354103517969214, 6.5, -107.29721568841998],
+    startPos: [-24.948354188041503, 72.5, 93.69116998603509 ],
     cameraData: {
         fov: 90,
         ratio: window.innerWidth / window.innerHeight,
@@ -61,28 +62,39 @@ export const playerConfig = {
 
 
 export const PLATFORMS_CONFIG = [
-    { key: '01', r: R, angle: PI, y: -5, w1: 30, w2: 40, h: 7, },
+    { key: '01', r: R, angle: PI + 0.1, y: -5, w1: 70, w2: 40, h: 7, },
+    { key: '02', r: R, angle: 0, y: 61, w1: 70, w2: 40, h: 7, },
+    { key: '03', r: R, angle: PI - 0.1, y: 61, w1: 70, w2: 40, h: 7, },
 ]
 
 export const CONTROLLERS_CONFIG = [
-    { keyProgram: 'PROGRAM_00', r: R + 10, angle: 0, y: 5, },
-    { keyProgram: 'PROGRAM_01', r: R + 10, angle: PI, y: 5, },
+    { keyProgram: 'PROGRAM_00', r: R + 20, angle: 0, y: 5, },
+    { keyProgram: 'PROGRAM_01', r: R - 5, angle: PI + 0.3, y: 5, },
+    { keyProgram: 'PROGRAM_02', r: R - 5, angle: -0.2, y: 71, },
+    { keyProgram: 'PROGRAM_03', r: R - 5, angle: PI - 0.2, y: 71, },
 ]
 
-export const START_STATE ={time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
+export const START_STATE =//{time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
                //{time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,}
+               {time: 1000, count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2 + 0.25,width: 12,floor: 30,x: 0,y: 67,z: 0,}
+
 
 export const PROGRAMS = {
     'PROGRAM_00': [
-        {time: '3000', count: 60, twist: 14.1340734641021, strengthTwist: 1, radius: 30, height: 78, rotate: -Math.PI, width: 7, floor: 0, x: 0, y: -15, z: 0,},
-        {time: '3000', count: 172, twist: 14.1340734641021, strengthTwist: 0.383, radius: 40, height: 78, rotate: 0.858407346410207, width: 7, floor: 13.3, x: 0, y: -15, z: 0,},
-        {time: '3000', count: 172, twist: -18.1659265358979, strengthTwist: 0.486, radius: 40, height: 62, rotate: -Math.PI, width: 7, floor: 20, x: 0, y: -15, z: 0,},
-        {time: '3000', count: 300, twist: -18.1659265358979, strengthTwist: 0.922, radius: 64, height: 30, rotate: 0.858407346410207, width: 4, floor: 5.3, x: 0, y: 40, z: 0,},
-        {time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,},
+        {time: 700, count: 60, twist: 14.1340734641021, strengthTwist: 1, radius: 30, height: 78, rotate: -Math.PI, width: 7, floor: 0, x: 0, y: -15, z: 0,},
+        {time: 700, count: 172, twist: 14.1340734641021, strengthTwist: 0.383, radius: 40, height: 78, rotate: 0.858407346410207, width: 7, floor: 13.3, x: 0, y: -15, z: 0,},
+        {time: 2000, count: 172, twist: -18.1659265358979, strengthTwist: 0.486, radius: 40, height: 62, rotate: -Math.PI, width: 7, floor: 20, x: 0, y: -15, z: 0,},
+        {time: 3000, count: 300, twist: -18.1659265358979, strengthTwist: 0.922, radius: 64, height: 30, rotate: 0.858407346410207, width: 4, floor: 5.3, x: 0, y: 40, z: 0,},
+        {time: 3000, count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 110, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,},
     ],
     'PROGRAM_01': [
-        {time: '3000', count: 160, twist: -10,strengthTwist: 1,radius: 22,height: -40,rotate: PI,width: 3,floor: 17,x: 0,y: 70,z: 0,},
-        {time: '3000', count: 100, twist: 0,strengthTwist: 0,radius: 60,height: -78,rotate: PI * 1.5,width: 30,floor: 5,x: 0,y: 70,z: 0,},
-        {time: '1000', count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2,width: 12,floor: 30,x: 0,y: 67,z: 0,},
+        {time: 3000, count: 160, twist: -10,strengthTwist: 1,radius: 22,height: -40,rotate: PI,width: 3,floor: 17,x: 0,y: 70,z: 0,},
+        {time: 3000, count: 100, twist: 0,strengthTwist: 0,radius: 60,height: -78,rotate: PI * 1.5,width: 30,floor: 5,x: 0,y: 70,z: 0,},
+        {time: 1000, count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2 + 0.25,width: 12,floor: 30,x: 0,y: 67,z: 0,},
+    ],
+    'PROGRAM_02': [
+        {time: 3000, count: 50, twist: -4, strengthTwist: 1, radius: 7, height: 80, rotate: 1.5, width: 5, floor: 7, x: 0, y: 65, z: 0, },    
+        {time: 3000, count: 70, twist: 6, strengthTwist: 1, radius: 40, height: -80, rotate: -1.5, width: 8, floor: 7, x: 0, y: 110, z: 0, },    
+        {time: 3000, count: 100, twist: -2.81592653589793, strengthTwist: 1, radius: 96, height: 0, rotate: -0.341592653589793, width: 8, floor: 18, x: 0, y: 65, z: 0, },
     ],
 }
