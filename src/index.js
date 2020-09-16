@@ -5,12 +5,14 @@ import { Emitter } from './utils/Emitter'
 import { FrameUpdater } from './utils/FrameUpater'
 import { updateTweens } from './helpers/tween'
 
-import { 
-    BRIDGE_CONFIG, 
+import {
     PLATFORMS_CONFIG, 
     CONTROLLERS_CONFIG, 
     ASSETS_TO_LOAD
 } from './constants/elementsConfig'
+
+
+import { BRIDGE_HTML_DEC_CONFIG } from './constants/htmlDevConfig'
 
 import { loadAssets } from './utils/loadAssets'
 import { prepareMeshesFromAssets, createMaterials } from './helpers/prepareMeshesFromAssets'
@@ -39,13 +41,13 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
 
             const materials = createMaterials(assets)
             
-            const bridge = createBridge(BRIDGE_CONFIG, emitter, materials)
+            const bridge = createBridge(emitter, materials)
             setItemToFloorsCollision(bridge.mesh)
             setItemToWallCollision(bridge.mesh)
             studio.addToScene(bridge.mesh)
 
             
-            const bridgeHtml = bridgeParamsHtml(BRIDGE_CONFIG, emitter)
+            const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
             document.body.appendChild(bridgeHtml)
 
 

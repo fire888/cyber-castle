@@ -1,34 +1,25 @@
 import { createMeshBridge } from '../components/componentMeshBridge'
-import { 
-    PROGRAM_00, 
-    PROGRAM_01,
-} from '../constants/BRIDGE/program01'
+import {
+    START_STATE,
+    PROGRAMS
+} from '../constants/elementsConfig'
 import { createTween } from '../helpers/tween'
 
 
-const START_STATE = {time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
-
-const PROGRAMS = {
-    'console_00': PROGRAM_00,
-    'console_01': PROGRAM_01,
-}
-
-
-
-export function createBridge (params, emitter, material) {
+export function createBridge (emitter, material) {
     let currentState = START_STATE
 
     const bridge = createMeshBridge(material)
     bridge.changeMesh(START_STATE)
-    emitter.subscribe('updateBridge')(data => bridge.changeMesh(getValsFromData(data)))
+    emitter.subscribe('updateBridge')(data => bridge.changeMesh(getValuesFromData(data)))
 
     let inProgram = false
     emitter.subscribe('completeDialog')(data => {
         if (inProgram) return;
-        if (!PROGRAMS[data.currentConsoleKey]) return;
+        if (!PROGRAMS[data.mesh.userData.keyProgram]) return;
 
         inProgram = true
-        doMarathonAnimations(PROGRAMS[data.currentConsoleKey], currentState, bridge.changeMesh)
+        doMarathonAnimations(PROGRAMS[data.mesh.userData.keyProgram], currentState, bridge.changeMesh)
             .then(newState => {
                 currentState = newState
                 inProgram = false
@@ -77,7 +68,7 @@ const doMarathonAnimations = (states, currentState, action) =>
 }
 
 
-const getValsFromData = data =>
+const getValuesFromData = data =>
 {
     const newData = {}
     for (let key in data) newData[key] = data[key].val

@@ -5,21 +5,28 @@ export function bridgeParamsHtml (data, emitter) {
     container.id = 'bridge-params'
 
 
+    const slides = {}
     for (let key in data) {
         const c = createCont(Object.assign({}, data[key], { key, callback: vals => {
                 data[vals.key].val = vals.val
                 emitter.emit('updateBridge')(data)
-
                 insertInText(data)
             }
         }))
+        slides[key] = c
         container.appendChild(c)
     }
+
+    emitter.subscribe('completeProgram')(data => {
+        for (let key in slides) {
+            slides[key].children[4].value = data[key]
+        }
+    })
 
 
     const textArea = document.createElement('div')
     const insertInText = data => {
-        let stroke = '{\n'
+        let stroke = '{\n time: 3000,'
         for (let key in data) {
             stroke += `${ key }: ${data[key].val},\n`
         }

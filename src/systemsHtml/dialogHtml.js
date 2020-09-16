@@ -13,32 +13,36 @@ export function createDialog (emitter)
 
 const prepareOpenDialogButt = emitter => 
 {
+    const button = document.getElementById('dialog-button-toggle')
     let isPressed = false
-    let currentConsoleKey = null
+    let currentMesh = null
 
-    const showHideButt = (is) => {
+    const showHideButt = is =>
+    {
         isPressed = false
-        openDialog.style.display = is ? 'flex' : 'none'
-        openDialog.innerText = 'dialog'
+        button.style.display = is ? 'flex' : 'none'
+        button.innerText = 'dialog'
     }
-    const switchButton = () => {
+    const switchButton = () =>
+    {
         isPressed = !isPressed
-        openDialog.innerText = isPressed ? 'close' : 'dialog'
+        button.innerText = isPressed ? 'close' : 'dialog'
     }
-    const openDialog = document.getElementById('dialog-button-toggle')
-    openDialog.addEventListener('click', () => { 
+    button.addEventListener('click', () =>
+    {
         switchButton()
-        emitter.emit('startDialog')({ name: currentConsoleKey, isOpen: isPressed  })
+        emitter.emit('startDialog')({ mesh: currentMesh, isOpen: isPressed  })
+    })
+    emitter.subscribe('nearMesh')(data =>
+    {
+        currentMesh = data.mesh
+        showHideButt(data.toNear)
+        !data.toNear && emitter.emit('dialogTo')({ mesh: currentMesh, isOpen: false })
     })
 
-    emitter.subscribe('nearMesh')(data => {
-        currentConsoleKey = data.name
-        showHideButt(data.toNear)
-        !data.toNear && emitter.emit('dialogTo')({ name: currentConsoleKey, isOpen: false })
-    })
     emitter.subscribe('completeDialog')(switchButton)
 
-    return openDialog
+    return button
 }
 
 
@@ -47,25 +51,27 @@ const prepareDialog = emitter => {
     const replicies = document.getElementById('replicies')
     const playerRepliciesList = []
 
-    let currentConsoleKey = null
+    let currentMesh = null
 
-    const updateDialog = () => {
+    const updateDialog = () =>
+    {
         playerRepliciesList.forEach(item => item.parentNode.removeChild(item))
         playerRepliciesList.length = 0
 
         const butt = document.createElement('button')
         butt.innerText = 'start'
         butt.onclick = e => {
-            showHideDialog({ isOpen: false, name: currentConsoleKey })
-            emitter.emit('completeDialog')({ isOpen: false, currentConsoleKey })
+            showHideDialog({ isOpen: false, mesh: currentMesh })
+            emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
         }
         replicies.appendChild(butt)
         playerRepliciesList.push(butt)
     }
 
 
-    const showHideDialog = data => {
-        currentConsoleKey = data.name
+    const showHideDialog = data =>
+    {
+        currentMesh = data.mesh
         const messagesWrapper = document.getElementById('messages-wrapper')
         updateDialog(data)
         messagesWrapper.style.display = data.isOpen ? 'flex' : 'none'

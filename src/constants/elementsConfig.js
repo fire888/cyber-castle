@@ -12,10 +12,8 @@ export const ASSETS_TO_LOAD = [
 ]
 
 
-
 const PI = Math.PI
-const hPI = PI / 2
-
+const R = 100
 
 export const studioConfig = {
     canId: 'webgl-canvas',
@@ -34,6 +32,7 @@ export const studioConfig = {
     },
 }
 
+
 export const playerConfig = {
     speed: 0.35,
     speedRot: 0.02,
@@ -44,6 +43,7 @@ export const playerConfig = {
     level: -13,
     startRot: [0, 0, 0],
     startPos: [0, 0, 120],
+    //startPos: [2.354103517969214, 6.5, -107.29721568841998],
     cameraData: {
         fov: 90,
         ratio: window.innerWidth / window.innerHeight,
@@ -60,197 +60,29 @@ export const playerConfig = {
 }
 
 
-export const BRIDGE_CONFIG = {
-    'count': {
-        max: 300,
-        min: 3,
-        val: 100,
-        label: 'count',
-        step: 1,
-    },
-    'twist': {
-        max: PI * 10,
-        min: -PI * 10,
-        val: PI,
-        label: 'twist',
-        step: 0.05,
-    },
-    'strengthTwist': {
-        max: 1,
-        min: 0,
-        val: 1,
-        label: 'strengthTwist',
-        step: 0.001,
-    },
-    'radius': {
-        max: 200,
-        min: 10,
-        val: 100,
-        label: 'radius',
-        step: 2,
-    },
-    'height': {
-        max: 200,
-        min: -200,
-        val: 40,
-        label: 'height',
-        step: 2,
-    },
-    'rotate': {
-        max: PI,
-        min: -PI,
-        val: 0,
-        label: 'rotate',
-        step: 0.1,
-    },
-    'width': {
-        max: 30,
-        min: 0,
-        val: 10,
-        label: 'width',
-        step: 1,
-    },
-    'floor': {
-        max: 20,
-        min: 0,
-        val: 17,
-        label: 'floor',
-        step: 0.1,
-    },
-    'x': {
-        max: 300,
-        min: -300,
-        val: 0,
-        label: 'x',
-        step: 1,
-    },
-    'y': {
-        max: 300,
-        min: -300,
-        val: 0,
-        label: 'y',
-        step: 1,
-    },
-    'z': {
-        max: 300,
-        min: -300,
-        val: 0,
-        label: 'z',
-        step: 1,
-    },
-}
-
-
-const R = 100
-
 export const PLATFORMS_CONFIG = [
-    {
-        key: '01',
-        r: R,
-        angle: PI,
-        y: -5,
-        w1: 30,
-        w2: 40,
-        h: 7,
-    },
+    { key: '01', r: R, angle: PI, y: -5, w1: 30, w2: 40, h: 7, },
 ]
-
-
-const NAME = 'console_'
 
 export const CONTROLLERS_CONFIG = [
-    {
-        key: NAME + '00',
-        r: R + 10,
-        angle: 0,
-        y: 5,
-    },
-    {
-        key: NAME + '01',
-        r: R + 10,
-        angle: PI,
-        y: 5,
-    },
-    /*{
-        key: NAME + '02',
-        r: R + 10,
-        angle: .4,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    {
-        key: NAME + '03',
-        r: R + 10,
-        angle: 0.6,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    {
-        key: NAME + '04',
-        r: R + 10,
-        angle: 0.8,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    {
-        key: NAME + '05',
-        r: R + 10,
-        angle: 1,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    {
-        key: NAME + '06',
-        r: R + 10,
-        angle: 1.2,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    {
-        key: NAME + '07',
-        r: R + 10,
-        angle: 1.4,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    {
-        key: NAME + '08',
-        r: R + 10,
-        angle: 1.6,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },
-    {
-        key: NAME + '09',
-        r: R + 10,
-        angle: 1.8,
-        y: 5,
-        controls: {
-            'rotate': {max: PI, min: -PI, val: 0, label: 'rotate', step: 0.1,},
-            'distance': {max: 200, min: 2, val: 50, label: 'distance', step: 0.05,},
-        },
-    },*/
+    { keyProgram: 'PROGRAM_00', r: R + 10, angle: 0, y: 5, },
+    { keyProgram: 'PROGRAM_01', r: R + 10, angle: PI, y: 5, },
 ]
 
+export const START_STATE ={time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
+               //{time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,}
 
+export const PROGRAMS = {
+    'PROGRAM_00': [
+        {time: '3000', count: 60, twist: 14.1340734641021, strengthTwist: 1, radius: 30, height: 78, rotate: -Math.PI, width: 7, floor: 0, x: 0, y: -15, z: 0,},
+        {time: '3000', count: 172, twist: 14.1340734641021, strengthTwist: 0.383, radius: 40, height: 78, rotate: 0.858407346410207, width: 7, floor: 13.3, x: 0, y: -15, z: 0,},
+        {time: '3000', count: 172, twist: -18.1659265358979, strengthTwist: 0.486, radius: 40, height: 62, rotate: -Math.PI, width: 7, floor: 20, x: 0, y: -15, z: 0,},
+        {time: '3000', count: 300, twist: -18.1659265358979, strengthTwist: 0.922, radius: 64, height: 30, rotate: 0.858407346410207, width: 4, floor: 5.3, x: 0, y: 40, z: 0,},
+        {time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,},
+    ],
+    'PROGRAM_01': [
+        {time: '3000', count: 160, twist: -10,strengthTwist: 1,radius: 22,height: -40,rotate: PI,width: 3,floor: 17,x: 0,y: 70,z: 0,},
+        {time: '3000', count: 100, twist: 0,strengthTwist: 0,radius: 60,height: -78,rotate: PI * 1.5,width: 30,floor: 5,x: 0,y: 70,z: 0,},
+        {time: '1000', count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2,width: 12,floor: 30,x: 0,y: 67,z: 0,},
+    ],
+}

@@ -1,6 +1,6 @@
+import * as THREE from 'three'
 
-
-export function createSystemControllers (config, materials, emitter) 
+export function createSystemControllers (config)
 {
     const arrMeshes = []
     for (let i = 0; i < config.length; i ++) {
@@ -8,48 +8,14 @@ export function createSystemControllers (config, materials, emitter)
             new THREE.BoxGeometry(2, 1, 2),
             new THREE.MeshBasicMaterial({ color: 0xff0000 }),
         )
-        const { r, angle, y, key } = config[i]
+        const { r, angle, y, keyProgram } = config[i]
         mesh.position.set(Math.sin(angle) * r, y, Math.cos(angle) *  r)
         mesh.rotation.set(0, angle, 0)
-        mesh.userData.key = key
+        mesh.userData.keyProgram = keyProgram
         arrMeshes.push(mesh)
     }
 
-
-
-    /*const setPositionFromData = data => 
-    {
-        const { r, angle, y, key } = data
-        mesh.position.set(Math.sin(angle) * r, y, Math.cos(angle) *  r)
-        mesh.rotation.set(0, angle, 0)
-        mesh.userData.key = key
-    }
-    const onCompleteLast = () => 
-    {
-        console.log('complete')
-    }
-
-
-    const toNext = nexter(config, setPositionFromData, onCompleteLast) 
-    toNext()
-
-
-    emitter.subscribe('nextPoint')(toNext)*/
-
-
     return {
         arrMeshes
-    }
-}
-
-
-
-const nexter = (arrConfig, action, callback) => {
-    let currentIndex = -1
-    return () => {
-        currentIndex ++
-        arrConfig[currentIndex] 
-            ? action(arrConfig[currentIndex])
-            : callback()
     }
 }

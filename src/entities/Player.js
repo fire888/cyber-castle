@@ -72,6 +72,7 @@ export function Player (emitterLink) {
       mainObj.translateZ( -speed )
 
       checkNearItem()
+        console.log(mainObj.position)
     }
 
     keys['left'] && (mainObj.rotation.y += speedRot)
