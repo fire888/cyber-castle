@@ -42,9 +42,11 @@ export const playerConfig = {
     offsetWallCollision: 3.5,
     level: -13,
     startRot: [0, 0, 0],
-    //startPos: [0, 0, 120],
+    startPos: [0, 0, 120],
     //startPos: [2.354103517969214, 6.5, -107.29721568841998],
-    startPos: [-24.948354188041503, 72.5, 93.69116998603509 ],
+    //startPos: [-24.948354188041503, 72.5, 93.69116998603509 ],
+    //startPos: [18.357669772732198, 72.5, -104.50015863788533],
+    //startPos: [110.99286970990862, 123.5, 19.3252595736 ],
     cameraData: {
         fov: 90,
         ratio: window.innerWidth / window.innerHeight,
@@ -65,6 +67,8 @@ export const PLATFORMS_CONFIG = [
     { key: '01', r: R, angle: PI + 0.1, y: -5, w1: 70, w2: 40, h: 7, },
     { key: '02', r: R, angle: 0, y: 61, w1: 70, w2: 40, h: 7, },
     { key: '03', r: R, angle: PI - 0.1, y: 61, w1: 70, w2: 40, h: 7, },
+    { key: '04', r: R + 20, angle: PI/2, y: 112, w1: 70, w2: 40, h: 7, },
+    { key: '05', r: R + 20, angle: 0.35, y: 145, w1: 70, w2: 40, h: 7, },
 ]
 
 export const CONTROLLERS_CONFIG = [
@@ -72,12 +76,15 @@ export const CONTROLLERS_CONFIG = [
     { keyProgram: 'PROGRAM_01', r: R - 5, angle: PI + 0.3, y: 5, },
     { keyProgram: 'PROGRAM_02', r: R - 5, angle: -0.2, y: 71, },
     { keyProgram: 'PROGRAM_03', r: R - 5, angle: PI - 0.2, y: 71, },
+    { keyProgram: 'PROGRAM_04', r: R + 10, angle: PI/2 - 0.2, y: 120, },
 ]
 
-export const START_STATE =//{time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
-               //{time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,}
-               {time: 1000, count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2 + 0.25,width: 12,floor: 30,x: 0,y: 67,z: 0,}
-
+export const START_STATE =
+{time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
+//{time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,}
+//{time: 1000, count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2 + 0.25,width: 12,floor: 30,x: 0,y: 67,z: 0,}
+//{time: 3000, count: 100, twist: -2.81592653589793, strengthTwist: 1, radius: 96, height: 0, rotate: -0.341592653589793, width: 8, floor: 18, x: 0, y: 65, z: 0, }
+//{ time: 3000,count: 100, twist: 13.7340734641021, strengthTwist: 0.351, radius: 126, height: 52, rotate: -2.84159265358979, width: 10, floor: 17, x: 42, y: 69, z: 0, }
 
 export const PROGRAMS = {
     'PROGRAM_00': [
@@ -96,5 +103,11 @@ export const PROGRAMS = {
         {time: 3000, count: 50, twist: -4, strengthTwist: 1, radius: 7, height: 80, rotate: 1.5, width: 5, floor: 7, x: 0, y: 65, z: 0, },    
         {time: 3000, count: 70, twist: 6, strengthTwist: 1, radius: 40, height: -80, rotate: -1.5, width: 8, floor: 7, x: 0, y: 110, z: 0, },    
         {time: 3000, count: 100, twist: -2.81592653589793, strengthTwist: 1, radius: 96, height: 0, rotate: -0.341592653589793, width: 8, floor: 18, x: 0, y: 65, z: 0, },
+    ],
+    'PROGRAM_03': [
+        { time: 3000,count: 100, twist: 13.7340734641021, strengthTwist: 0.351, radius: 126, height: 52, rotate: -2.84159265358979, width: 10, floor: 17, x: 42, y: 69, z: 0, },
+    ],
+    'PROGRAM_04': [
+        { time: 3000,count: 100, twist: -7.21592653589793, strengthTwist: 1, radius: 114, height: 40, rotate: 1.25840734641021, width: 10, floor: 17, x: 0, y: 113, z: 0, },
     ],
 }
