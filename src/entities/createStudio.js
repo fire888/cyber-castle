@@ -57,6 +57,8 @@ export function createStudio (emitter) {
     drawFrame,
     renderer,
     addToScene,
+    scene,
+
   }
 }
 

@@ -2,10 +2,11 @@ import * as THREE from 'three'
 import 'three/examples/js/loaders/OBJLoader'
 import 'three/examples/js/loaders/GLTFLoader'
 
+
 let callback = null
 let dataToLoad = null
 const assets = {}
-let objLoader, textureLoader, gltfLoader
+let objLoader, textureLoader, gltfLoader, cubeTextureLoader
 let index = 0
 
 
@@ -28,7 +29,24 @@ const loadAsset = function (data) {
             checkComplete()        
         })
     }
+    if (data.type === 'cubeTextures') {
+        cubeTextureLoader.load(
+            [
+                data.filename['px'],
+                data.filename['nx'],
+                data.filename['py'],
+                data.filename['ny'],
+                data.filename['pz'],
+                data.filename['nz'],
+            ],
+            result => {
+                assets[data.key] = result
+                checkComplete()
+            }
+        )
+    }
 }
+
 
 const checkComplete = () => {
     index ++
@@ -46,7 +64,8 @@ export const loadAssets = data => {
         objLoader = objLoader || new THREE.OBJLoader()
         textureLoader = textureLoader || new THREE.TextureLoader()
         gltfLoader = gltfLoader || new THREE.GLTFLoader()
-    
+        cubeTextureLoader = cubeTextureLoader || new THREE.CubeTextureLoader()
+
         loadAsset(dataToLoad[index])
     })
 }
