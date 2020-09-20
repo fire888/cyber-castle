@@ -6,7 +6,10 @@ import pyjpg from '../assets/skybox/py.jpg'
 import nyjpg from '../assets/skybox/ny.jpg'
 import pzjpg from '../assets/skybox/pz.jpg'
 import nzjpg from '../assets/skybox/nz.jpg'
+
 import levelSrc from '../assets/level.obj'
+import terminalSrc from '../assets/terminal.obj'
+import terminal1Src from '../assets/terminal1.glb'
 
 
 export const ASSETS_TO_LOAD = [
@@ -14,6 +17,16 @@ export const ASSETS_TO_LOAD = [
         type: 'obj',
         filename: levelSrc,
         key: 'level'
+    },
+    {
+        type: 'obj',
+        filename: terminalSrc,
+        key: 'terminal'
+    },
+    {
+        type: 'glb',
+        filename: terminal1Src,
+        key: 'terminal1'
     },
     {
         type: 'cubeTextures',
@@ -53,7 +66,7 @@ export const playerConfig = {
     offsetWallCollision: 3.5,
     level: -13,
     startRot: [0, 0, 0],
-    startPos: [0, 0, 120],
+    startPos: [0, 0, 130],
     //startPos: [2.354103517969214, 6.5, -107.29721568841998],
     //startPos: [-24.948354188041503, 72.5, 93.69116998603509 ],
     //startPos: [18.357669772732198, 72.5, -104.50015863788533],
@@ -74,6 +87,20 @@ export const playerConfig = {
 }
 
 
+export const MATERIALS_CONFIG = {
+    'wall': {
+        mat: 'MeshPhongMaterial',
+        props: {
+            side: THREE.DoubleSide,
+            color: '#00c7ea',
+            emissive: '#6205b0',
+            bumpScale: 0.2,
+            shininess: 100,
+        },
+    } 
+}
+
+
 export const PLATFORMS_CONFIG = [
     { key: '01', r: R, angle: PI + 0.1, y: -5, w1: 70, w2: 40, h: 7, },
     { key: '02', r: R, angle: 0, y: 61, w1: 70, w2: 40, h: 7, },
@@ -83,11 +110,11 @@ export const PLATFORMS_CONFIG = [
 ]
 
 export const CONTROLLERS_CONFIG = [
-    { keyProgram: 'PROGRAM_00', r: R + 20, angle: 0, y: 5, },
-    { keyProgram: 'PROGRAM_01', r: R - 5, angle: PI + 0.3, y: 5, },
-    { keyProgram: 'PROGRAM_02', r: R - 5, angle: -0.2, y: 71, },
-    { keyProgram: 'PROGRAM_03', r: R - 5, angle: PI - 0.2, y: 71, },
-    { keyProgram: 'PROGRAM_04', r: R + 10, angle: PI/2 - 0.2, y: 120, },
+    { keyProgram: 'PROGRAM_00', r: R + 20, angle: 0, y: 0, },
+    { keyProgram: 'PROGRAM_01', r: R - 5, angle: PI + 0.3, y: -2, },
+    { keyProgram: 'PROGRAM_02', r: R - 5, angle: -0.2, y: 63, },
+    { keyProgram: 'PROGRAM_03', r: R - 5, angle: PI - 0.2, y: 63, },
+    { keyProgram: 'PROGRAM_04', r: R + 10, angle: PI/2 - 0.2, y: 115, },
 ]
 
 export const START_STATE =

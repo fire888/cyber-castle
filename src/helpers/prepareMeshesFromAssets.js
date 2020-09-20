@@ -1,25 +1,19 @@
+import { MATERIALS_CONFIG } from '../constants/elementsConfig'
 
-let materials
 
 export function createMaterials (assets) {
-    const wall = new THREE.MeshPhongMaterial({ 
-        color: 0xa7b4b2,
-        side: THREE.DoubleSide,
-        emissive: 0x191c38,
-        bumpScale: 0.2,
-        shininess: 100,
-    })
-
-    return ({
-        wall,
-    })
+    const mats = {}
+    for (let key in MATERIALS_CONFIG) {
+        mats[key] = new THREE[MATERIALS_CONFIG[key].mat](MATERIALS_CONFIG[key].props) 
+    }
+    return mats
 }
 
 
 export function prepareMeshesFromAssets (assets) {
     const collisionWalls = [], collisionFloors = []
 
-    !materials && (materials = createMaterials(assets))
+    const materials = createMaterials(assets)
     const levelGroup = new THREE.Group()
 
     assets['level'].traverse(child => {

@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-export const cloneGltf = (gltf) => {
+export const GLTFCopy = gltf => {
     const clone = {
       animations: gltf.animations,
       scene: gltf.scene.clone(true)

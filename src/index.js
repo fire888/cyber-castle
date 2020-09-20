@@ -38,7 +38,6 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             emitter.subscribe('frameUpdate')(updateTweens)
 
             const studio = createStudio(emitter)
-            console.log(assets)
             studio.scene.background = assets.skyBox
 
             const materials = createMaterials(assets)
@@ -61,7 +60,20 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             })
 
 
-            const systemControllers = createSystemControllers(CONTROLLERS_CONFIG, materials, emitter)
+            /*const terminal = assets.terminal1.scene.children[0]
+            const animations = assets.terminal1.animations
+            console.log('!!', terminal)
+            terminal.position.set(0, 2, 125)
+            const mixer = new THREE.AnimationMixer(terminal.children[1])
+            mixer.timeScale = 0.7 
+            const walkAction = mixer.clipAction(animations[0])
+            walkAction.play()
+            studio.addToScene(terminal)
+            emitter.subscribe('frameUpdate')((data) => {
+                mixer.update(data.delta)
+            })*/
+
+            const systemControllers = createSystemControllers(CONTROLLERS_CONFIG, assets.terminal1, emitter)
             systemControllers.arrMeshes.forEach(item => { 
                 studio.addToScene(item)
                 addItemToNearChecker(item)
