@@ -1,6 +1,10 @@
 
 /*********************************************/
 
+.hidden {
+    display: none;
+}
+
 #info {
     position: absolute;
     width: 80vw;

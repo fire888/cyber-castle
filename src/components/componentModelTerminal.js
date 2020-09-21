@@ -9,8 +9,13 @@ export const createModelTerminal = (model, config, emitter) => {
     const mixer = new THREE.AnimationMixer(terminalMesh)
     mixer.timeScale = 0.7
     const openAction = mixer.clipAction(animations[0])
-    openAction.clampWhenFinished = true;
-    openAction.loop = THREE.LoopOnce
+    //openAction.clampWhenFinished = false;
+    openAction.loop = THREE.LoopPingPong
+    mixer.addEventListener( 'finished', function(e) {  
+        openAction.stop()
+         console.log(e)
+        }); // properties of e: type, 
+
     const mesh = terminalMesh
 
     const { r, angle, y, keyProgram } = config
@@ -21,7 +26,8 @@ export const createModelTerminal = (model, config, emitter) => {
 
     const startOpen = () => {
         const clearUpdate = emitter.subscribe('frameUpdate')(data => mixer.update(data.delta))
-        console.log('!!!!!!!!!!', clearUpdate)
+        mixer.timeScale = 0.7
+
         openAction.play()
         return new Promise(resolve => {
             setTimeout(() => {
@@ -34,6 +40,7 @@ export const createModelTerminal = (model, config, emitter) => {
 
     const startClose = () => {
         const clearUpdate = emitter.subscribe('frameUpdate')(data => mixer.update(data.delta))
+        mixer.timeScale = -0.7
         openAction.play()
         return new Promise(resolve => {
             setTimeout(() => {

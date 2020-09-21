@@ -71,10 +71,16 @@ const prepareDialog = emitter => {
 
     const showHideDialog = data =>
     {
-        currentMesh = data.mesh
-        const messagesWrapper = document.getElementById('messages-wrapper')
-        updateDialog(data)
-        messagesWrapper.style.display = data.isOpen ? 'flex' : 'none'
+        const action = () => {
+            currentMesh = data.mesh
+            const messagesWrapper = document.getElementById('messages-wrapper')
+            updateDialog(data)
+            messagesWrapper.style.display = data.isOpen ? 'flex' : 'none'
+        } 
+
+        data.isOpen
+            ? setTimeout(action, 2500)
+            : action()
     }
 
     emitter.subscribe('startDialog')(showHideDialog)
