@@ -5,8 +5,13 @@ export function Emitter () {
     return { 
         emit: id => data => getOrCreateArrFromObj(storage)(id)
             .forEach(action => action(data)),
-        subscribe: id => callback => getOrCreateArrFromObj(storage)(id)
-            .push(callback),
+        subscribe: id => callback => {
+            const arrActions = getOrCreateArrFromObj(storage)(id)
+            arrActions.push(callback)
+            return fn => {
+                storage[id] = storage[id].filter(item => item !== fn)
+            }
+        },
         showAll () { console.log(storage) },
     }
 }

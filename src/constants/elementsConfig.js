@@ -8,8 +8,7 @@ import pzjpg from '../assets/skybox/pz.jpg'
 import nzjpg from '../assets/skybox/nz.jpg'
 
 import levelSrc from '../assets/level.obj'
-import terminalSrc from '../assets/terminal.obj'
-import terminal1Src from '../assets/terminal1.glb'
+import terminalSrc from '../assets/terminal1.glb'
 
 
 export const ASSETS_TO_LOAD = [
@@ -19,14 +18,9 @@ export const ASSETS_TO_LOAD = [
         key: 'level'
     },
     {
-        type: 'obj',
+        type: 'glb',
         filename: terminalSrc,
         key: 'terminal'
-    },
-    {
-        type: 'glb',
-        filename: terminal1Src,
-        key: 'terminal1'
     },
     {
         type: 'cubeTextures',
