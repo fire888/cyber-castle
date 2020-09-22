@@ -27,7 +27,7 @@ export const createModelTerminal = (model, config, emitter) => {
             setTimeout(() => {
                 openAction.paused = true
                 resolve()
-            }, 1000)
+            }, 1100)
         })
     }
 
@@ -38,7 +38,7 @@ export const createModelTerminal = (model, config, emitter) => {
         return new Promise(resolve => {
             setTimeout(() => {
                 resolve()
-            }, 1000)
+            }, 1100)
         })
     }
 

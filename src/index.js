@@ -49,7 +49,7 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
 
             
             const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
-            //document.body.appendChild(bridgeHtml)
+            document.body.appendChild(bridgeHtml)
 
 
             const systemPlatform = createSystemPlatforms(PLATFORMS_CONFIG, materials)
