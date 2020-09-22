@@ -16,6 +16,7 @@ const prepareOpenDialogButt = emitter =>
     const button = document.getElementById('dialog-button-toggle')
     let isPressed = false
     let currentMesh = null
+    let isActive = true
 
     const showHideButt = is =>
     {
@@ -30,6 +31,10 @@ const prepareOpenDialogButt = emitter =>
     }
     button.addEventListener('click', () =>
     {
+        if (!isActive) return;
+
+        isActive = false
+        setTimeout(() => isActive = true, 1500)
         switchButton()
         emitter.emit('startDialog')({ mesh: currentMesh, isOpen: isPressed  })
     })
@@ -79,7 +84,7 @@ const prepareDialog = emitter => {
         } 
 
         data.isOpen
-            ? setTimeout(action, 2500)
+            ? setTimeout(action, 1200)
             : action()
     }
 

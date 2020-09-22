@@ -104,7 +104,7 @@ export const PLATFORMS_CONFIG = [
 ]
 
 export const CONTROLLERS_CONFIG = [
-    { keyProgram: 'PROGRAM_00', r: R + 20, angle: 0, y: 0, },
+    { keyProgram: 'PROGRAM_00', r: R + 20, angle: 0, y: 2, },
     { keyProgram: 'PROGRAM_01', r: R - 5, angle: PI + 0.3, y: -2, },
     { keyProgram: 'PROGRAM_02', r: R - 5, angle: -0.2, y: 63, },
     { keyProgram: 'PROGRAM_03', r: R - 5, angle: PI - 0.2, y: 63, },

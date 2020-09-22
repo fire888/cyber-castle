@@ -16,4 +16,6 @@ export function createSystemControllers (config, model, emitter, arrActionsMesh)
             ? terminals[data.mesh.userData.keyProgram].startOpen()
             : terminals[data.mesh.userData.keyProgram].startClose()
         )
+
+    emitter.subscribe('completeDialog')(data => terminals[data.mesh.userData.keyProgram].startClose())
 }
