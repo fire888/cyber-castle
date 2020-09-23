@@ -56,7 +56,7 @@ export const playerConfig = {
     offsetWallCollision: 3.5,
     level: -13,
     startRot: [0, 0, 0],
-    //startPos: [0, 0, 130],
+    startPos: [0, 0, 140],
     //startPos: [2.354103517969214, 6.5, -107.29721568841998],
     //startPos: [-24.948354188041503, 72.5, 93.69116998603509 ],
     //startPos: [18.357669772732198, 72.5, -104.50015863788533],
@@ -126,7 +126,7 @@ export const START_STATE =
 //{time: 3000, count: 100, twist: -2.81592653589793, strengthTwist: 1, radius: 96, height: 0, rotate: -0.341592653589793, width: 8, floor: 18, x: 0, y: 65, z: 0, }
 //{ time: 3000,count: 100, twist: 13.7340734641021, strengthTwist: 0.351, radius: 126, height: 52, rotate: -2.84159265358979, width: 10, floor: 17, x: 42, y: 69, z: 0, }
 //{ time: 3000,count: 100, twist: -7.21592653589793, strengthTwist: 1, radius: 114, height: 40, rotate: 1.25840734641021, width: 10, floor: 17, x: 0, y: 113, z: 0, }
-{ time: 3000,count: 100, twist: 3.141592653589793, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.658407346410207, width: 12, floor: 20, x: -75, y: 240, z: -10, }
+{ time: 1500,count: 192, twist: -18.3159265358979, strengthTwist: 1, radius: 40, height: 98, rotate: 0, width: 9, floor: 16.2, x: 8, y: 146, z: 73, }
 //{ time: 3000,count: 100, twist: 3.141592653589793, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.658407346410207, width: 12, floor: 20, x: -75, y: 240, z: -10, }
 
 export const PROGRAMS = {
@@ -167,7 +167,8 @@ export const PROGRAMS = {
         { time: 1500,count: 192, twist: -18.3159265358979, strengthTwist: 1, radius: 40, height: 98, rotate: 0, width: 9, floor: 16.2, x: 8, y: 146, z: 73, },
     ],
     'PROGRAM_06': [
-        { time: 3000,count: 100, twist: 3.141592653589793, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.658407346410207, width: 12, floor: 20, x: -75, y: 240, z: -10, },
+        { time: 1500,count: 192, twist: -12, strengthTwist: 1, radius: 20, height: 70, rotate: 5, width: 3, floor: 3, x: -75, y: 200, z: 0, },
+        { time: 3000,count: 100, twist: 3.14, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.6584, width: 12, floor: 20, x: -75, y: 240, z: -10, },
     ],
     'PROGRAM_LAST': [
         {time: 3000,count: 300,twist: 0,strengthTwist: 1,radius: 0,height: 190,rotate: 0.158407346410207,width: 10,floor: 11.5,x: -20,y: 249,z: -192,},
