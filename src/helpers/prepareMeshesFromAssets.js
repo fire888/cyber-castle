@@ -11,12 +11,18 @@ export function createMaterials (assets) {
 
 
 export function prepareMeshesFromAssets (assets) {
-    const collisionWalls = [], collisionFloors = []
+
+    const
+    collisionWalls = [],
+    collisionFloors = [],
+    levelGroup = new THREE.Group(),
+    topLevelGroup = new THREE.Group()
 
     const materials = createMaterials(assets)
-    const levelGroup = new THREE.Group()
 
     assets['level'].traverse(child => {
+        console.log(child.name)
+
         if (child.name.includes("room_")) {
             const mesh = new THREE.Mesh(child.geometry, materials.wall)
             levelGroup.add(mesh)
@@ -24,28 +30,30 @@ export function prepareMeshesFromAssets (assets) {
             collisionFloors.push(mesh)
         }
 
-        if (child.name.includes("roomBridge")) {
+        if (child.name.includes("topworld_")) {
+            const mesh = new THREE.Mesh(child.geometry, materials.wall)
+            topLevelGroup.add(mesh)
+            collisionWalls.push(mesh)
+            collisionFloors.push(mesh)
+            //console.log('!!!!!!!', mesh)
+        }
+
+
+        /*if (child.name.includes("roomBridge")) {
             child.material = materials.wall
             child.material.needsUpdate = true
             levelGroup.add(child)
             collisionWalls.push(child)
             collisionFloors.push(child)
-        }
+        }*/
     })
-
-    /*assets.platforms.forEach(child => {
-          child.material = materials.wall
-          child.material.needsUpdate = true
-          levelGroup.add(child)
-          collisionWalls.push(child)
-          collisionFloors.push(child)
-    })*/
 
 
     return ({
       collisionWalls,
       collisionFloors,
       levelGroup,
+      topLevelGroup,
       materials,
     })
 }

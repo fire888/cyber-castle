@@ -4,7 +4,7 @@
 
 
 
-export function createMeshBridge (materials)
+export function createBridgeMesh (materials)
 {
     const geom = new THREE.BoxGeometry(3, 2, 3)
     const mesh = new THREE.Mesh(geom, materials.wall)

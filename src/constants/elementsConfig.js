@@ -63,6 +63,7 @@ export const playerConfig = {
     //startPos: [110.99286970990862, 123.5, 19.3252595736 ],
     //startPos: [34.17306840733142, 156.5, 109.1814716364231],
     startPos: [40.80743861657082, 249.7961832162714, 96.36024171879704 ],
+    //startPos: [173.2972371032552, 282.5404968261719, -312.9773946972067],
     cameraData: {
         fov: 90,
         ratio: window.innerWidth / window.innerHeight,
@@ -104,7 +105,7 @@ export const PLATFORMS_CONFIG = [
     { key: '06', r: R + 20, angle: 0.35 - 0.2, y: 237, w1: 70, w2: 40, h: 7, },
     //{ key: '06', r: R + 20, angle: 0.35 - 0.2, y: 237, w1: 300, w2: 300, h: 7, }, 
 ]
-export const CONTROLLERS_CONFIG = [
+export const TERMINALS_CONFIG = [
     { keyProgram: 'PROGRAM_Z', r: 50, angle: PI / 2, y: -57, },
     { keyProgram: 'PROGRAM_Z2', r: R + 5, angle: PI - 0.5, y: -27, },
     { keyProgram: 'PROGRAM_00', r: R + 20, angle: 0, y: 2, },
@@ -115,6 +116,7 @@ export const CONTROLLERS_CONFIG = [
     { keyProgram: 'PROGRAM_05', r: R + 10, angle: 0.25, y: 151, },
     { keyProgram: 'PROGRAM_06', r: R + 10, angle: 0.1, y: 243, },
 ]
+export const LAST_TERMINAL_CONFIG = { keyProgram: 'PROGRAM_LAST', r: 350, angle: PI + 0.5, y: 278 }
 
 
 export const START_STATE =
@@ -125,7 +127,7 @@ export const START_STATE =
 //{ time: 3000,count: 100, twist: 13.7340734641021, strengthTwist: 0.351, radius: 126, height: 52, rotate: -2.84159265358979, width: 10, floor: 17, x: 42, y: 69, z: 0, }
 //{ time: 3000,count: 100, twist: -7.21592653589793, strengthTwist: 1, radius: 114, height: 40, rotate: 1.25840734641021, width: 10, floor: 17, x: 0, y: 113, z: 0, }
 { time: 3000,count: 100, twist: 3.141592653589793, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.658407346410207, width: 12, floor: 20, x: -75, y: 240, z: -10, }
- 
+//{ time: 3000,count: 100, twist: 3.141592653589793, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.658407346410207, width: 12, floor: 20, x: -75, y: 240, z: -10, }
 
 export const PROGRAMS = {
     'PROGRAM_Z': [
@@ -166,5 +168,10 @@ export const PROGRAMS = {
     ],
     'PROGRAM_06': [
         { time: 3000,count: 100, twist: 3.141592653589793, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.658407346410207, width: 12, floor: 20, x: -75, y: 240, z: -10, },
+    ],
+    'PROGRAM_LAST': [
+        {time: 3000,count: 300,twist: 0,strengthTwist: 1,radius: 0,height: 190,rotate: 0.158407346410207,width: 10,floor: 11.5,x: -20,y: 249,z: -192,},
+        {time: 3000,count: 300,twist: 31.3840734641021,strengthTwist: 1,radius: 24,height: 190,rotate: 0.158407346410207,width: 10,floor: 11.5,x: -20,y: 249,z: -192,},
+        {time: 1000,count: 300,twist: 31.3840734641021,strengthTwist: 1,radius: 24,height: 190,rotate: 0.158407346410207,width: 0,floor: 0,x: -20,y: 249,z: -192,},
     ],
 }

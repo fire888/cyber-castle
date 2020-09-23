@@ -1,8 +1,3 @@
-/**
- * Created by Vasilii on 14.09.2020.
- */
-
-
 const lerp = (x1, x2, t) => x1 * (1 - t) + x2 * t;
 
 const _interpolateTwoVals = (x1, x2, x3, x4, t) => {
