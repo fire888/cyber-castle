@@ -1,4 +1,7 @@
 import { REPLICIES_CONFIG } from '../constants/repliciesConfig'
+import gsap from 'gsap'
+import { TextPlugin } from 'gsap/TextPlugin'
+gsap.registerPlugin(TextPlugin)
 
 
 export function createDialog (emitter) 
@@ -62,7 +65,6 @@ const prepareDialog = emitter => {
     const updateDialog = () =>
     {
         const dialogDATA = REPLICIES_CONFIG[currentMesh.userData.keyProgram][currentPraseIndex]
-        console.log(dialogDATA)
 
         playerRepliciesList.forEach(item => item.parentNode.removeChild(item))
         playerRepliciesList.length = 0
@@ -70,40 +72,45 @@ const prepareDialog = emitter => {
         messagesList.length = 0
 
         const mess = document.createElement('p')
-        mess.innerText = dialogDATA.q.rep
         messages.appendChild(mess)
         messagesList.push(mess)
+        gsap.to(mess, 0.4, {duration: 0.4, text: dialogDATA.q.rep})
 
+        //setTimeout(() => {
+            for (let i = 0; i < dialogDATA.a.length; i++ ) {
 
-        for (let i = 0; i < dialogDATA.a.length; i++ ) {
+                if (!dialogDATA.a[i].show) continue;
 
-            if (!dialogDATA.a[i].show) continue;
+                const answer = document.createElement('button')
+                answer.innerText = dialogDATA.a[i].rep
+                answer.onclick = () => {
+                    if (dialogDATA.a[i].idChangerState) {
+                        changePhrasesState(dialogDATA.a[i].idChangerState)
+                    }
 
-            const answer = document.createElement('button')
-            answer.innerText = dialogDATA.a[i].rep
-            answer.onclick = () => {
-                if (dialogDATA.a[i].action === 'next') {
-                    currentPraseIndex ++;
-                    updateDialog()
+                    if (dialogDATA.a[i].action === 'next') {
+                        currentPraseIndex ++;
+                        updateDialog()
+                    }
+
+                    if (dialogDATA.a[i].action === 'startBridge') {
+                        currentPraseIndex = 0
+                        showHideDialog({ isOpen: false, mesh: currentMesh })
+                        emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                        emitter.emit('startBridgeProgram')({ keyProgram: currentMesh.userData.keyProgram })
+                    }
+
+                    if (dialogDATA.a[i].action === 'close') {
+                        currentPraseIndex = 0
+                        showHideDialog({ isOpen: false, mesh: currentMesh })
+                        emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                    }
+
                 }
-
-                if (dialogDATA.a[i].action === 'startBridge') {
-                    currentPraseIndex = 0
-                    showHideDialog({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('startBridgeProgram')({ keyProgram: currentMesh.userData.keyProgram })
-                }
-
-                if (dialogDATA.a[i].action === 'close') {
-                    currentPraseIndex = 0
-                    showHideDialog({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
-                }
-
+                replicies.appendChild(answer)
+                playerRepliciesList.push(answer)
             }
-            replicies.appendChild(answer)
-            playerRepliciesList.push(answer)
-        }
+       //}, 500)
     }
 
 
@@ -123,5 +130,15 @@ const prepareDialog = emitter => {
     }
 
     emitter.subscribe('startDialog')(showHideDialog)
+}
+
+
+
+const changePhrasesState = (id) => {
+    if (id === 'openPhrasePROGRAM_00') {
+        REPLICIES_CONFIG['PROGRAM_00'][1].a[0].show = false
+        REPLICIES_CONFIG['PROGRAM_00'][1].a[1].show = false
+        REPLICIES_CONFIG['PROGRAM_00'][1].a[2].show = true
+    }
 }
 

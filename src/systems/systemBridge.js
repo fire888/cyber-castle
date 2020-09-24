@@ -35,6 +35,3 @@ const getValuesFromData = data =>
     for (let key in data) newData[key] = data[key].val
     return newData
 }
-
-
-
