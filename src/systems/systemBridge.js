@@ -14,12 +14,12 @@ export function createSystemBridge (emitter, material)
     emitter.subscribe('updateBridge')(data => bridge.setPose(getValuesFromData(data)))
 
     let inProgram = false
-    emitter.subscribe('completeDialog')(data => {
+    emitter.subscribe('startBridgeProgram')(data=> {
         if (inProgram) return;
-        if (!PROGRAMS[data.mesh.userData.keyProgram]) return;
+        if (!PROGRAMS[data.keyProgram]) return;
 
         inProgram = true
-        bridge.startProgram(PROGRAMS[data.mesh.userData.keyProgram])
+        bridge.startProgram(PROGRAMS[data.keyProgram])
             .then(() => inProgram = false)
     })
 

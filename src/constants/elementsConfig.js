@@ -62,7 +62,7 @@ export const playerConfig = {
     //startPos: [18.357669772732198, 72.5, -104.50015863788533],
     //startPos: [110.99286970990862, 123.5, 19.3252595736 ],
     //startPos: [34.17306840733142, 156.5, 109.1814716364231],
-    startPos: [40.80743861657082, 249.7961832162714, 96.36024171879704 ],
+    //startPos: [40.80743861657082, 249.7961832162714, 96.36024171879704 ],
     //startPos: [173.2972371032552, 282.5404968261719, -312.9773946972067],
     cameraData: {
         fov: 90,
@@ -120,13 +120,13 @@ export const LAST_TERMINAL_CONFIG = { keyProgram: 'PROGRAM_LAST', r: 350, angle:
 
 
 export const START_STATE =
-//{time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
+{time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
 //{time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,}
 //{time: 1000, count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2 + 0.25,width: 12,floor: 30,x: 0,y: 67,z: 0,}
 //{time: 3000, count: 100, twist: -2.81592653589793, strengthTwist: 1, radius: 96, height: 0, rotate: -0.341592653589793, width: 8, floor: 18, x: 0, y: 65, z: 0, }
 //{ time: 3000,count: 100, twist: 13.7340734641021, strengthTwist: 0.351, radius: 126, height: 52, rotate: -2.84159265358979, width: 10, floor: 17, x: 42, y: 69, z: 0, }
 //{ time: 3000,count: 100, twist: -7.21592653589793, strengthTwist: 1, radius: 114, height: 40, rotate: 1.25840734641021, width: 10, floor: 17, x: 0, y: 113, z: 0, }
-{ time: 1500,count: 192, twist: -18.3159265358979, strengthTwist: 1, radius: 40, height: 98, rotate: 0, width: 9, floor: 16.2, x: 8, y: 146, z: 73, }
+//{ time: 1500,count: 192, twist: -18.3159265358979, strengthTwist: 1, radius: 40, height: 98, rotate: 0, width: 9, floor: 16.2, x: 8, y: 146, z: 73, }
 //{ time: 3000,count: 100, twist: 3.141592653589793, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.658407346410207, width: 12, floor: 20, x: -75, y: 240, z: -10, }
 
 export const PROGRAMS = {

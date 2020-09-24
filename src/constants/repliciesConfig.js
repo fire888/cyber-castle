@@ -33,17 +33,46 @@
 */
 
 export const REPLICIES_CONFIG = {
-    'PROGRAM_Z': {
-
-    },
+    'PROGRAM_Z': [
+        {
+            q: { rep: 'Кроваво-черное ничто пустилось вить систему клеток,' },
+            a: [
+                { rep: '', show: true, action: 'next', idChangerState: null },
+            ],
+        },
+        {
+            q: { rep: 'связанных внутри, клеток, связанных внутри, клеток в едином стебле и явственно,', show: true },
+            a: [
+                { rep: '', show: true, action: 'next', idChangerState: null },
+            ],
+        },
+        {
+            q: { rep: 'до жути на фоне тьмы ввысь белым бил фонтан.', show: true },
+            a: [
+                { rep: '', show: true, action: 'startBridge', idChangerState: null },
+            ],
+        },
+    ],
     'PROGRAM_Z2': {
 
     },
-    'PROGRAM_00': {
-        'Офицер Кей Ди 6.3.7. приступим. Готовы?': [
-            'Готов.', 'Не готов.'
-        ]
-    },
+    'PROGRAM_00': [
+        {
+            q: { rep: 'Офицер Кей Ди 6.3.7. приступим. Готовы?' },
+            a: [
+                { rep: 'Готов',  show: true, action: 'next', idChangerState: null },
+                { rep: 'Не готов.', show: true, action: 'close', idChangerState: null },
+            ],
+        },
+        {
+            q: { rep: 'Ваша контрольная фраза.', show: true },
+            a: [
+                { rep: 'Не знаю.', show: true, action: 'close', idChangerState: null },
+                { rep: 'Зайду попозже.', show: true, action: 'close', idChangerState: null },
+                { rep: 'Кроваво-черное ничто пустилось вить систему клеток.', show: false, action: 'startBridge', idChangerState: null },
+            ],
+        },
+    ],
     'PROGRAM_01': {
 
     },

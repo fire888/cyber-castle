@@ -1,6 +1,4 @@
-/**
- * Created by Vasilii on 11.09.2020.
- */
+import { REPLICIES_CONFIG } from '../constants/repliciesConfig'
 
 
 export function createDialog (emitter) 
@@ -54,24 +52,60 @@ const prepareOpenDialogButt = emitter =>
 
 const prepareDialog = emitter => {
     const replicies = document.getElementById('replicies')
+    const messages = document.getElementById('messages')
+    const messagesList = []
     const playerRepliciesList = []
 
     let currentMesh = null
+    let currentPraseIndex = 0
 
     const updateDialog = () =>
     {
+        const dialogDATA = REPLICIES_CONFIG[currentMesh.userData.keyProgram][currentPraseIndex]
+        console.log(dialogDATA)
+
         playerRepliciesList.forEach(item => item.parentNode.removeChild(item))
         playerRepliciesList.length = 0
+        messagesList.forEach(item => item.parentNode.removeChild(item))
+        messagesList.length = 0
 
-        const butt = document.createElement('button')
-        butt.innerText = 'start'
-        butt.onclick = e => {
-            showHideDialog({ isOpen: false, mesh: currentMesh })
-            emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+        const mess = document.createElement('p')
+        mess.innerText = dialogDATA.q.rep
+        messages.appendChild(mess)
+        messagesList.push(mess)
+
+
+        for (let i = 0; i < dialogDATA.a.length; i++ ) {
+
+            if (!dialogDATA.a[i].show) continue;
+
+            const answer = document.createElement('button')
+            answer.innerText = dialogDATA.a[i].rep
+            answer.onclick = () => {
+                if (dialogDATA.a[i].action === 'next') {
+                    currentPraseIndex ++;
+                    updateDialog()
+                }
+
+                if (dialogDATA.a[i].action === 'startBridge') {
+                    currentPraseIndex = 0
+                    showHideDialog({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('startBridgeProgram')({ keyProgram: currentMesh.userData.keyProgram })
+                }
+
+                if (dialogDATA.a[i].action === 'close') {
+                    currentPraseIndex = 0
+                    showHideDialog({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                }
+
+            }
+            replicies.appendChild(answer)
+            playerRepliciesList.push(answer)
         }
-        replicies.appendChild(butt)
-        playerRepliciesList.push(butt)
     }
+
 
 
     const showHideDialog = data =>

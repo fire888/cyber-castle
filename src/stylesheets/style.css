@@ -152,8 +152,7 @@
     align-content: center;
     font-size: 23px;
     transition: 0.2s;  
-    height: 60px;
-    width: 35vw;
+    /*min-height: 60px;*/
     color: #c4e2ff; 
     border: 2px solid #c1e1ff; 
     min-height: 4vh;
@@ -177,7 +176,7 @@
 }
 
 .ui #replicies button {
-    height: 35px;
+    /*height: 35px;*/
     width: 100%;
     margin: 1px;
 }
