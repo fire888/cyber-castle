@@ -103,16 +103,16 @@ export const PLATFORMS_CONFIG = [
     { r: R + 20, angle: 0.35 - 0.2, y: 237, w1: 70, w2: 40, h: 7, },
 ]
 export const TERMINALS_CONFIG = [
-    { dialogKey: 'TERMINAL_Z', keyProgram: 'PROGRAM_Z', r: 50, angle: PI, y: -57, },
-    { dialogKey: 'TERMINAL_00', keyProgram: 'PROGRAM_00', r: R + 20, angle: 0, y: 2, },
-    { dialogKey: 'TERMINAL_01', keyProgram: 'PROGRAM_01', r: R - 5, angle: PI + 0.3, y: 1, },
-    { dialogKey: 'TERMINAL_02', keyProgram: 'PROGRAM_02', r: R - 5, angle: -0.2, y: 67, },
-    { dialogKey: 'TERMINAL_03', keyProgram: 'PROGRAM_03', r: R - 5, angle: PI - 0.2, y: 67, },
-    { dialogKey: 'TERMINAL_04', keyProgram: 'PROGRAM_04', r: R + 10, angle: PI/2 - 0.2, y: 118, },
-    { dialogKey: 'TERMINAL_05', keyProgram: 'PROGRAM_05', r: R + 10, angle: 0.25, y: 151, },
-    { dialogKey: 'TERMINAL_06', keyProgram: 'PROGRAM_06', r: R + 10, angle: 0.1, y: 243, },
+    { terminalKey: 'TERMINAL_Z', r: 50, angle: PI, y: -57, },
+    { terminalKey: 'TERMINAL_00', r: R + 20, angle: 0, y: 2, },
+    { terminalKey: 'TERMINAL_01', r: R - 5, angle: PI + 0.3, y: 1, },
+    { terminalKey: 'TERMINAL_02', r: R - 5, angle: -0.2, y: 67, },
+    { terminalKey: 'TERMINAL_03', r: R - 5, angle: PI - 0.2, y: 67, },
+    { terminalKey: 'TERMINAL_04', r: R + 10, angle: PI/2 - 0.2, y: 118, },
+    { terminalKey: 'TERMINAL_05', r: R + 10, angle: 0.25, y: 151, },
+    { terminalKey: 'TERMINAL_06', r: R + 10, angle: 0.1, y: 243, },
 ]
-export const LAST_TERMINAL_CONFIG = { keyProgram: 'PROGRAM_LAST', r: 350, angle: PI + 0.5, y: 277 }
+export const LAST_TERMINAL_CONFIG = { terminalKey: 'TERMINAL_LAST', r: 350, angle: PI + 0.5, y: 277 }
 
 
 export const START_STATE =
@@ -187,3 +187,4 @@ export const PROGRAMS = {
         {time: 1500, count: 200, twist: -30, strengthTwist: 1,radius: -40,height: 190,rotate: -50,width: 0,floor: 0,x: -20,y: 249,z: -192,},
     ],
 }
+

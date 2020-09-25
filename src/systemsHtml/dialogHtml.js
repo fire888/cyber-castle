@@ -64,7 +64,7 @@ const prepareDialog = emitter => {
 
     const updateDialog = () =>
     {
-        const dialogDATA = REPLICIES_CONFIG[currentMesh.userData.keyProgram][currentPraseIndex]
+        const dialogDATA = REPLICIES_CONFIG[currentMesh.userData.terminalKey][currentPraseIndex]
 
         /** clear old dialog */
         playerRepliciesList.forEach(item => item.parentNode.removeChild(item))
@@ -86,10 +86,6 @@ const prepareDialog = emitter => {
             const answer = document.createElement('button')
             answer.innerText = dialogDATA.a[i].txt
             answer.onclick = () => {
-                if (dialogDATA.a[i].idChangerState) {
-                    changePhrasesState(dialogDATA.a[i].idChangerState)
-                }
-
                 if (dialogDATA.a[i].action === 'next') {
                     currentPraseIndex ++;
                     updateDialog()
@@ -99,7 +95,11 @@ const prepareDialog = emitter => {
                     currentPraseIndex = 0
                     showHideDialog({ isOpen: false, mesh: currentMesh })
                     emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('startBridgeProgram')({ keyProgram: currentMesh.userData.keyProgram })
+                    emitter.emit('startBridgeProgram')({ keyProgram: dialogDATA.a[i].dataAction.keyProgramBridge })
+
+                    if (dialogDATA.a[i].dataAction.idChangerState) {
+                        changePhrasesState(dialogDATA.a[i].dataAction.idChangerState)
+                    }
                 }
 
                 if (dialogDATA.a[i].action === 'close') {
@@ -137,16 +137,15 @@ const prepareDialog = emitter => {
 
 const changePhrasesState = (id) => {
     if (id === 'openPhrasePROGRAM_00') {
-        REPLICIES_CONFIG['PROGRAM_00'][1].a[0].isShow = false
-        REPLICIES_CONFIG['PROGRAM_00'][1].a[1].isShow = false
-        REPLICIES_CONFIG['PROGRAM_00'][1].a[2].isShow = true
+        REPLICIES_CONFIG['TERMINAL_00'][1].a[0].isShow = false
+        REPLICIES_CONFIG['TERMINAL_00'][1].a[1].isShow = false
+        REPLICIES_CONFIG['TERMINAL_00'][1].a[2].isShow = true
     }
 
     if (id === 'resetAllAfterEnd') {
-
         setTimeout(() => {
             for (let key in REPLICIES_CONFIG) {
-                REPLICIES_CONFIG[key][0].q.txt = REPLICIES_CONFIG['PROGRAM_LAST'][0].q.txt
+                REPLICIES_CONFIG[key][0].q.txt = REPLICIES_CONFIG['TERMINAL_LAST'][0].q.txt
                 for (let i = 0; i < REPLICIES_CONFIG[key][0].a.length; i ++) {
                     REPLICIES_CONFIG[key][0].a[i].isShow = false
                 }

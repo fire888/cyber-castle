@@ -13,10 +13,10 @@ export const createModelTerminal = (model, config, emitter) => {
     emitter.subscribe('frameUpdate')(data => mixer.update(data.delta))
     const mesh = terminalMesh
 
-    const { r, angle, y, keyProgram } = config
+    const { r, angle, y, terminalKey } = config
     mesh.position.set(Math.sin(angle) * r, y, Math.cos(angle) *  r)
     mesh.rotation.set(0, angle, 0)
-    mesh.userData.keyProgram = keyProgram
+    mesh.userData.terminalKey = terminalKey
 
 
     const startOpen = () => {

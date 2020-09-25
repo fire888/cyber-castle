@@ -28,6 +28,8 @@ import { setItemToFloorsCollision } from './components/componentCollisionFloor'
 import { setItemToWallCollision } from './components/componentCollisionWalls'
 import { addItemToNearChecker } from './components/componentCheckNearItem'
 
+import { createLevelBorder } from './components/componentCreateLevelBorders'
+
 import { bridgeParamsHtml } from './systemsHtml/bridgeParamsHtml'
 import { createDialog } from './systemsHtml/dialogHtml'
 import { showStartButton } from './systemsHtml/introHtml'
@@ -44,15 +46,17 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
 
             const materials = createMaterials(assets)
 
+            /** level */
             const { collisionWalls, collisionFloors, levelGroup, topLevelGroup} = prepareMeshesFromAssets(assets)
             studio.addToScene(levelGroup)
             collisionWalls.forEach(item => setItemToWallCollision(item))
             collisionFloors.forEach(item => setItemToFloorsCollision(item))
-
             createSystemTopWorld(topLevelGroup, emitter, studio.addToScene)
+            const levelCollisionBorders = createLevelBorder()
+            studio.addToScene(levelCollisionBorders)
+            setItemToWallCollision(levelCollisionBorders)
 
             /** bridge */
-
             const systemBridge = createSystemBridge(emitter, materials)
             setItemToFloorsCollision(systemBridge.mesh)
             setItemToWallCollision(systemBridge.mesh)
@@ -60,7 +64,6 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
 
             const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
             // document.body.appendChild(bridgeHtml)
-
 
 
             /** platfoms and terminals */
