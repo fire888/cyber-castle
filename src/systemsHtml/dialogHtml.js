@@ -66,51 +66,52 @@ const prepareDialog = emitter => {
     {
         const dialogDATA = REPLICIES_CONFIG[currentMesh.userData.keyProgram][currentPraseIndex]
 
+        /** clear old dialog */
         playerRepliciesList.forEach(item => item.parentNode.removeChild(item))
         playerRepliciesList.length = 0
         messagesList.forEach(item => item.parentNode.removeChild(item))
         messagesList.length = 0
 
+        /** create message */
         const mess = document.createElement('p')
         messages.appendChild(mess)
         messagesList.push(mess)
-        gsap.to(mess, 0.4, {duration: 0.4, text: dialogDATA.q.rep})
+        gsap.to(mess, 0.4, {duration: 0.4, text: dialogDATA.q.txt})
 
-        //setTimeout(() => {
-            for (let i = 0; i < dialogDATA.a.length; i++ ) {
+        /** create answers */
+        for (let i = 0; i < dialogDATA.a.length; i++ ) {
 
-                if (!dialogDATA.a[i].show) continue;
+            if (!dialogDATA.a[i].isShow) continue;
 
-                const answer = document.createElement('button')
-                answer.innerText = dialogDATA.a[i].rep
-                answer.onclick = () => {
-                    if (dialogDATA.a[i].idChangerState) {
-                        changePhrasesState(dialogDATA.a[i].idChangerState)
-                    }
-
-                    if (dialogDATA.a[i].action === 'next') {
-                        currentPraseIndex ++;
-                        updateDialog()
-                    }
-
-                    if (dialogDATA.a[i].action === 'startBridge') {
-                        currentPraseIndex = 0
-                        showHideDialog({ isOpen: false, mesh: currentMesh })
-                        emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
-                        emitter.emit('startBridgeProgram')({ keyProgram: currentMesh.userData.keyProgram })
-                    }
-
-                    if (dialogDATA.a[i].action === 'close') {
-                        currentPraseIndex = 0
-                        showHideDialog({ isOpen: false, mesh: currentMesh })
-                        emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
-                    }
-
+            const answer = document.createElement('button')
+            answer.innerText = dialogDATA.a[i].txt
+            answer.onclick = () => {
+                if (dialogDATA.a[i].idChangerState) {
+                    changePhrasesState(dialogDATA.a[i].idChangerState)
                 }
-                replicies.appendChild(answer)
-                playerRepliciesList.push(answer)
+
+                if (dialogDATA.a[i].action === 'next') {
+                    currentPraseIndex ++;
+                    updateDialog()
+                }
+
+                if (dialogDATA.a[i].action === 'startBridge') {
+                    currentPraseIndex = 0
+                    showHideDialog({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('startBridgeProgram')({ keyProgram: currentMesh.userData.keyProgram })
+                }
+
+                if (dialogDATA.a[i].action === 'close') {
+                    currentPraseIndex = 0
+                    showHideDialog({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                }
+
             }
-       //}, 500)
+            replicies.appendChild(answer)
+            playerRepliciesList.push(answer)
+        }
     }
 
 
@@ -136,9 +137,25 @@ const prepareDialog = emitter => {
 
 const changePhrasesState = (id) => {
     if (id === 'openPhrasePROGRAM_00') {
-        REPLICIES_CONFIG['PROGRAM_00'][1].a[0].show = false
-        REPLICIES_CONFIG['PROGRAM_00'][1].a[1].show = false
-        REPLICIES_CONFIG['PROGRAM_00'][1].a[2].show = true
+        REPLICIES_CONFIG['PROGRAM_00'][1].a[0].isShow = false
+        REPLICIES_CONFIG['PROGRAM_00'][1].a[1].isShow = false
+        REPLICIES_CONFIG['PROGRAM_00'][1].a[2].isShow = true
+    }
+
+    if (id === 'resetAllAfterEnd') {
+
+        setTimeout(() => {
+            for (let key in REPLICIES_CONFIG) {
+                REPLICIES_CONFIG[key][0].q.txt = REPLICIES_CONFIG['PROGRAM_LAST'][0].q.txt
+                for (let i = 0; i < REPLICIES_CONFIG[key][0].a.length; i ++) {
+                    REPLICIES_CONFIG[key][0].a[i].isShow = false
+                }
+                REPLICIES_CONFIG[key][0].a[0].isShow = true
+                REPLICIES_CONFIG[key][0].a[0].txt = ''
+                REPLICIES_CONFIG[key][0].a[0].action = 'close'
+                REPLICIES_CONFIG[key][0].a[0].idChangerState = null
+            }
+        }, 1000)
     }
 }
 

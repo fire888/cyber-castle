@@ -59,7 +59,9 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             studio.addToScene(systemBridge.mesh)
 
             const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
-            //document.body.appendChild(bridgeHtml)
+            // document.body.appendChild(bridgeHtml)
+
+
 
             /** platfoms and terminals */
 
@@ -72,6 +74,8 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
 
             createSystemTerminals(assets.terminal, emitter, studio.addToScene, addItemToNearChecker,)
             createDialog(emitter)
+
+            //emitter.emit('completeDialog')({ mesh: { userData: { keyProgram: 'PROGRAM_06' } } } )
 
 
             /** player */

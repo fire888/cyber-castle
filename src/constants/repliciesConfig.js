@@ -34,126 +34,120 @@
 
 export const REPLICIES_CONFIG = {
     'PROGRAM_Z': [{
-        q: { rep: 'Кроваво-черное ничто пустилось вить систему клеток,' },
+        q: { txt: 'Кроваво-черное ничто пустилось вить систему клеток,' },
         a: [
-            { rep: '', show: true, action: 'next', idChangerState: null },
+            { txt: '', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'связанных внутри, клеток, связанных внутри, клеток в едином стебле и явственно,', show: true },
+        q: { txt: 'связанных внутри, клеток, связанных внутри, клеток в едином стебле и явственно,' },
         a: [
-            { rep: '', show: true, action: 'next', idChangerState: null },
+            { txt: '', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'до жути на фоне тьмы ввысь белым бил фонтан.', show: true },
+        q: { txt: 'до жути на фоне тьмы ввысь белым бил фонтан.' },
         a: [
-            { rep: '', show: true, action: 'startBridge', idChangerState: 'openPhrasePROGRAM_00' },
-        ],
-    },],
-    'PROGRAM_Z2': [{
-        q: { rep: '' },
-        a: [
-            { rep: '', show: true, action: 'startBridge', idChangerState: null },
+            { txt: '', isShow: true, action: 'startBridge', idChangerState: 'openPhrasePROGRAM_00' },
         ],
     },],
     'PROGRAM_00': [{
-        q: { rep: 'Офицер Кей Ди 6.3.7. приступим. Готовы?' },
+        q: { txt: 'Офицер Кей Ди 6.3.7. приступим. Готовы?' },
         a: [
-            { rep: 'Готов',  show: true, action: 'next', idChangerState: null },
-            { rep: 'Не готов.', show: true, action: 'close', idChangerState: null },
+            { txt: 'Готов',  isShow: true, action: 'next', idChangerState: null },
+            { txt: 'Не готов.', isShow: true, action: 'close', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Ваша контрольная фраза.', show: true },
+        q: { txt: 'Ваша контрольная фраза.' },
         a: [
-            { rep: 'Не знаю.', show: true, action: 'close', idChangerState: null },
-            { rep: 'Зайду попозже.', show: true, action: 'close', idChangerState: null },
-            { rep: 'Кроваво-черное ничто пустилось вить систему клеток.', show: false, action: 'next', idChangerState: null },
+            { txt: 'Я забыл.', isShow: true, action: 'close', idChangerState: null },
+            { txt: 'Я зайду попозже.', isShow: true, action: 'close', idChangerState: null },
+            { txt: 'Кроваво-черное ничто пустилось вить систему клеток.', isShow: false, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Клетки.', show: true },
+        q: { txt: 'Клетки.' },
         a: [
-            { rep: 'Клетки.', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Клетки.', isShow: true, action: 'startBridge', idChangerState: null },
         ],
     },],
     'PROGRAM_01': [{
-        q: { rep: 'Доводилось ли вам бывать в тюрьме? Клетки.', show: true },
+        q: { txt: 'Доводилось ли вам бывать в тюрьме? Клетки.' },
         a: [
-            { rep: 'Клетки.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Клетки.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Вас держат в клетке? Клетки.', show: true },
+        q: { txt: 'Вас держат в клетке? Клетки.' },
         a: [
-            { rep: 'Клетки.', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Клетки.', isShow: true, action: 'startBridge', idChangerState: null },
         ],
     },],
     'PROGRAM_02': [{
-        q: { rep: 'Когда вы не исполняете обязанности, вас держат в коробке? Клетки.', show: true },
+        q: { txt: 'Когда вы не исполняете обязанности, вас держат в коробке? Клетки.' },
         a: [
-            { rep: 'Клетки.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Клетки.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Связаны.', show: true },
+        q: { txt: 'Связаны.' },
         a: [
-            { rep: 'Связаны.', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Связаны.', isShow: true, action: 'startBridge', idChangerState: null },
         ],
     },],
     'PROGRAM_03': [{
-        q: { rep: 'Что вы чувствуете держа за руку того кого любите? Связаны.', show: true },
+        q: { txt: 'Что вы чувствуете держа за руку того кого любите? Связаны.' },
         a: [
-            { rep: 'Связаны.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Связаны.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Вас учили приставлять палец к пальцу? Связаны.', show: true },
+        q: { txt: 'Вас учили приставлять палец к пальцу? Связаны.' },
         a: [
-            { rep: 'Связаны.', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Связаны.', isShow: true, action: 'startBridge', idChangerState: null },
         ],
     },],
     'PROGRAM_04': [{
-        q: { rep: 'Вы жаждете связать с кем-нибудь сердце? Связаны.', show: true },
+        q: { txt: 'Вы жаждете связать с кем-нибудь сердце? Связаны.' },
         a: [
-            { rep: 'Связаны.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Связаны.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Вам снится связь с кем-либо? Связаны.', show: true },
+        q: { txt: 'Вам снится связь с кем-либо? Связаны.' },
         a: [
-            { rep: 'Связаны.', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Связаны.', isShow: true, action: 'startBridge', idChangerState: null },
         ],
     },],
     'PROGRAM_05': [{
-        q: { rep: 'Что вы чувствуете, держа в руках своего ребенка? Связаны.', show: true },
+        q: { txt: 'Что вы чувствуете, держа в руках своего ребенка? Связаны.' },
         a: [
-            { rep: 'Связаны.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Связаны.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Вы чувствуете, что вам чего-то не хватает? Связаны.', show: true },
+        q: { txt: 'Вы чувствуете, что вам чего-то не хватает? Связаны.' },
         a: [
-            { rep: 'Связаны.', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Связаны.', isShow: true, action: 'startBridge', idChangerState: null },
         ],
     },],
     'PROGRAM_06': [{
-        q: { rep: 'Клеток связанных внутри.', show: true },
+        q: { txt: 'Клеток связанных внутри.' },
         a: [
-            { rep: 'Клеток связанных внутри.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Клеток связанных внутри.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: 'Повторите три раза "клеток связанных внутри', show: true },
+        q: { txt: 'Повторите три раза "клеток связанных внутри' },
         a: [
-            { rep: 'Клеток связанных внутри.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Клеток связанных внутри.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: '', show: true },
+        q: { txt: '' },
         a: [
-            { rep: 'Клеток связанных внутри.', show: true, action: 'next', idChangerState: null },
+            { txt: 'Клеток связанных внутри.', isShow: true, action: 'next', idChangerState: null },
         ],
     }, {
-        q: { rep: '', show: true },
+        q: { txt: '' },
         a: [
-            { rep: 'Клеток связанных внутри.', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Клеток связанных внутри.', isShow: true, action: 'startBridge', idChangerState: null },
         ],
     },],
     'PROGRAM_LAST' : [{
-        q: { rep: 'На этом все. Кей стабилен, можете пройти за бонусом.', show: true },
+        q: { txt: 'На этом все. Кей стабилен, можете пройти за бонусом.' },
         a: [
-            { rep: '', show: true, action: 'startBridge', idChangerState: null },
+            { txt: 'Спасибо, сэр. ', isShow: true, action: 'startBridge', idChangerState: 'resetAllAfterEnd' },
         ],
     },]
 }
