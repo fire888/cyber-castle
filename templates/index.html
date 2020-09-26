@@ -18,12 +18,18 @@ body {
   font-family: Geneva, Arial, Helvetica, sans-seri;
   font-family: 'Roboto Mono' monospace;
 }
+.app-wrapper {
+  overflow: hidden;
+  font-size: 16px;
+  width: 100vw;
+  height: 100vh;
+}
 .name {
   text-align: center;
 }
 h1 {
-  font-size: 8vh;
-  line-height: 8vh;
+  font-size: 7em;
+  line-height: 1em;
 }
 h2 {
   font-size: 2.5vh;
@@ -40,8 +46,8 @@ a {
   position: absolute;
   z-index: 100;
   background: linear-gradient(to top, #012249 60%, #668bc4 60%);
-  width: 100vw;
-  height: 100vh;
+  width: inherit;
+  height: inherit;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,6 +79,7 @@ a {
 }
 .instructions {
   text-align: center;
+  margin-bottom: -2em;
 }
 .instructions p {
   font-size: 16px;
@@ -89,13 +96,22 @@ a {
 }
 
 /*****************************/
-.progress-wrapper, 
-.start {
+.progress-wrapper {
   border: 2px solid #e4f9ff; 
   min-height: 4vh;
   width: 31vh;
   overflow: hidden;
   border-radius: 5px; 
+}
+.startbuttons-wrapper {
+  /*border: 2px solid #e4f9ff;*/ 
+  min-height: 4vh;
+  width: 31vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  /*border-radius: 5px;*/ 
 }
 .progress {
   width: 200%;
@@ -103,13 +119,19 @@ a {
   background: url(imgs/progress-img.png);
   margin-left: -100%; 
 }
-.start { 
+.start-butt { 
+  margin: 0 3px;
+  flex: 1 1 auto;
+  min-height: 4vh;
   background: #e4f9ff;
   color: #181d38;
   font-size: 2vh;
-  transition: 0.2s;  
+  transition: 0.2s;
+  border: solid 1px white;
+  border-radius: 5px;
+
 }
-.start:hover {
+.start-butt:hover {
   background: #181d38;
   color: #e4f9ff;
   cursor: pointer;
@@ -117,6 +139,7 @@ a {
   </style>
 </head>
 <body>
+  <div class='app-wrapper'>
   <!--<div id="debugger"></div>-->
   <div class='start-screen'>
     <div class='message'>
@@ -128,10 +151,13 @@ a {
         <img src="imgs/start-img.png">
       </div>
       <div class="instructions">
-        <p>Клавиши: &#8592;, &#8593;, &#8594;</p>
+        <p>Keys: &#8592;, &#8593;, &#8594;</p>
       </div> 
       <div class = "load-container">
-        <button class="start" style="display: none;">Старт</button>
+        <div class="startbuttons-wrapper" style="display: none;">
+            <button class="start-butt" data-lang="en">EN</button>
+            <button class="start-butt" data-lang="ru">RU</button>
+        </div>
         <div class="progress-wrapper">
           <div class="progress"></div> 
         </div> 
@@ -145,6 +171,7 @@ a {
         <a href='https://github.com/fire888/laboratory'>github.com</a></div>
     </div>
     <div class="ui-top">
+      <button id="butt-fullscreen" class="control" style="display: none;">&#10066;</button>  
       <button id="butt-info" class="control">i</button>     
     </div>
     <div class="ui-center">
@@ -170,6 +197,7 @@ a {
   </div>
   <div class="canvas-wrapper">
     <canvas id='webgl-canvas'></canvas>
+  </div>
   </div>
 </body>
 </html>

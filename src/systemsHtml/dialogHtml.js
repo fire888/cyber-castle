@@ -1,52 +1,54 @@
-import { REPLICIES_CONFIG } from '../constants/repliciesConfig'
+import { 
+    REPLICIES_CONFIG_EN, 
+    REPLICIES_CONFIG_RU,
+    TRANSLATE_WORLDS,
+} from '../constants/repliciesConfig'
 import gsap from 'gsap'
 import { TextPlugin } from 'gsap/TextPlugin'
 gsap.registerPlugin(TextPlugin)
 
 
+let REPLICIES_CONFIG = REPLICIES_CONFIG_EN
+let currentLanguage = 'en'
+
 export function createDialog (emitter) 
 {
     prepareOpenDialogButt(emitter)
     prepareDialog(emitter)
+    emitter.subscribe('setLanguage')(keyLanguage => {
+        currentLanguage = keyLanguage
+        keyLanguage === 'ru' && (REPLICIES_CONFIG = REPLICIES_CONFIG_RU)
+        keyLanguage === 'en' && (REPLICIES_CONFIG = REPLICIES_CONFIG_EN)
+    })
 }
-
 
 
 const prepareOpenDialogButt = emitter => 
 {
     const button = document.getElementById('dialog-button-toggle')
-    let isPressed = false
     let currentMesh = null
-    let isActive = true
 
     const showHideButt = is =>
     {
-        isPressed = false
         button.style.display = is ? 'flex' : 'none'
-        button.innerText = 'dialog'
+        button.innerText = t('open')
     }
-    const switchButton = () =>
-    {
-        isPressed = !isPressed
-        button.innerText = isPressed ? 'close' : 'dialog'
-    }
+
     button.addEventListener('click', () =>
     {
-        if (!isActive) return;
-
-        isActive = false
-        setTimeout(() => isActive = true, 1500)
-        switchButton()
-        emitter.emit('startDialog')({ mesh: currentMesh, isOpen: isPressed  })
+        emitter.emit('startDialog')({ mesh: currentMesh, isOpen: true })
+        showHideButt(false)
     })
+
     emitter.subscribe('nearMesh')(data =>
     {
         currentMesh = data.mesh
         showHideButt(data.toNear)
-        !data.toNear && emitter.emit('dialogTo')({ mesh: currentMesh, isOpen: false })
     })
 
-    emitter.subscribe('completeDialog')(switchButton)
+    emitter.subscribe('completeDialog')(() => {
+        showHideButt(true)
+    })
 
     return button
 }
@@ -91,6 +93,12 @@ const prepareDialog = emitter => {
                     updateDialog()
                 }
 
+                if (dialogDATA.a[i].action === 'close') {
+                    currentPraseIndex = 0
+                    showHideDialog({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                }
+
                 if (dialogDATA.a[i].action === 'startBridge') {
                     currentPraseIndex = 0
                     showHideDialog({ isOpen: false, mesh: currentMesh })
@@ -101,19 +109,11 @@ const prepareDialog = emitter => {
                         changePhrasesState(dialogDATA.a[i].dataAction.idChangerState)
                     }
                 }
-
-                if (dialogDATA.a[i].action === 'close') {
-                    currentPraseIndex = 0
-                    showHideDialog({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
-                }
-
             }
             replicies.appendChild(answer)
             playerRepliciesList.push(answer)
         }
     }
-
 
 
     const showHideDialog = data =>
@@ -124,7 +124,6 @@ const prepareDialog = emitter => {
             updateDialog(data)
             messagesWrapper.style.display = data.isOpen ? 'flex' : 'none'
         } 
-
         data.isOpen
             ? setTimeout(action, 1200)
             : action()
@@ -134,15 +133,19 @@ const prepareDialog = emitter => {
 }
 
 
-
-const changePhrasesState = (id) => {
-    if (id === 'openPhrasePROGRAM_00') {
+/**
+ * Change main dialog config by id.
+ */
+const changePhrasesState = id => {
+    if (id === 'openPhrasePROGRAM_00') 
+    {
         REPLICIES_CONFIG['TERMINAL_00'][1].a[0].isShow = false
         REPLICIES_CONFIG['TERMINAL_00'][1].a[1].isShow = false
         REPLICIES_CONFIG['TERMINAL_00'][1].a[2].isShow = true
     }
 
-    if (id === 'resetAllAfterEnd') {
+    if (id === 'resetAllAfterEnd') 
+    {
         setTimeout(() => {
             for (let key in REPLICIES_CONFIG) {
                 REPLICIES_CONFIG[key][0].q.txt = REPLICIES_CONFIG['TERMINAL_LAST'][0].q.txt
@@ -158,3 +161,8 @@ const changePhrasesState = (id) => {
     }
 }
 
+
+/**
+ * Translate.
+ */
+const t = val => TRANSLATE_WORLDS[currentLanguage] && TRANSLATE_WORLDS[currentLanguage][val] || val

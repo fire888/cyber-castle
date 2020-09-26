@@ -68,5 +68,17 @@ export function KeyBoard (eventEmitter) {
     buttUp.addEventListener('touchstart', 
       function() { keyUpdate( 38, true ) })
     buttUp.addEventListener('touchend', 
-      function() { keyUpdate( 38, false ) })   
+      function() { keyUpdate( 38, false ) })
+    
+    /*window.addEventListener('mouseup', () => {
+      keyUpdate( 37, false )
+      keyUpdate( 39, false )
+      keyUpdate( 38, false )
+    })
+
+    window.addEventListener('touchend', () => {
+      keyUpdate( 37, false )
+      keyUpdate( 39, false )
+      keyUpdate( 38, false )
+   })*/
 }

@@ -1,5 +1,6 @@
 
 
+import { createDeviceResizer } from './utils/deviceResizer'
 import { KeyBoard } from './utils/keyBoard'
 import { Emitter } from './utils/Emitter'
 import { FrameUpdater } from './utils/FrameUpater'
@@ -33,7 +34,9 @@ import { createLevelBorder } from './components/componentCreateLevelBorders'
 import { bridgeParamsHtml } from './systemsHtml/bridgeParamsHtml'
 import { createDialog } from './systemsHtml/dialogHtml'
 import { showStartButton } from './systemsHtml/introHtml'
+import { createInfo } from './systemsHtml/infoHtml'
 
+createDeviceResizer()
 
 const initApp = () => loadAssets(ASSETS_TO_LOAD)
         .then(assets => {
@@ -87,8 +90,8 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             studio.setCamera(player.getCamera())
             studio.addToScene(player.getObj())
 
-            
-            showStartButton()
+            createInfo(emitter)
+            showStartButton(emitter)
         })
 
 

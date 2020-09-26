@@ -57,6 +57,7 @@ export const playerConfig = {
     level: -13,
     startRot: [0, 0, 0],
     startPos: [0, 0, 190],
+    // positions on platforms for debugging
     //startPos: [-5.614908553125407, -50.81650161743164, -54.48311129133365],
     //startPos: [2.354103517969214, 6.5, -107.29721568841998],
     //startPos: [-24.948354188041503, 72.5, 93.69116998603509 ],
@@ -117,6 +118,7 @@ export const LAST_TERMINAL_CONFIG = { terminalKey: 'TERMINAL_LAST', r: 350, angl
 
 export const START_STATE =
 {time: 3000,count: 34,twist: 3.141592653589793,strengthTwist: 1,radius: 0,height: 0,rotate: 3.05840734641021,width: 0,floor: 0,x: 0,y: 0,z: 58,}
+// states bridge for debugging
 //{time: '3000', count: 60,twist: 11.6840734641021,strengthTwist: 1,radius: 10,height: 78,rotate: 0.858407346410207,width: 0,floor: 0,x: 0,y: -15,z: 0,}
 //{time: '3000', count: 100, twist: 1.53407346410207, strengthTwist: 0, radius: 100, height: 2, rotate: 0, width: 10, floor: 17, x: 0, y: 0, z: 0,}
 //{time: 1000, count: 100, twist: 0,strengthTwist: 0,radius: 85,height: -73,rotate: PI * 2 + 0.25,width: 12,floor: 30,x: 0,y: 67,z: 0,}

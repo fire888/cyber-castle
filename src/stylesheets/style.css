@@ -45,8 +45,8 @@
 
 
 .ui {
-    width: 100vw;
-    height: 100vh;
+    width: inherit;
+    height: inherit;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -71,7 +71,7 @@
 
 .ui-bottom {
     justify-content: space-between;
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
 }
 
 #dialog-wrapper {
@@ -102,16 +102,12 @@
     align-content: center;
     align-items: center;
     color: #ffffff;
+    padding: 2em;
  }
 
  #messages p {
     margin: 3px;
-    font-size: 23px;
- }
-
- #messages p.player{
-    font-size: 18px;
-    color: chartreuse;
+    font-size: 2.2em;
  }
 
  #replicies {
@@ -143,6 +139,7 @@
     flex: 0 1 auto;
 }
 
+/*****************************************/
 
 .ui button {
     display: flex;
@@ -150,33 +147,35 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    font-size: 23px;
+    font-size: 2.2em;
     transition: 0.2s;  
-    /*min-height: 60px;*/
     color: #c4e2ff; 
-    border: 2px solid #c1e1ff; 
-    min-height: 4vh;
+    border: 1px solid #c1e1ff; 
+    height: 2em;
     width: 30vw;
     overflow: hidden;
     border-radius: 5px; 
-    background: #004ba1;
+    background: #004ba193;
     cursor: pointer;
-    margin: 1vh;
     max-width: 360px;
 }
 
 
-.ui button.control  {
-    flex: 0 0 60px;
-    height: 60px;
-    width: 60px;
-    max-width: 80px;
-    max-height: 80px;
+#dialog-button-toggle {
+    height: 3.1em;
     border-radius: 40px;
 }
 
+
+.ui button.control {
+    flex: 0 0 3.1em;
+    height: 3.1em;
+    width: 3.1em;
+    border-radius: 2.8em;
+    margin: 0.2em;
+}
+
 .ui #replicies button {
-    /*height: 35px;*/
     width: 100%;
     margin: 1px;
 }
@@ -190,6 +189,7 @@
 }
 
 
+/****************************************************/
 
 #bridge-params {
     position: absolute; 
@@ -205,4 +205,56 @@
 
 #bridge-params input {
     width: 300px;
+}
+
+
+/****************************************************/
+
+
+.info-cont {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+.info-wrap {
+    color: white;
+    position: relative;
+    width: 90vw;
+    max-width: 800px;
+    background: rgba(69, 10, 77, 0.733);
+    padding: 4em;
+}
+
+.info-wrap div{
+    margin: 2.7em 0;
+    font-size: 2.2em;
+}
+
+.info-wrap a{
+    color: rgb(84, 233, 103);
+}
+
+.info-wrap button{
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    font-size: 2.8em;
+    transition: 0.2s;  
+    color: #c4e2ff; 
+    border: 1px solid #c1e1ff; 
+    height: 2.2em;
+    width: 2.2em;
+    overflow: hidden;
+    border-radius: 5px; 
+    background: #004ba193;
+    cursor: pointer;
+    max-width: 360px;
 }

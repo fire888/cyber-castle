@@ -60,23 +60,22 @@ export function Player (emitterLink) {
   const checkWalls = createComponentCollisionWalls(mainObj, frontObj, offsetWallCollision)
   const checkNearItem = createCheckerNearItem(mainObj, emitter) 
 
-  const update = () => {
+  const update = data => {
     if (isButtonsDisabled) return;
     checkFloors.check()
 
     if (!keys) return;
 
-    if (keys['up']) {
 
+    if (keys['up']) {
       if (checkWalls.check()) return;
-      mainObj.translateZ( -speed )
+      mainObj.translateZ( -speed * data.count )
 
       checkNearItem()
-        console.log(mainObj.position)
     }
 
-    keys['left'] && (mainObj.rotation.y += speedRot)
-    keys['right'] && (mainObj.rotation.y -= speedRot)
+    keys['left'] && (mainObj.rotation.y += (speedRot * data.count))
+    keys['right'] && (mainObj.rotation.y -= (speedRot * data.count))
   }
 
 
@@ -85,6 +84,12 @@ export function Player (emitterLink) {
 
   let isButtonsDisabled = false
   emitter.subscribe('messagesIsShow')(val => isButtonsDisabled = val) 
+  emitter.subscribe('startDialog')(val => {
+    isButtonsDisabled = val.isOpen
+  })
+  emitter.subscribe('completeDialog')(() => {
+    isButtonsDisabled = false
+})
 
 
   return {

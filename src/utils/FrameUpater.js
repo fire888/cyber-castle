@@ -28,7 +28,7 @@ export function FrameUpdater (eventEmitter) {
     }
 
     const updateCount = data => { 
-        data.count += data.delta
+        data.count = data.delta / (1/60)
         return data
     }
 
