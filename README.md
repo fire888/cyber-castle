@@ -1,4 +1,4 @@
-# LABORATORY :skull: # 
+# BRIDGE :skull: # 
 
 ![language](https://img.shields.io/badge/code-es6-green.svg) 
 ![Build status](https://img.shields.io/badge/build-passing-green.svg) 
@@ -11,8 +11,8 @@ About
 3d Quest.  
   
   
-![pic](https://github.com/fire888/laboratory/blob/master/src/assets/start-img.png)
+![pic](https://raw.githubusercontent.com/fire888/cyber-castle/master/src/assets/start-img.png)
 
 Play
 ------------ 
-[Let's play](http://js.otrisovano.ru/factory)
+[Let's play](http://js.otrisovano.ru/bridge)
