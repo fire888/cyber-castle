@@ -1,18 +1,20 @@
 
 
-export function Emitter () { 
+export function createEmitter () { 
     const storage = {}
     return { 
-        emit: id => data => getOrCreateArrFromObj(storage)(id)
-            .forEach(action => action(data)),
+        emit: id => data => getOrCreateArrFromObj(storage)(id).forEach(action => action(data)),
         subscribe: id => callback => {
-            const arrActions = getOrCreateArrFromObj(storage)(id)
-            arrActions.push(callback)
-            return fn => {
-                storage[id] = storage[id].filter(item => item !== fn)
-            }
+            getOrCreateArrFromObj(storage)(id).push(callback)
+            return () => storage[id] = storage[id].filter(item => item !== callback)
         },
-        showAll () { console.log(storage) },
+        showAll () { 
+            const s = {}
+            for (let key in storage) {
+                s[key] = storage[key].length
+            }
+            console.log(s) 
+        },
     }
 }
 

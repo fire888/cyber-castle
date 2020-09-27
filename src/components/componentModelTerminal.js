@@ -10,7 +10,6 @@ export const createModelTerminal = (model, config, emitter) => {
     mixer.timeScale = 1.7
     const openAction = mixer.clipAction(animations[0])
     openAction.loop = THREE.LoopOnce
-    emitter.subscribe('frameUpdate')(data => mixer.update(data.delta))
     const mesh = terminalMesh
 
     const { r, angle, y, terminalKey } = config
@@ -20,11 +19,19 @@ export const createModelTerminal = (model, config, emitter) => {
 
 
     const startOpen = () => {
+
+        const stopUpdate = emitter.subscribe('frameUpdate')(data => mixer.update(data.delta))
+        emitter.showAll()
+
         openAction.reset()
         mixer.timeScale = 1.7
         openAction.play()
+
         return new Promise(resolve => {
             setTimeout(() => {
+                stopUpdate()
+                emitter.showAll()
+
                 openAction.paused = true
                 resolve()
             }, 1100)
@@ -33,10 +40,18 @@ export const createModelTerminal = (model, config, emitter) => {
 
 
     const startClose = () => {
+
+        const stopUpdate = emitter.subscribe('frameUpdate')(data => mixer.update(data.delta))
+        emitter.showAll()
+
         mixer.timeScale = -1.7
         openAction.paused = false
         return new Promise(resolve => {
             setTimeout(() => {
+
+                stopUpdate()
+                emitter.showAll()
+
                 resolve()
             }, 1100)
         })

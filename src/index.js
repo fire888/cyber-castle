@@ -2,7 +2,7 @@
 
 import { createDeviceResizer } from './utils/deviceResizer'
 import { KeyBoard } from './utils/keyBoard'
-import { Emitter } from './utils/Emitter'
+import { createEmitter } from './utils/emitter'
 import { FrameUpdater } from './utils/FrameUpater'
 import { updateTweens } from './utils/tween'
 
@@ -40,7 +40,7 @@ createDeviceResizer()
 
 const initApp = () => loadAssets(ASSETS_TO_LOAD)
         .then(assets => {
-            const emitter = Emitter()
+            const emitter = createEmitter()
             new FrameUpdater(emitter)
             emitter.subscribe('frameUpdate')(updateTweens)
 
