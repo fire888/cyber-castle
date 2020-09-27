@@ -1,6 +1,5 @@
 import { 
-    REPLICIES_CONFIG_EN, 
-    REPLICIES_CONFIG_RU,
+    REPLICIES_CONFIG, 
     TRANSLATE_WORLDS,
 } from '../constants/repliciesConfig'
 import gsap from 'gsap'
@@ -8,47 +7,35 @@ import { TextPlugin } from 'gsap/TextPlugin'
 gsap.registerPlugin(TextPlugin)
 
 
-let REPLICIES_CONFIG = REPLICIES_CONFIG_EN
+
 let currentLanguage = 'en'
 
 export function createDialog (emitter) 
 {
-    prepareOpenDialogButt(emitter)
+    prepareOpenDialogButton(emitter)
     prepareDialog(emitter)
-    emitter.subscribe('setLanguage')(keyLanguage => {
-        currentLanguage = keyLanguage
-        keyLanguage === 'ru' && (REPLICIES_CONFIG = REPLICIES_CONFIG_RU)
-        keyLanguage === 'en' && (REPLICIES_CONFIG = REPLICIES_CONFIG_EN)
-    })
+    emitter.subscribe('setLanguage')(keyLanguage => currentLanguage = keyLanguage)
 }
 
 
-const prepareOpenDialogButt = emitter => 
+const prepareOpenDialogButton = emitter => 
 {
     const button = document.getElementById('dialog-button-toggle')
     let currentMesh = null
 
-    const showHideButt = is =>
-    {
+    const showHideButton = is => {
         button.style.display = is ? 'flex' : 'none'
         button.innerText = t('open')
     }
 
-    button.addEventListener('click', () =>
-    {
-        emitter.emit('startDialog')({ mesh: currentMesh, isOpen: true })
-        showHideButt(false)
-    })
+    button.addEventListener('click', () => emitter.emit('toggleDialog')({ mesh: currentMesh, isOpen: true }))
+    emitter.subscribe('toggleDialog')(data => showHideButton(!data.isOpen))
 
-    emitter.subscribe('nearMesh')(data =>
-    {
+    emitter.subscribe('nearMesh')(data => {
         currentMesh = data.mesh
-        showHideButt(data.toNear)
+        showHideButton(data.toNear)
     })
-
-    emitter.subscribe('completeDialog')(() => {
-        showHideButt(true)
-    })
+    
 
     return button
 }
@@ -56,8 +43,9 @@ const prepareOpenDialogButt = emitter =>
 
 
 const prepareDialog = emitter => {
-    const replicies = document.getElementById('replicies')
-    const messages = document.getElementById('messages')
+    const dialogContainer = document.getElementById('messages-wrapper')
+    const repliciesContainer = document.getElementById('replicies')
+    const messagesContainer = document.getElementById('messages')
     const messagesList = []
     const playerRepliciesList = []
 
@@ -76,9 +64,9 @@ const prepareDialog = emitter => {
 
         /** create message */
         const mess = document.createElement('p')
-        messages.appendChild(mess)
+        messagesContainer.appendChild(mess)
         messagesList.push(mess)
-        gsap.to(mess, 0.4, {duration: 0.4, text: dialogDATA.q.txt})
+        gsap.to(mess, 0.4, {duration: 0.4, text: t(dialogDATA.q.txt)})
 
         /** create answers */
         for (let i = 0; i < dialogDATA.a.length; i++ ) {
@@ -86,7 +74,7 @@ const prepareDialog = emitter => {
             if (!dialogDATA.a[i].isShow) continue;
 
             const answer = document.createElement('button')
-            answer.innerText = dialogDATA.a[i].txt
+            answer.innerText = t(dialogDATA.a[i].txt)
             answer.onclick = () => {
                 if (dialogDATA.a[i].action === 'next') {
                     currentPraseIndex ++;
@@ -96,13 +84,13 @@ const prepareDialog = emitter => {
                 if (dialogDATA.a[i].action === 'close') {
                     currentPraseIndex = 0
                     showHideDialog({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('toggleDialog')({ isOpen: false, mesh: currentMesh })
                 }
 
                 if (dialogDATA.a[i].action === 'startBridge') {
                     currentPraseIndex = 0
                     showHideDialog({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('completeDialog')({ isOpen: false, mesh: currentMesh })
+                    emitter.emit('toggleDialog')({ isOpen: false, mesh: currentMesh })
                     emitter.emit('startBridgeProgram')({ keyProgram: dialogDATA.a[i].dataAction.keyProgramBridge })
 
                     if (dialogDATA.a[i].dataAction.idChangerState) {
@@ -110,26 +98,24 @@ const prepareDialog = emitter => {
                     }
                 }
             }
-            replicies.appendChild(answer)
+            repliciesContainer.appendChild(answer)
             playerRepliciesList.push(answer)
         }
     }
 
 
-    const showHideDialog = data =>
-    {
+    const showHideDialog = data =>{
         const action = () => {
             currentMesh = data.mesh
-            const messagesWrapper = document.getElementById('messages-wrapper')
             updateDialog(data)
-            messagesWrapper.style.display = data.isOpen ? 'flex' : 'none'
+            dialogContainer.style.display = data.isOpen ? 'flex' : 'none'
         } 
         data.isOpen
             ? setTimeout(action, 1200)
             : action()
     }
 
-    emitter.subscribe('startDialog')(showHideDialog)
+    emitter.subscribe('toggleDialog')(showHideDialog)
 }
 
 

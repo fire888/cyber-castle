@@ -1,7 +1,3 @@
-/**
- * Created by Vasilii on 16.09.2020.
- */
-
 const PI = Math.PI
 
 export const BRIDGE_HTML_DEC_CONFIG = {

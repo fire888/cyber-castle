@@ -3,22 +3,18 @@
 import { createDeviceResizer } from './utils/deviceResizer'
 import { KeyBoard } from './utils/keyBoard'
 import { createEmitter } from './utils/emitter'
-import { FrameUpdater } from './utils/FrameUpater'
+import { createFrameUpdater } from './utils/frameUpater'
 import { updateTweens } from './utils/tween'
 
-import {
-    PLATFORMS_CONFIG,
-    ASSETS_TO_LOAD
-} from './constants/elementsConfig'
-
+import { ASSETS_TO_LOAD } from './constants/elementsConfig'
 
 import { BRIDGE_HTML_DEC_CONFIG } from './constants/htmlDevConfig'
 
 import { loadAssets } from './utils/loadAssets'
-import { prepareMeshesFromAssets, createMaterials } from './helpers/prepareMeshesFromAssets'
+import { prepareMeshesFromAssets } from './helpers/prepareMeshesFromAssets'
 
 import { createStudio } from './entities/createStudio'
-import { Player } from './entities/Player'
+import { createPlayer } from './entities/createPlayer'
 
 import { createSystemBridge } from './systems/systemBridge'
 import { createSystemPlatforms } from './systems/systemPlatforms'
@@ -41,19 +37,19 @@ createDeviceResizer()
 const initApp = () => loadAssets(ASSETS_TO_LOAD)
         .then(assets => {
             const emitter = createEmitter()
-            new FrameUpdater(emitter)
+            createFrameUpdater(emitter)
             emitter.subscribe('frameUpdate')(updateTweens)
 
             const studio = createStudio(emitter)
             studio.scene.background = assets.skyBox
 
-            const materials = createMaterials(assets)
-
             /** level */
-            const { collisionWalls, collisionFloors, levelGroup, topLevelGroup} = prepareMeshesFromAssets(assets)
+            const { arrMeshes, levelGroup, topLevelGroup, materials} = prepareMeshesFromAssets(assets)
             studio.addToScene(levelGroup)
-            collisionWalls.forEach(item => setItemToWallCollision(item))
-            collisionFloors.forEach(item => setItemToFloorsCollision(item))
+            arrMeshes.forEach(item => { 
+                setItemToWallCollision(item)
+                setItemToFloorsCollision(item)
+            })
             createSystemTopWorld(topLevelGroup, emitter, studio.addToScene)
             const levelCollisionBorders = createLevelBorder()
             studio.addToScene(levelCollisionBorders)
@@ -65,28 +61,28 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             setItemToWallCollision(systemBridge.mesh)
             studio.addToScene(systemBridge.mesh)
 
-            const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
+            /** devel bridge params */
+            // const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
             // document.body.appendChild(bridgeHtml)
 
-
             /** platfoms and terminals */
-
-            const systemPlatform = createSystemPlatforms(PLATFORMS_CONFIG, materials)
+            const systemPlatform = createSystemPlatforms(materials)
             systemPlatform.items.forEach(mesh => {
                 setItemToFloorsCollision(mesh)
                 setItemToWallCollision(mesh)
                 studio.addToScene(mesh)
             })
 
-            createSystemTerminals(assets.terminal, emitter, studio.addToScene, addItemToNearChecker,)
+            createSystemTerminals(assets.terminal, emitter, studio.addToScene, addItemToNearChecker)
             createDialog(emitter)
 
-            //emitter.emit('completeDialog')({ mesh: { userData: { keyProgram: 'PROGRAM_06' } } } )
+            /** add top world */
+            // emitter.emit('toggleDialog')({ mesh: { userData: { keyProgram: 'PROGRAM_06' } } } )
 
 
             /** player */
             new KeyBoard(emitter)
-            const player = Player(emitter)
+            const player = createPlayer(emitter)
             studio.setCamera(player.getCamera())
             studio.addToScene(player.getObj())
 

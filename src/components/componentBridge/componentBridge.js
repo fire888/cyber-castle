@@ -1,6 +1,4 @@
-/**
- * Created by Vasilii on 23.09.2020.
- */
+
 import { createBridgeMesh } from './componentBridgeMesh'
 import { createTween } from '../../utils/tween'
 
