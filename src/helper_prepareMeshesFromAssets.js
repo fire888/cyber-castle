@@ -1,4 +1,4 @@
-import { MATERIALS_CONFIG } from '../constants/elementsConfig'
+import { MATERIALS_CONFIG } from './constants_elements'
 
 
 export function prepareMeshesFromAssets (assets) {

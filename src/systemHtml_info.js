@@ -1,4 +1,4 @@
-import { TRANSLATE_WORLDS } from '../constants/repliciesConfig'
+import { TRANSLATE_WORLDS } from './constants_replicies'
 
 let currentLanguage = 'en'
 

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { studioConfig } from '../constants/elementsConfig'
+import { studioConfig } from './constants_elements'
 
 
 export function createStudio (emitter, assets) {

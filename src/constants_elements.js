@@ -1,14 +1,14 @@
-import '../assets/start-img.png'
-import '../assets/progress-img.png'
-import pxjpg from '../assets/skybox/px.jpg'
-import nxjpg from '../assets/skybox/nx.jpg'
-import pyjpg from '../assets/skybox/py.jpg'
-import nyjpg from '../assets/skybox/ny.jpg'
-import pzjpg from '../assets/skybox/pz.jpg'
-import nzjpg from '../assets/skybox/nz.jpg'
+import './assets/start-img.png'
+import './assets/progress-img.png'
+import pxjpg from './assets/skybox/px.jpg'
+import nxjpg from './assets/skybox/nx.jpg'
+import pyjpg from './assets/skybox/py.jpg'
+import nyjpg from './assets/skybox/ny.jpg'
+import pzjpg from './assets/skybox/pz.jpg'
+import nzjpg from './assets/skybox/nz.jpg'
 
-import levelSrc from '../assets/level.obj'
-import terminalSrc from '../assets/terminal.glb'
+import levelSrc from './assets/level.obj'
+import terminalSrc from './assets/terminal.glb'
 
 
 export const ASSETS_TO_LOAD = [{

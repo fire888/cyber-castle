@@ -1,19 +1,15 @@
+import { createBridgeMesh } from './component_bridgeMesh'
+import gsap from 'gsap'
 
-import { createBridgeMesh } from './componentBridgeMesh'
-import { createTween } from '../../utils/tween'
 
-
-export function createBridge (material)
-{
-    const setPose = state =>
-    {
+export function createBridge (material) {
+    const setPose = state => {
         currentState = state
         bridge.changeMesh(state)
     }
 
 
-    const startProgram = program =>
-    {
+    const startProgram = program => {
         return new Promise(resolve => {
             doMarathonAnimations(currentState, program, bridge.changeMesh)
                 .then(newState => {
@@ -23,8 +19,10 @@ export function createBridge (material)
         })
     }
 
+
     let currentState = null
     const bridge = createBridgeMesh(material)
+
 
     return {
         mesh: bridge.mesh,
@@ -36,41 +34,29 @@ export function createBridge (material)
 
 
 
-const doMarathonAnimations = (currentState, arrStates, action) =>
-{
-    return new Promise(resolve =>
-    {
-        const doNextAnimation = index =>
-        {
+const doMarathonAnimations = (currentState, arrStates, action) => {
+    return new Promise(resolve => {
+        const doNextAnimation = index => {
             const newState = arrStates[index]
 
+            const obj = { val: 0 }
 
-            const actionWithValue = val =>
-            {
+            const onUpdate = () => {
                 const middleState = {}
                 for (let key in currentState)
-                    middleState[key] = currentState[key] + (newState[key] - currentState[key]) * val
+                    middleState[key] = currentState[key] + (newState[key] - currentState[key]) * obj.val
                 action(middleState)
             }
 
 
-            const nextTweenOrResolve = () =>
-            {
+            const onComplete = () => {
                 currentState = newState
                 index ++
                 arrStates[index] ? doNextAnimation(index) : resolve(currentState)
             }
 
-
-            createTween({
-                tweenType: 'simpleTween',
-                fromValue: 0,
-                toValue: 1,
-                duration: newState.time,
-                actionWithValue,
-            }).then(nextTweenOrResolve)
+            gsap.to( obj, { duration: newState.time * 0.001, val: 1, ease: "none", onUpdate, onComplete })
         }
-
 
         doNextAnimation(0)
     })

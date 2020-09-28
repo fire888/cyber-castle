@@ -1,11 +1,8 @@
 import { 
     REPLICIES_CONFIG, 
     TRANSLATE_WORLDS,
-} from '../constants/repliciesConfig'
+} from './constants_replicies'
 import gsap from 'gsap'
-import { TextPlugin } from 'gsap/TextPlugin'
-gsap.registerPlugin(TextPlugin)
-
 
 
 let currentLanguage = 'en'

@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { PLATFORMS_CONFIG } from '../constants/elementsConfig'
+import { PLATFORMS_CONFIG } from './constants_elements'
 
 export const createSystemPlatforms = materials => 
 {

@@ -1,8 +1,8 @@
-import { createBridge } from '../components/componentBridge/componentBridge'
+import { createBridge } from './component_bridge'
 import {
     START_STATE,
     PROGRAMS
-} from '../constants/elementsConfig'
+} from './constants_elements'
 
 
 export function createSystemBridge (emitter, material)

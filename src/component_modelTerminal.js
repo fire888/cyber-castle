@@ -1,6 +1,6 @@
 
 import * as THREE from 'three'
-import { GLTFCopy } from '../utils/GLTFCopy'
+import { GLTFCopy } from './util_GLTFcopy'
 
 export const createModelTerminal = (model, config, emitter) => {
     const copy = GLTFCopy(model)

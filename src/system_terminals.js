@@ -1,8 +1,8 @@
-import { createModelTerminal } from '../components/componentModelTerminal'
+import { createModelTerminal } from './component_modelTerminal'
 import {
     TERMINALS_CONFIG,
     LAST_TERMINAL_CONFIG
-} from '../constants/elementsConfig'
+} from './constants_elements'
 
 
 

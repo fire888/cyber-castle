@@ -1,4 +1,4 @@
-import '../stylesheets/style.css'
+import './stylesheets/style.css'
 
 
 /** ANIMATION LOADER */

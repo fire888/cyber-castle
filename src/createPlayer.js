@@ -1,10 +1,10 @@
 import * as THREE from 'three'
 
-import { playerConfig } from '../constants/elementsConfig'
+import { playerConfig } from './constants_elements'
 
-import { createComponentCollisionFloors } from '../components/componentCollisionFloor'
-import { createComponentCollisionWalls } from '../components/componentCollisionWalls'
-import { createCheckerNearItem } from '../components/componentCheckNearItem'
+import { createComponentCollisionFloors } from './component_collisionFloor'
+import { createComponentCollisionWalls } from './component_collisionWalls'
+import { createCheckerNearItem } from './component_checkNearItem'
 
 
 export function createPlayer (emitterLink) {
