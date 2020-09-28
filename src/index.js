@@ -40,8 +40,7 @@ const initApp = () => loadAssets(ASSETS_TO_LOAD)
             createFrameUpdater(emitter)
             emitter.subscribe('frameUpdate')(updateTweens)
 
-            const studio = createStudio(emitter)
-            studio.scene.background = assets.skyBox
+            const studio = createStudio(emitter, assets)
 
             /** level */
             const { arrMeshes, levelGroup, topLevelGroup, materials} = prepareMeshesFromAssets(assets)

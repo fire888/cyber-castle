@@ -1,4 +1,4 @@
-const MAX_W = 500
+const MAX_W = 400
 const MIN_W = 350
 
 export function createDeviceResizer () {
@@ -31,12 +31,6 @@ export function createDeviceResizer () {
     }
     window.addEventListener('resize', resize)
     resize()
-
-
-    //let mode = "desktop"
-    //if (checkTouch() && checkIsCanOrientation()) {
-    //    mode = "phone"
-    //}
 }
 
 

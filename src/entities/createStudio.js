@@ -2,38 +2,32 @@ import * as THREE from 'three'
 import { studioConfig } from '../constants/elementsConfig'
 
 
-export function createStudio (emitter) {
-    let camera, scene, renderer
+export function createStudio (emitter, assets) {
+    const { canId, rendererCon, clearColor, fogData, amb } = studioConfig
 
-    const init = () => {
-        const { canId, rendererCon, clearColor, backgroundColor, fogData, amb } = studioConfig
+    const canvas = document.getElementById(canId)
+    rendererCon.canvas = canvas
 
-        const canvas = document.getElementById(canId)
-        rendererCon.canvas = canvas
+    const renderer = new THREE.WebGLRenderer(rendererCon)
+    renderer.setClearColor(clearColor)
+    renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setSize(window.innerWidth, window.innerHeight)
 
-        renderer = new THREE.WebGLRenderer(rendererCon)
-        renderer.setClearColor(clearColor)
-        renderer.setPixelRatio(window.devicePixelRatio)
-        renderer.setSize(window.innerWidth, window.innerHeight)
+    const scene = new THREE.Scene()
+    scene.background = assets.skyBox
 
-        scene = new THREE.Scene()
-        scene.background = backgroundColor
-
-        {
-            const { color, strength } = fogData
-            scene.fog = new THREE.FogExp2(color, strength)
-        }
-
-        {
-            const { color, strength } = amb
-            let lightA = new THREE.AmbientLight( color, strength )
-            scene.add( lightA )
-        }
-
-
-        window.addEventListener('resize', resize)
-        resize()
+    {
+        const { color, strength } = fogData
+        scene.fog = new THREE.FogExp2(color, strength)
     }
+
+    {
+        const { color, strength } = amb
+        let lightA = new THREE.AmbientLight( color, strength )
+        scene.add( lightA )
+    }
+
+    let camera = null
 
     const resize = () => {
         const size = { width: window.innerWidth, height: window.innerHeight }
@@ -44,7 +38,8 @@ export function createStudio (emitter) {
         }
     }
 
-    init()
+    window.addEventListener('resize', resize)
+    resize()
 
     const addToScene = scene.add.bind(scene)
 
@@ -53,10 +48,7 @@ export function createStudio (emitter) {
 
     return {
         setCamera: cam => camera = cam,
-        drawFrame,
-        renderer,
         addToScene,
-        scene,
     }
 }
 
