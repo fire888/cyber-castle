@@ -1,12 +1,9 @@
 import { createBridge } from './component_bridge'
-import {
-    START_STATE,
-    PROGRAMS
-} from './constants_elements'
+import { START_STATE, PROGRAMS } from './constants_elements'
 
 
-export function createSystemBridge (emitter, material)
-{
+
+export function createSystemBridge (emitter, material) {
     const bridge = createBridge(material)
     bridge.setPose(START_STATE)
 
@@ -29,9 +26,10 @@ export function createSystemBridge (emitter, material)
 }
 
 
-const getValuesFromData = data =>
-{
+
+const getValuesFromData = data => {
     const newData = {}
     for (let key in data) newData[key] = data[key].val
     return newData
 }
+

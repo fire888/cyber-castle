@@ -1,11 +1,15 @@
 import * as THREE from 'three'
 
+
+
 const SIZE = 1500
 const TOP = 300
 const BOTTOM = -70
 
+
+
 export function createLevelBorder () {
-    var geometry = new THREE.Geometry()
+    const geometry = new THREE.Geometry()
     geometry.vertices.push(
         new THREE.Vector3(-SIZE, BOTTOM, -SIZE), //0
         new THREE.Vector3(-SIZE, TOP, -SIZE), //1
@@ -37,9 +41,9 @@ export function createLevelBorder () {
     geometry.computeVertexNormals()
     geometry.computeBoundingSphere();
 
-    const mesh = new THREE.Mesh(
+    return new THREE.Mesh(
         geometry,
         new THREE.MeshPhongMaterial({ color: 0xff0000, transparent: true, opacity: 0, })
     )
-    return mesh
 }
+

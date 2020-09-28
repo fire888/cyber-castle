@@ -1,13 +1,9 @@
 import { createModelTerminal } from './component_modelTerminal'
-import {
-    TERMINALS_CONFIG,
-    LAST_TERMINAL_CONFIG
-} from './constants_elements'
+import { TERMINALS_CONFIG, LAST_TERMINAL_CONFIG } from './constants_elements'
 
 
 
-export function createSystemTerminals (model, emitter, addToScene, addItemToNearChecker)
-{
+export function createSystemTerminals (model, emitter, addToScene, addItemToNearChecker) {
     const terminals = {}
 
     const createTerminal = config => {
@@ -27,3 +23,4 @@ export function createSystemTerminals (model, emitter, addToScene, addItemToNear
         data.mesh.userData.terminalKey === 'TERMINAL_06' && !data.isOpen && createTerminal(LAST_TERMINAL_CONFIG)    
     })
 }
+

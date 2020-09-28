@@ -3,11 +3,13 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { GLTFLoader } from  'three/examples/jsm/loaders/GLTFLoader'
 
 
+
 let callback = null
 let dataToLoad = null
 const assets = {}
 let objLoader, textureLoader, gltfLoader, cubeTextureLoader
 let index = 0
+
 
 
 const loadAsset = function (data) {
@@ -48,12 +50,15 @@ const loadAsset = function (data) {
 }
 
 
+
 const checkComplete = () => {
     index ++
     index < dataToLoad.length 
         ? loadAsset(dataToLoad[index])
         : callback(assets)
 }
+
+
 
 export const loadAssets = data => {
     return new Promise(resolve => {
@@ -69,3 +74,4 @@ export const loadAssets = data => {
         loadAsset(dataToLoad[index])
     })
 }
+

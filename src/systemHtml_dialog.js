@@ -1,22 +1,22 @@
-import { 
-    REPLICIES_CONFIG, 
-    TRANSLATE_WORLDS,
-} from './constants_replicies'
+import { REPLICIES_CONFIG, TRANSLATE_WORLDS } from './constants_replicies'
 import gsap from 'gsap'
+import { TextPlugin } from 'gsap/TextPlugin'
+gsap.registerPlugin(TextPlugin)
 
 
 let currentLanguage = 'en'
 
-export function createDialog (emitter) 
-{
+
+
+export function createDialog (emitter) {
     prepareOpenDialogButton(emitter)
     prepareDialog(emitter)
     emitter.subscribe('setLanguage')(keyLanguage => currentLanguage = keyLanguage)
 }
 
 
-const prepareOpenDialogButton = emitter => 
-{
+
+const prepareOpenDialogButton = emitter => {
     const button = document.getElementById('dialog-button-toggle')
     let currentMesh = null
 
@@ -116,9 +116,7 @@ const prepareDialog = emitter => {
 }
 
 
-/**
- * Change main dialog config by id.
- */
+
 const changePhrasesState = id => {
     if (id === 'openPhrasePROGRAM_00') 
     {
@@ -145,7 +143,7 @@ const changePhrasesState = id => {
 }
 
 
-/**
- * Translate.
- */
+
+/** translate */
 const t = val => TRANSLATE_WORLDS[currentLanguage] && TRANSLATE_WORLDS[currentLanguage][val] || val
+

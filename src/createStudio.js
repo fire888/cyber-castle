@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { studioConfig } from './constants_elements'
 
 
+
 export function createStudio (emitter, assets) {
     const { canId, rendererCon, clearColor, fogData, amb } = studioConfig
 
@@ -51,9 +52,4 @@ export function createStudio (emitter, assets) {
         addToScene,
     }
 }
-
-
-
-
-
 

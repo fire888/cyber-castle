@@ -1,6 +1,7 @@
-
 import * as THREE from 'three'
 import { GLTFCopy } from './util_GLTFcopy'
+
+
 
 export const createModelTerminal = (model, config, emitter) => {
     const copy = GLTFCopy(model)
@@ -56,3 +57,4 @@ export const createModelTerminal = (model, config, emitter) => {
         mesh,
     }
 }
+

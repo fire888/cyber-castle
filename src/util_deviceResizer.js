@@ -1,6 +1,8 @@
 const MAX_W = 400
 const MIN_W = 350
 
+
+
 export function createDeviceResizer () {
     const appWrapper = document.querySelector('.app-wrapper')
     const fullScreenButton = document.querySelector('#butt-fullscreen')
@@ -39,5 +41,7 @@ const checkTouch = () =>
     navigator.maxTouchPoints || 'ontouchstart' in document.documentElement
 
 
+
 const checkIsCanOrientation = () => 
     typeof window.orientation !== 'undefined'
+

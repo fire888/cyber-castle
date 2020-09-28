@@ -1,3 +1,5 @@
+
+
 export function KeyBoard (eventEmitter) {
     
     const emitter = eventEmitter
@@ -70,3 +72,4 @@ export function KeyBoard (eventEmitter) {
     buttUp.addEventListener('touchend', 
       function() { keyUpdate( 38, false ) })
 }
+

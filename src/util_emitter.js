@@ -18,14 +18,7 @@ export function createEmitter () {
     }
 }
 
+
+
 const getOrCreateArrFromObj = obj => key => obj[key] = obj[key] || []
-
-
-
-
-
-
-
-
-
 

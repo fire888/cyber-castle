@@ -1,6 +1,10 @@
 import { TRANSLATE_WORLDS } from './constants_replicies'
 
+
+
 let currentLanguage = 'en'
+
+
 
 export function createInfo (emitter) {
     const cont = document.createElement('div')
@@ -43,7 +47,7 @@ export function createInfo (emitter) {
 }
 
 
-/**
- * Translate.
- */
+
+/** Translate. */
 const t = val => (TRANSLATE_WORLDS[currentLanguage] && TRANSLATE_WORLDS[currentLanguage][val]) || val
+

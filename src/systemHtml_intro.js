@@ -1,27 +1,29 @@
 import './stylesheets/style.css'
 
 
+
+
 /** ANIMATION LOADER */
 const loader = document.querySelector('.progress')
 let offsetLoader = -100
 let isAnimateLoader = true
 
+
+
 const loaderTimeOut = () => {
-  if (!isAnimateLoader) {
-    return
-  }
-  setTimeout(() => {
-    offsetLoader ++;
-    if (offsetLoader == 0 ) {
-      offsetLoader = -100
-    }
-    loader.style.marginLeft = offsetLoader + '%'
-    loaderTimeOut() 
-  }, 30)
+      if (!isAnimateLoader) return;
+
+      setTimeout(() => {
+            offsetLoader ++;
+            offsetLoader == 0 && (offsetLoader = -100)
+            loader.style.marginLeft = offsetLoader + '%'
+            loaderTimeOut()
+      }, 30)
 }
 
-loaderTimeOut()
 
+
+loaderTimeOut()
 
 
 
@@ -40,8 +42,4 @@ export const showStartButton = emitter => {
     startButtons.addEventListener('click', hideStartScreen)
     progressWrapper.style.display = 'none'
 }
-
-
-
-
 

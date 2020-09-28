@@ -1,6 +1,10 @@
 import * as THREE from 'three'
 
+
+
 const WALLS_ARRAY = []
+
+
 
 export const createComponentCollisionWalls = (objFromLink, objToLink, offset) => {
     const offsetWallCollision = offset
@@ -25,7 +29,7 @@ export const createComponentCollisionWalls = (objFromLink, objToLink, offset) =>
 
 }
 
+
+
 export const setItemToWallCollision = item => WALLS_ARRAY.push(item)
-
-
 

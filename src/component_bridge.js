@@ -2,6 +2,7 @@ import { createBridgeMesh } from './component_bridgeMesh'
 import gsap from 'gsap'
 
 
+
 export function createBridge (material) {
     const setPose = state => {
         currentState = state
@@ -30,7 +31,6 @@ export function createBridge (material) {
         startProgram,
     }
 }
-
 
 
 

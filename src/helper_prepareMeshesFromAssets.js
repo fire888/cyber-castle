@@ -1,6 +1,7 @@
 import { MATERIALS_CONFIG } from './constants_elements'
 
 
+
 export function prepareMeshesFromAssets (assets) {
 
     const
@@ -29,6 +30,7 @@ export function prepareMeshesFromAssets (assets) {
         materials,
     }
 }
+
 
 
 const createMaterials = () => {

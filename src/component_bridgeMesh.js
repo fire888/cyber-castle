@@ -1,7 +1,3 @@
-/**
- * Created by Vasilii on 14.09.2020.
- */
-
 
 
 export function createBridgeMesh (materials)
@@ -126,10 +122,6 @@ function createPointsCarcass (points, data)
  *         |/                  | /            |/
  *         *-------------------*--------------*
  *     p[i-2][0]               p[i-1][0]       p[i][0]
- *
- *
- *
- * @param {object} data
  */
 const createGeomFromPoints = data =>
 {
@@ -171,5 +163,4 @@ const createGeomFromPoints = data =>
 
     return geometry
 }
-
 

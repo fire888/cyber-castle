@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import { PLATFORMS_CONFIG } from './constants_elements'
 
-export const createSystemPlatforms = materials => 
-{
+
+
+export const createSystemPlatforms = materials => {
     const items = []
     for (let i = 0; i < PLATFORMS_CONFIG.length; i ++) 
     {
@@ -20,3 +21,4 @@ export const createSystemPlatforms = materials =>
         items
     }
 }
+

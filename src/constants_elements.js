@@ -11,6 +11,7 @@ import levelSrc from './assets/level.obj'
 import terminalSrc from './assets/terminal.glb'
 
 
+
 export const ASSETS_TO_LOAD = [{
         type: 'obj',
         filename: levelSrc,
@@ -26,8 +27,10 @@ export const ASSETS_TO_LOAD = [{
 },]
 
 
+
 const PI = Math.PI
 const R = 100
+
 
 export const studioConfig = {
     canId: 'webgl-canvas',
@@ -45,6 +48,7 @@ export const studioConfig = {
         strength: 0.8,
     },
 }
+
 
 
 export const playerConfig = {
@@ -87,6 +91,7 @@ export const playerConfig = {
 }
 
 
+
 export const MATERIALS_CONFIG = {
     'wall': {
         mat: 'MeshPhongMaterial',
@@ -100,6 +105,8 @@ export const MATERIALS_CONFIG = {
     } 
 }
 
+
+
 export const PLATFORMS_CONFIG = [
     { r: R, angle: PI + 0.1, y: -5, w1: 70, w2: 40, h: 7, },
     { r: R, angle: 0, y: 61, w1: 70, w2: 40, h: 7, },
@@ -108,6 +115,9 @@ export const PLATFORMS_CONFIG = [
     { r: R + 20, angle: 0.35, y: 145, w1: 70, w2: 40, h: 7, },
     { r: R + 20, angle: 0.35 - 0.2, y: 237, w1: 70, w2: 40, h: 7, },
 ]
+
+
+
 export const TERMINALS_CONFIG = [
     { terminalKey: 'TERMINAL_Z', r: 50, angle: PI, y: -57, },
     { terminalKey: 'TERMINAL_00', r: R + 20, angle: 0, y: 2, },
@@ -119,6 +129,7 @@ export const TERMINALS_CONFIG = [
     { terminalKey: 'TERMINAL_06', r: R + 10, angle: 0.1, y: 243, },
 ]
 export const LAST_TERMINAL_CONFIG = { terminalKey: 'TERMINAL_LAST', r: 350, angle: PI + 0.5, y: 277 }
+
 
 
 export const START_STATE =

@@ -2,8 +2,15 @@
 
 let arrItems = []
 
+
+
 export const addItemToNearChecker = item => arrItems.push(item)
+
+
+
 export const removeItemByName = name => arrItems = arrItems.filter(item => item.name !== name)
+
+
 
 export const createCheckerNearItem = (mesh, emitter) => () => {
     arrItems.forEach(item => {

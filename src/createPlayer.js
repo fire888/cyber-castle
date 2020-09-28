@@ -7,6 +7,7 @@ import { createComponentCollisionWalls } from './component_collisionWalls'
 import { createCheckerNearItem } from './component_checkNearItem'
 
 
+
 export function createPlayer (emitterLink) {
     const emitter = emitterLink
 
@@ -92,5 +93,4 @@ export function createPlayer (emitterLink) {
         setToPos: (x, y, z) => mainObj.position.set(x, y, z)
     }
 }
-
 
