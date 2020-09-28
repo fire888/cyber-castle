@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 const appCommonConfig = require('./webpackCommon.js');
 const path = require('path');
 
-module.exports = merge( appCommonConfig, {
+module.exports = merge.merge( appCommonConfig, {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, '../dist'),

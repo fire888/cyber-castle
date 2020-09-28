@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import 'three/examples/js/loaders/OBJLoader'
-import 'three/examples/js/loaders/GLTFLoader'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { GLTFLoader } from  'three/examples/jsm/loaders/GLTFLoader'
 
 
 let callback = null
@@ -61,9 +61,9 @@ export const loadAssets = data => {
         callback = resolve
         index = 0
 
-        objLoader = objLoader || new THREE.OBJLoader()
+        objLoader = objLoader || new OBJLoader()
         textureLoader = textureLoader || new THREE.TextureLoader()
-        gltfLoader = gltfLoader || new THREE.GLTFLoader()
+        gltfLoader = gltfLoader || new GLTFLoader()
         cubeTextureLoader = cubeTextureLoader || new THREE.CubeTextureLoader()
 
         loadAsset(dataToLoad[index])

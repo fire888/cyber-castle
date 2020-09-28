@@ -45,9 +45,9 @@ const doMarathonAnimations = (currentState, arrStates, action) => {
                 const middleState = {}
                 for (let key in currentState)
                     middleState[key] = currentState[key] + (newState[key] - currentState[key]) * obj.val
+
                 action(middleState)
             }
-
 
             const onComplete = () => {
                 currentState = newState

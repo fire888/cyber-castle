@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Bridge</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name='viewport' content='width=device-width, user-scalable=no'>
-  <style>
-    * {
+<!doctype html><html><head><title>Bridge</title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width,user-scalable=no"><style>* {
   margin: 0;
   padding: 0;
   user-select: none;
@@ -135,69 +128,4 @@ a {
   background: #181d38;
   color: #e4f9ff;
   cursor: pointer;
-}
-  </style>
-</head>
-<body>
-  <div class='app-wrapper'>
-  <!--<div id="debugger"></div>-->
-  <div class='start-screen'>
-    <div class='message'>
-      <div class = 'name'>
-        <h1>BRIDGE</h1>
-        <!-- <h2>дроидов</h2> -->
-      </div>
-      <div class="img-wrapper"> 
-        <img src="imgs/start-img.png">
-      </div>
-      <div class="instructions">
-        <p>Keys: &#8592;, &#8593;, &#8594;</p>
-      </div> 
-      <div class = "load-container">
-        <div class="startbuttons-wrapper" style="display: none;">
-            <button class="start-butt" data-lang="en">EN</button>
-            <button class="start-butt" data-lang="ru">RU</button>
-        </div>
-        <div class="progress-wrapper">
-          <div class="progress"></div> 
-        </div> 
-      </div>
-    </div>
-  </div>
-  <div class="ui">
-  <div id='info' style="display: none;">
-      <button id="close-info" class="control">x</button>
-      <div>От</br> <a href='http://otrisovano.ru' target="blanck">www.otrisovano.ru</a></br>
-        <a href='https://github.com/fire888/laboratory'>github.com</a></div>
-    </div>
-    <div class="ui-top">
-      <button id="butt-fullscreen" class="control" style="display: none;">&#10066;</button>  
-      <button id="butt-info" class="control">i</button>     
-    </div>
-    <div class="ui-center">
-        <div id="dialog-wrapper">
-          <div id="messages-wrapper" style="display: none;">
-            <div id="messages"></div>
-            <div id="replicies"></div>
-          </div>
-        </div>
-    </div>
-    <div class="ui-bottom">
-      <div class='left-container'>
-        <button class="butt-left control">&#9668;</button>
-        <button class="butt-right control">&#9658;</button>
-      </div>
-      <div class="center-container">
-        <button id="dialog-button-toggle" style="display: none;">диалог</button>
-      </div>
-      <div class='right-container'>
-        <button class="butt-front control">&#9650;</button>
-      </div>  
-    </div>
-  </div>
-  <div class="canvas-wrapper">
-    <canvas id='webgl-canvas'></canvas>
-  </div>
-  </div>
-<script type="text/javascript" src="app.bundle.js"></script></body>
-</html>
+}</style></head><body><div class="app-wrapper"><div class="start-screen"><div class="message"><div class="name"><h1>BRIDGE</h1></div><div class="img-wrapper"><img src="imgs/start-img.png"></div><div class="instructions"><p>Keys: &#8592;, &#8593;, &#8594;</p></div><div class="load-container"><div class="startbuttons-wrapper" style="display: none;"><button class="start-butt" data-lang="en">EN</button> <button class="start-butt" data-lang="ru">RU</button></div><div class="progress-wrapper"><div class="progress"></div></div></div></div></div><div class="ui"><div id="info" style="display: none;"><button id="close-info" class="control">x</button><div>От<br><a href="http://otrisovano.ru" target="blanck">www.otrisovano.ru</a><br><a href="https://github.com/fire888/laboratory">github.com</a></div></div><div class="ui-top"><button id="butt-fullscreen" class="control" style="display: none;">&#10066;</button> <button id="butt-info" class="control">i</button></div><div class="ui-center"><div id="dialog-wrapper"><div id="messages-wrapper" style="display: none;"><div id="messages"></div><div id="replicies"></div></div></div></div><div class="ui-bottom"><div class="left-container"><button class="butt-left control">&#9668;</button> <button class="butt-right control">&#9658;</button></div><div class="center-container"><button id="dialog-button-toggle" style="display: none;">диалог</button></div><div class="right-container"><button class="butt-front control">&#9650;</button></div></div></div><div class="canvas-wrapper"><canvas id="webgl-canvas"></canvas></div></div><script src="app.bundle.js"></script></body></html>
