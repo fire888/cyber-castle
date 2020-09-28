@@ -62,4 +62,3 @@ const doMarathonAnimations = (currentState, arrStates, action) => {
     })
 }
 
-
