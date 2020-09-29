@@ -119,6 +119,7 @@ export const PLATFORMS_CONFIG = [
 
 
 export const TERMINALS_CONFIG = [
+    { terminalKey: 'TERMINAL_Z01', r: 70, angle: PI / 2, y: -57, angleZ: PI / 2},
     { terminalKey: 'TERMINAL_Z', r: 50, angle: PI, y: -57, },
     { terminalKey: 'TERMINAL_00', r: R + 20, angle: 0, y: 2, },
     { terminalKey: 'TERMINAL_01', r: R - 5, angle: PI + 0.3, y: 1, },
@@ -145,6 +146,16 @@ export const START_STATE =
 //{ time: 1000,count: 100, twist: 3.14, strengthTwist: 0.424, radius: 200, height: 40, rotate: 0.6584, width: 7, floor: 90, x: -75, y: 240, z: -10, }
 
 export const PROGRAMS = {
+    'PROGRAM_NONE': [
+        { time: 1000,count: 148, twist: 12.4340734641021, strengthTwist: 0.84, radius: 24, height: 40, rotate: -0.041592653589793, width: 0, floor: 0, x: 0, y: 0, z: 0, },
+        { time: 3000,count: 148, twist: 12.4340734641021, strengthTwist: 0.84, radius: -34, height: 40, rotate: -20, width: 5, floor: 0, x: 0, y: 0, z: 0, },
+        { time: 3000,count: 148, twist: 20.4340734641021, strengthTwist: 0.84, radius: -40, height: 80, rotate: -40, width: 5, floor: 12, x: 0, y: -20, z: 0, },
+        { time: 3000,count: 148, twist: 12, strengthTwist: -0.84, radius: -5, height: -40, rotate: -40, width: 5, floor: 12, x: 0, y: 20, z: 0, },
+        { time: 3000,count: 148, twist: 12, strengthTwist: -0.84, radius: 20, height: -40, rotate: -20, width: 10, floor: 12, x: 0, y: 20, z: 0, },
+        { time: 3000,count: 148, twist: 20, strengthTwist: 1, radius: 20, height: 40, rotate: 0, width: 5, floor: 0, x: 0, y: 20, z: 0, },
+        { time: 3000,count: 148, twist: 20, strengthTwist: 1, radius: 20, height: 80, rotate: 20, width: 0, floor: 0, x: 0, y: -20, z: 0, },
+        {time: 20,count: 34,twist: 3.141592653589793,strengthTwist: 1,radius: 0,height: 0,rotate: 3.05840734641021,width: 0,floor: 0,x: 0,y: 0,z: 58,}
+    ],
     'PROGRAM_Z': [
         {time: 1500,count: 100,twist: 15.141592653589793,strengthTwist: 1,radius: 50, height: -70, rotate: -10, width: 5, floor: 0,x: 0, y: 30, z: 28,},
         {time: 3000,count: 100,twist: -15.141592653589793,strengthTwist: 1,radius: 20, height: 70, rotate: 3.05, width: 5, floor: 0,x: 0, y: -30, z: 58,},

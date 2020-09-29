@@ -1,7 +1,7 @@
 
 
 export const REPLICIES_CONFIG = {
-    'TERMINAL_Z': [{
+    'TERMINAL_Z01': [{
         q: { txt: 'And blood-black nothingness began to spin...' },
         a: [
             { txt: '', isShow: true, action: 'next', },
@@ -14,21 +14,26 @@ export const REPLICIES_CONFIG = {
     }, {
         q: { txt: 'And dreadfully distinct against the dark, a tall white fountain played.' },
         a: [
-            { txt: '', isShow: true, action: 'startBridge', dataAction: { keyProgramBridge: 'PROGRAM_Z', idChangerState: 'openPhrasePROGRAM_00'} },
-        ],
+            { txt: '', isShow: true, action: 'close', dataAction: { idChangerState: 'openPhrasePROGRAM_00' } },
+         ],
+    },],
+    'TERMINAL_Z': [{
+        q: { txt: '' },
+        a: [
+            { txt: '', isShow: true, action: 'startBridge', dataAction: { keyProgramBridge: 'PROGRAM_Z' } },
+        ]
     },],
     'TERMINAL_00': [{
         q: { txt: 'Officer K-D-six-dash-three-dot-seven, let\'s begin. Ready?' },
         a: [
             { txt: 'Yes, sir.',  isShow: true, action: 'next', },
-            { txt: 'No.', isShow: true, action: 'close',  },
+            { txt: 'No.', isShow: true, action: 'startBridge', dataAction: { keyProgramBridge: 'PROGRAM_NONE', } },
         ],
     }, {
         q: { txt: 'Recite your baseline.' },
         a: [
-            { txt: 'I do not remember.', isShow: true, action: 'close', },
-            { txt: 'I\'ll come back later.',
-                    isShow: true, action: 'close', },
+            { txt: 'I do not remember.', isShow: true, action: 'startBridge', dataAction: { keyProgramBridge: 'PROGRAM_NONE', } },
+            { txt: 'I\'ll come back later.', isShow: true, action: 'startBridge', dataAction: { keyProgramBridge: 'PROGRAM_NONE', } },
             { txt: 'And blood-black nothingness began to spin...', isShow: false, action: 'next', },
         ],
     }, {

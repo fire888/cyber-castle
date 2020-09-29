@@ -21,7 +21,7 @@ import { setItemToFloorsCollision } from './component_collisionFloor'
 import { setItemToWallCollision } from './component_collisionWalls'
 import { addItemToNearChecker } from './component_checkNearItem'
 import { createLevelBorder } from './component_createLevelBorders'
-// import { bridgeParamsHtml } from './systemHtml_bridgeSliders'
+import { bridgeParamsHtml } from './systemHtml_bridgeSliders'
 import { createDialog } from './systemHtml_dialog'
 import { showStartButton } from './systemHtml_intro'
 import { createInfo } from './systemHtml_info'
@@ -57,8 +57,10 @@ const init = assets => {
     studio.addToScene(systemBridge.mesh)
 
     /** devel bridge params */
-    // const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
-    // document.body.appendChild(bridgeHtml)
+    // /*
+    const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
+    document.body.appendChild(bridgeHtml)
+    // */
 
     /** platfoms and terminals */
     const systemPlatform = createSystemPlatforms(materials)

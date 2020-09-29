@@ -89,10 +89,10 @@ const prepareDialog = emitter => {
                     showHideDialog({ isOpen: false, mesh: currentMesh })
                     emitter.emit('toggleDialog')({ isOpen: false, mesh: currentMesh })
                     emitter.emit('startBridgeProgram')({ keyProgram: dialogDATA.a[i].dataAction.keyProgramBridge })
+                }
 
-                    if (dialogDATA.a[i].dataAction.idChangerState) {
-                        changePhrasesState(dialogDATA.a[i].dataAction.idChangerState)
-                    }
+                if (dialogDATA.a[i].dataAction && dialogDATA.a[i].dataAction.idChangerState) {
+                    changePhrasesState(dialogDATA.a[i].dataAction.idChangerState)
                 }
             }
             repliciesContainer.appendChild(answer)
