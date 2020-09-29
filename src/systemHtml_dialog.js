@@ -26,14 +26,16 @@ const prepareOpenDialogButton = emitter => {
     }
 
     button.addEventListener('click', () => emitter.emit('toggleDialog')({ mesh: currentMesh, isOpen: true }))
-    emitter.subscribe('toggleDialog')(data => showHideButton(!data.isOpen))
+    emitter.subscribe('toggleDialog')(data => {
+        if (data.mesh.userData.terminalKey === "START_MESS") return;
+        showHideButton(!data.isOpen)
+    })
 
     emitter.subscribe('nearMesh')(data => {
         currentMesh = data.mesh
         showHideButton(data.toNear)
     })
     
-
     return button
 }
 

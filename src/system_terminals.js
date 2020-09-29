@@ -17,8 +17,8 @@ export function createSystemTerminals (model, emitter, addToScene, addItemToNear
 
     emitter.subscribe('toggleDialog')(data => {
         data.isOpen 
-            ? terminals[data.mesh.userData.terminalKey].startOpen()
-            : terminals[data.mesh.userData.terminalKey].startClose()
+            ? terminals[data.mesh.userData.terminalKey] && terminals[data.mesh.userData.terminalKey].startOpen()
+            : terminals[data.mesh.userData.terminalKey] && terminals[data.mesh.userData.terminalKey].startClose()
             
         data.mesh.userData.terminalKey === 'TERMINAL_06' && !data.isOpen && createTerminal(LAST_TERMINAL_CONFIG)    
     })

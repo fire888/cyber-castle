@@ -1,7 +1,18 @@
 
 
 export const REPLICIES_CONFIG = {
+    'START_MESS': [{
+        q: { txt: 'After a long wandering in the desert...' },
+        a: [
+            { txt: '', isShow: true, action: 'close', },
+        ],
+    }],
     'TERMINAL_Z01': [{
+        q: { txt: 'Stranger, I threw you a terminal with a passphrase. Remember:' },
+        a: [
+            { txt: '', isShow: true, action: 'next', },
+        ],
+    }, {
         q: { txt: 'And blood-black nothingness began to spin...' },
         a: [
             { txt: '', isShow: true, action: 'next', },
@@ -130,6 +141,8 @@ export const REPLICIES_CONFIG = {
 
 export const TRANSLATE_WORLDS = {
     'ru': {
+        'After a long wandering in the desert...': 'После долгого блуждания по пустоши...',
+        'Stranger, I threw you a terminal with a passphrase. Remember:': 'Незнакомец, я кинул тебе терминал с парольной фразой. Запомни:',
         'And blood-black nothingness began to spin...': 'Кроваво-черное ничто пустилось вить систему клеток,', 
         'A system of cells interlinked within cells interlinked within cells interlinked within one stem...' : 'связанных внутри, клеток, связанных внутри, клеток в едином стебле и явственно,', 
         'And dreadfully distinct against the dark, a tall white fountain played.': 'до жути на фоне тьмы ввысь белым бил фонтан.',

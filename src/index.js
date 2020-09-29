@@ -57,10 +57,10 @@ const init = assets => {
     studio.addToScene(systemBridge.mesh)
 
     /** devel bridge params */
-    // /*
+    /*
     const bridgeHtml = bridgeParamsHtml(BRIDGE_HTML_DEC_CONFIG, emitter)
     document.body.appendChild(bridgeHtml)
-    // */
+    */
 
     /** platfoms and terminals */
     const systemPlatform = createSystemPlatforms(materials)
@@ -85,6 +85,10 @@ const init = assets => {
 
     createInfo(emitter)
     showStartButton(emitter)
+
+    setTimeout(() => {
+        emitter.emit('toggleDialog')({ mesh: { userData: { terminalKey: 'START_MESS' }}, isOpen: true })
+    }, 50)
 }
 
 

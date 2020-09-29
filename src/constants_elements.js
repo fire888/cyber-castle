@@ -149,10 +149,10 @@ export const PROGRAMS = {
     'PROGRAM_NONE': [
         { time: 1000,count: 148, twist: 12.4340734641021, strengthTwist: 0.84, radius: 24, height: 40, rotate: -0.041592653589793, width: 0, floor: 0, x: 0, y: 0, z: 0, },
         { time: 3000,count: 148, twist: 12.4340734641021, strengthTwist: 0.84, radius: -34, height: 40, rotate: -20, width: 5, floor: 0, x: 0, y: 0, z: 0, },
-        { time: 3000,count: 148, twist: 20.4340734641021, strengthTwist: 0.84, radius: -40, height: 80, rotate: -40, width: 5, floor: 12, x: 0, y: -20, z: 0, },
-        { time: 3000,count: 148, twist: 12, strengthTwist: -0.84, radius: -5, height: -40, rotate: -40, width: 5, floor: 12, x: 0, y: 20, z: 0, },
-        { time: 3000,count: 148, twist: 12, strengthTwist: -0.84, radius: 20, height: -40, rotate: -20, width: 10, floor: 12, x: 0, y: 20, z: 0, },
-        { time: 3000,count: 148, twist: 20, strengthTwist: 1, radius: 20, height: 40, rotate: 0, width: 5, floor: 0, x: 0, y: 20, z: 0, },
+        { time: 3000,count: 70, twist: 20.4340734641021, strengthTwist: 0.84, radius: -40, height: 80, rotate: -40, width: 5, floor: 12, x: 0, y: -20, z: 0, },
+        { time: 3000,count: 50, twist: 12, strengthTwist: -0.84, radius: -5, height: -40, rotate: -40, width: 5, floor: 12, x: 0, y: 20, z: 0, },
+        { time: 3000,count: 70, twist: 12, strengthTwist: -0.84, radius: 20, height: -40, rotate: -20, width: 10, floor: 12, x: 0, y: 20, z: 0, },
+        { time: 3000,count: 100, twist: 20, strengthTwist: 1, radius: 20, height: 40, rotate: 0, width: 5, floor: 0, x: 10, y: 20, z: 0, },
         { time: 3000,count: 148, twist: 20, strengthTwist: 1, radius: 20, height: 80, rotate: 20, width: 0, floor: 0, x: 0, y: -20, z: 0, },
         {time: 20,count: 34,twist: 3.141592653589793,strengthTwist: 1,radius: 0,height: 0,rotate: 3.05840734641021,width: 0,floor: 0,x: 0,y: 0,z: 58,}
     ],
