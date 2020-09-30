@@ -201,4 +201,3 @@ export const TRANSLATE_WORLDS = {
         '/factory': '/ru/factory/'
     }
 }
-
