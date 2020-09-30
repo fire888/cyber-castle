@@ -27,7 +27,7 @@ const prepareOpenDialogButton = emitter => {
 
     button.addEventListener('click', () => emitter.emit('toggleTerminal')({ terminalKey: currentTerminalKey, isOpen: true }))
     emitter.subscribe('toggleTerminal')(data => {
-        if (!data.mesh) return;
+        if (data.terminalKey === 'START_MESS') return;
         showHideButton(!data.isOpen)
     })
 
