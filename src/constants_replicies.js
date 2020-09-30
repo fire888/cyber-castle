@@ -8,7 +8,7 @@ export const REPLICIES_CONFIG = {
         ],
     }],
     'TERMINAL_Z01': [{
-        q: { txt: 'Stranger, I threw you a terminal with a passphrase. Remember:' },
+        q: { txt: 'Stranger, I threw you a terminal with a pass phrase. Remember:' },
         a: [
             { txt: '', isShow: true, action: 'next', },
         ],
@@ -133,6 +133,27 @@ export const REPLICIES_CONFIG = {
         q: { txt: 'We\'re done... Constant K, you can pick up your bonus.' },
         a: [
             { txt: 'Thank you, sir.', isShow: true, action: 'startBridge', dataAction: { keyProgramBridge: 'PROGRAM_LAST', idChangerState: 'resetAllAfterEnd' }},
+            { txt: 'Hey...', isShow: false, action: 'close', },
+        ],
+    },{
+        q: { txt: '...' },
+        a: [
+            { txt: '', isShow: true, action: 'next', },
+        ],
+    },{
+        q: { txt: '... ... ...' },
+        a: [
+            { txt: '', isShow: true, action: 'next', },
+        ],
+    },{
+        q: { txt: '...If you read it, you find dropped terminal and got top level of desert. Welcome...' },
+        a: [
+            { txt: 'Who are you?', isShow: true, action: 'next', },
+        ],
+    }, {
+        q: { txt: 'It does not matter. Later. May be..' },
+        a: [
+            { txt: '', isShow: true, action: 'close', dataAction: { idChangerState: 'clearMessagesAfterLastEnd' }},
         ],
     },]
 }
@@ -142,7 +163,7 @@ export const REPLICIES_CONFIG = {
 export const TRANSLATE_WORLDS = {
     'ru': {
         'After a long wandering in the desert...': 'После долгого блуждания по пустоши...',
-        'Stranger, I threw you a terminal with a passphrase. Remember:': 'Незнакомец, я кинул тебе терминал с парольной фразой. Запомни:',
+        'Stranger, I threw you a terminal with a pass phrase. Remember:': 'Незнакомец, я сбросил тебе терминал с парольной фразой. Запомни:',
         'And blood-black nothingness began to spin...': 'Кроваво-черное ничто пустилось вить систему клеток,', 
         'A system of cells interlinked within cells interlinked within cells interlinked within one stem...' : 'связанных внутри, клеток, связанных внутри, клеток в едином стебле и явственно,', 
         'And dreadfully distinct against the dark, a tall white fountain played.': 'до жути на фоне тьмы ввысь белым бил фонтан.',
@@ -167,6 +188,10 @@ export const TRANSLATE_WORLDS = {
         'Why don\'t you say that three times: Within cells interlinked.': 'Повторите три раза "клеток связанных внутри',
         'We\'re done... Constant K, you can pick up your bonus.': 'На этом все. Кей стабилен, можете пройти за бонусом.',
         'Thank you, sir.': 'Спасибо, сэр.',
+        '...If you read it, you find dropped terminal and got top level of desert. Welcome...': '...Если ты читаешь это, ты нашел упавший терминал и добрался до верхнего уровня пустоши.',
+        'Who are you?': 'Кто ты?',
+        'It does not matter. Later. May be..': 'Это неважно. Позже. Может быть..',
+        'Hey...': 'Эй...',
 
         'open': 'пуск',
 

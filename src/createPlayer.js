@@ -84,7 +84,7 @@ export function createPlayer (emitterLink) {
 
     emitter.subscribe('keyEvent')(data => keys = data)
     emitter.subscribe('frameUpdate')(update)
-    emitter.subscribe('toggleDialog')(val => isButtonsDisabled = val.isOpen)
+    emitter.subscribe('toggleTerminal')(val => isButtonsDisabled = val.isOpen)
 
 
     return {

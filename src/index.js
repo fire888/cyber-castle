@@ -74,7 +74,6 @@ const init = assets => {
     createDialog(emitter)
 
     /** add top world */
-    // emitter.emit('toggleDialog')({ mesh: { userData: { keyProgram: 'PROGRAM_06' } } } )
 
 
     /** player */
@@ -84,11 +83,10 @@ const init = assets => {
     studio.addToScene(player.getObj())
 
     createInfo(emitter)
-    showStartButton(emitter)
-
-    setTimeout(() => {
-        emitter.emit('toggleDialog')({ mesh: { userData: { terminalKey: 'START_MESS' }}, isOpen: true })
-    }, 50)
+    showStartButton(lang => {
+        emitter.emit('setLanguage')(lang)
+        emitter.emit('toggleTerminal')({ terminalKey: 'START_MESS', isOpen: true })
+    })
 }
 
 

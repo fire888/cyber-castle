@@ -27,14 +27,13 @@ loaderTimeOut()
 
 
 
-export const showStartButton = emitter => {
+export const showStartButton = callback => {
     const startButtons = document.querySelector('.startbuttons-wrapper')
     const progressWrapper = document.querySelector('.progress-wrapper')
 
     const hideStartScreen = e => {
-        emitter.emit('setLanguage')(e.target.dataset.lang)
         document.querySelector('.start-screen').style.display = 'none'
-        
+        callback(e.target.dataset.lang)
     }
 
     isAnimateLoader = false

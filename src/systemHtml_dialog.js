@@ -18,21 +18,21 @@ export function createDialog (emitter) {
 
 const prepareOpenDialogButton = emitter => {
     const button = document.getElementById('dialog-button-toggle')
-    let currentMesh = null
+    let currentTerminalKey = null
 
     const showHideButton = is => {
         button.style.display = is ? 'flex' : 'none'
         button.innerText = t('open')
     }
 
-    button.addEventListener('click', () => emitter.emit('toggleDialog')({ mesh: currentMesh, isOpen: true }))
-    emitter.subscribe('toggleDialog')(data => {
-        if (data.mesh.userData.terminalKey === "START_MESS") return;
+    button.addEventListener('click', () => emitter.emit('toggleTerminal')({ terminalKey: currentTerminalKey, isOpen: true }))
+    emitter.subscribe('toggleTerminal')(data => {
+        if (!data.mesh) return;
         showHideButton(!data.isOpen)
     })
 
     emitter.subscribe('nearMesh')(data => {
-        currentMesh = data.mesh
+        currentTerminalKey = data.mesh.userData.terminalKey
         showHideButton(data.toNear)
     })
     
@@ -48,12 +48,12 @@ const prepareDialog = emitter => {
     const messagesList = []
     const playerRepliciesList = []
 
-    let currentMesh = null
-    let currentPraseIndex = 0
+    let currentTerminalKey = null
+    let currentPhraseIndex = 0
 
     const updateDialog = () =>
     {
-        const dialogDATA = REPLICIES_CONFIG[currentMesh.userData.terminalKey][currentPraseIndex]
+        const dialogDATA = REPLICIES_CONFIG[currentTerminalKey][currentPhraseIndex]
 
         /** clear old dialog */
         playerRepliciesList.forEach(item => item.parentNode.removeChild(item))
@@ -76,20 +76,20 @@ const prepareDialog = emitter => {
             answer.innerText = t(dialogDATA.a[i].txt)
             answer.onclick = () => {
                 if (dialogDATA.a[i].action === 'next') {
-                    currentPraseIndex ++;
+                    currentPhraseIndex ++;
                     updateDialog()
                 }
 
                 if (dialogDATA.a[i].action === 'close') {
-                    currentPraseIndex = 0
-                    showHideDialog({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('toggleDialog')({ isOpen: false, mesh: currentMesh })
+                    currentPhraseIndex = 0
+                    showHideDialog({ isOpen: false, terminalKey: currentTerminalKey })
+                    emitter.emit('toggleTerminal')({ isOpen: false, terminalKey: currentTerminalKey })
                 }
 
                 if (dialogDATA.a[i].action === 'startBridge') {
-                    currentPraseIndex = 0
-                    showHideDialog({ isOpen: false, mesh: currentMesh })
-                    emitter.emit('toggleDialog')({ isOpen: false, mesh: currentMesh })
+                    currentPhraseIndex = 0
+                    showHideDialog({ isOpen: false, terminalKey: currentTerminalKey })
+                    emitter.emit('toggleTerminal')({ isOpen: false, terminalKey: currentTerminalKey })
                     emitter.emit('startBridgeProgram')({ keyProgram: dialogDATA.a[i].dataAction.keyProgramBridge })
                 }
 
@@ -105,7 +105,7 @@ const prepareDialog = emitter => {
 
     const showHideDialog = data =>{
         const action = () => {
-            currentMesh = data.mesh
+            currentTerminalKey = data.terminalKey
             updateDialog(data)
             dialogContainer.style.display = data.isOpen ? 'flex' : 'none'
         } 
@@ -114,7 +114,7 @@ const prepareDialog = emitter => {
             : action()
     }
 
-    emitter.subscribe('toggleDialog')(showHideDialog)
+    emitter.subscribe('toggleTerminal')(showHideDialog)
 }
 
 
@@ -132,7 +132,7 @@ const changePhrasesState = id => {
         setTimeout(() => {
             for (let key in REPLICIES_CONFIG) {
                 REPLICIES_CONFIG[key][0].q.txt = REPLICIES_CONFIG['TERMINAL_LAST'][0].q.txt
-                for (let i = 0; i < REPLICIES_CONFIG[key][0].a.length; i ++) {
+                for (let i = 1; i < REPLICIES_CONFIG[key][0].a.length; i ++) {
                     REPLICIES_CONFIG[key][0].a[i].isShow = false
                 }
                 REPLICIES_CONFIG[key][0].a[0].isShow = true
@@ -140,7 +140,14 @@ const changePhrasesState = id => {
                 REPLICIES_CONFIG[key][0].a[0].action = 'close'
                 REPLICIES_CONFIG[key][0].a[0].idChangerState = null
             }
+            REPLICIES_CONFIG['TERMINAL_LAST'][0].a[0].action = 'next'
         }, 1000)
+    }
+
+    if (id === 'clearMessagesAfterLastEnd')
+    {
+        REPLICIES_CONFIG['TERMINAL_LAST'][0].a[0].isShow = false
+        REPLICIES_CONFIG['TERMINAL_LAST'][0].a[1].isShow = true
     }
 }
 
