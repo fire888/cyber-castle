@@ -17,7 +17,7 @@ export function createInfo (emitter) {
 
     const mess = document.createElement('div')
     const createInnerMess = () => {
-        mess.innerHTML = t('Previous part "Factory": ')
+        mess.innerHTML = t('Previous part: ')
         mess.innerHTML += `<a href=\'http://js.otrisovano.ru${ t('/factory') }\' target="blanck">${ t('link') }</a></br>`
         mess.innerHTML += t('Author: ')
         mess.innerHTML += `<a href=\'http://otrisovano.ru\' target="blanck">${ t('link') }</a></br>`

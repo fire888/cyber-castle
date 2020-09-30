@@ -195,7 +195,7 @@ export const TRANSLATE_WORLDS = {
 
         'open': 'пуск',
 
-        'Previous part "Factory": ': 'Предыдущая часть "Фабрика": ',
+        'Previous part: ': 'Предыдущая часть: ',
         'Author: ': 'Автор: ',
         'link': 'ссылка',
         '/factory': '/ru/factory/'

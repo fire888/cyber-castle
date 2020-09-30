@@ -83,6 +83,7 @@ const init = assets => {
     studio.addToScene(player.getObj())
 
     createInfo(emitter)
+
     showStartButton(lang => {
         emitter.emit('setLanguage')(lang)
         emitter.emit('toggleTerminal')({ terminalKey: 'START_MESS', isOpen: true })
