@@ -119,7 +119,7 @@ export const PLATFORMS_CONFIG = [
 
 
 export const TERMINALS_CONFIG = [
-    { terminalKey: 'TERMINAL_Z01', r: 70, angle: PI / 2, y: -57, angleZ: PI / 2},
+    { terminalKey: 'TERMINAL_Z01', r: 20, angle: PI - 0.3, y: -57, angleZ: PI / 2, angleY: 0.1 },
     { terminalKey: 'TERMINAL_Z', r: 50, angle: PI, y: -57, },
     { terminalKey: 'TERMINAL_00', r: R + 20, angle: 0, y: 2, },
     { terminalKey: 'TERMINAL_01', r: R - 5, angle: PI + 0.3, y: 1, },

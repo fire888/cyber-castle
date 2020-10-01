@@ -13,9 +13,9 @@ export const createModelTerminal = (model, config, emitter) => {
     const openAction = mixer.clipAction(animations[0])
     openAction.loop = THREE.LoopOnce
 
-    const { r, angle, angleZ, y, terminalKey } = config
+    const { r, angle, angleZ, angleY, y, terminalKey } = config
     mesh.position.set(Math.sin(angle) * r, y, Math.cos(angle) *  r)
-    mesh.rotation.set(0, angle, angleZ || 0)
+    mesh.rotation.set(0, angleY || angle, angleZ || 0)
     mesh.userData.terminalKey = terminalKey
 
     
