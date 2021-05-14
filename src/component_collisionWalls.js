@@ -14,6 +14,8 @@ export const createComponentCollisionWalls = (objFromLink, objToLink, offset) =>
     const vec3Src2 = new THREE.Vector3()
     const vec3Ray2 = new THREE.Vector3()
 
+    const raycasterWalls = new THREE.Raycaster(vec3Src2, vec3Ray2)
+    
     return {
         check: () => {
             objTo.getWorldPosition(vec3Ray2)
